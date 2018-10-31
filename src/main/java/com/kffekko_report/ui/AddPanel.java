@@ -5,6 +5,8 @@
  */
 package com.kffekko_report.ui;
 
+import javax.swing.JScrollPane;
+
 /**
  *
  * @author akil
@@ -16,6 +18,15 @@ public class AddPanel extends javax.swing.JPanel {
      */
     public AddPanel() {
         initComponents();
+        int height = 600;
+        int width = 950;
+        
+        WeightFormPanel storyEditor = new WeightFormPanel();
+        JScrollPane scroller = new JScrollPane(storyEditor);
+        container.removeAll();
+        container.add(scroller, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, width, height));
+        container.repaint();
+        container.revalidate();
     }
 
     /**
@@ -27,21 +38,100 @@ public class AddPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setBackground(new java.awt.Color(255, 255, 51));
+        tabWeight = new javax.swing.JLabel();
+        tabAmount = new javax.swing.JLabel();
+        container = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+
+        setBackground(new java.awt.Color(235, 235, 235));
+
+        tabWeight.setText(" Poids Fo1");
+        tabWeight.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabWeightMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                tabWeightMouseEntered(evt);
+            }
+        });
+
+        tabAmount.setText("Montant");
+        tabAmount.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabAmountMouseClicked(evt);
+            }
+        });
+
+        container.setBackground(new java.awt.Color(235, 235, 235));
+        container.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel1.setText("jLabel1");
+        container.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 240, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(tabWeight, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tabAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 611, Short.MAX_VALUE))
+            .addComponent(container, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tabWeight, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tabAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(container, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void tabWeightMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabWeightMouseClicked
+        // TODO add your handling code here:
+        
+        int height = 600;
+        int width = 950;
+        
+        WeightFormPanel storyEditor = new WeightFormPanel();
+        JScrollPane scroller = new JScrollPane(storyEditor);
+        container.removeAll();
+        tabWeight.setBackground(new java.awt.Color(252, 255, 255));
+        container.add(scroller, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, width, height));
+        container.repaint();
+        container.revalidate();
+        
+    }//GEN-LAST:event_tabWeightMouseClicked
+
+    private void tabAmountMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabAmountMouseClicked
+        // TODO add your handling code here:
+        int height = 600;
+        int width = 950;
+        
+        tabAmount.setBackground(new java.awt.Color(252, 255, 255));
+        AmountFormPanel storyEditor = new AmountFormPanel();
+        JScrollPane scroller = new JScrollPane(storyEditor);
+        container.removeAll();
+       
+        container.add(scroller, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, width, height));
+        container.repaint();
+        container.revalidate();
+        
+    }//GEN-LAST:event_tabAmountMouseClicked
+
+    private void tabWeightMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabWeightMouseEntered
+        // TODO add your handling code here:
+        tabAmount.setBackground(new java.awt.Color(252, 255, 255));
+    }//GEN-LAST:event_tabWeightMouseEntered
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel container;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel tabAmount;
+    private javax.swing.JLabel tabWeight;
     // End of variables declaration//GEN-END:variables
 }
