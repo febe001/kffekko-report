@@ -41,10 +41,11 @@ public class AddPanel extends javax.swing.JPanel {
         tabWeight = new javax.swing.JLabel();
         tabAmount = new javax.swing.JLabel();
         container = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(235, 235, 235));
 
+        tabWeight.setBackground(new java.awt.Color(255, 255, 255));
+        tabWeight.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
         tabWeight.setText(" Poids Fo1");
         tabWeight.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -55,7 +56,9 @@ public class AddPanel extends javax.swing.JPanel {
             }
         });
 
-        tabAmount.setText("Montant");
+        tabAmount.setBackground(new java.awt.Color(255, 255, 255));
+        tabAmount.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
+        tabAmount.setText("Montants");
         tabAmount.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tabAmountMouseClicked(evt);
@@ -64,9 +67,6 @@ public class AddPanel extends javax.swing.JPanel {
 
         container.setBackground(new java.awt.Color(235, 235, 235));
         container.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel1.setText("jLabel1");
-        container.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 240, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -130,7 +130,6 @@ public class AddPanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel container;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel tabAmount;
     private javax.swing.JLabel tabWeight;
     // End of variables declaration//GEN-END:variables

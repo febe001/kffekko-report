@@ -55,7 +55,7 @@ public class HomePanel extends javax.swing.JPanel {
 
         jLabel2.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel2.setText("<html>Une application qui synthétise sous forme <br/>de rapport automatisé les données d'exportations.</html>");
+        jLabel2.setText("<html>Une application qui synthétise sous forme <br/>de rapport automatisé des données d'exportations.</html>");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);

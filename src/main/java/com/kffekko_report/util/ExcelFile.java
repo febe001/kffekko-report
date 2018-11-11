@@ -8,6 +8,7 @@ package com.kffekko_report.util;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.nio.charset.Charset;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.usermodel.Cell;
@@ -19,7 +20,7 @@ import org.apache.poi.ss.usermodel.WorkbookFactory;
 public class ExcelFile 
 {
     private String header[];
-    private Object body[][];
+    private String body[][];
     private String lastFileName = null;
     private String lastSheetName = null;
     
@@ -30,49 +31,66 @@ public class ExcelFile
             this.setLastFileName(fileName);
             this.setLastSheetName(sheetName);
             FileInputStream file = new FileInputStream(fileName);
+            
             Workbook workbook = WorkbookFactory.create(file);
             final Sheet sheet = workbook.getSheet(sheetName);
+            
             int top = sheet.getFirstRowNum();
             int bottom = sheet.getLastRowNum();
             Row line = sheet.getRow(top);
             int start = line.getFirstCellNum();
             int end = line.getLastCellNum();    
             int length = end - start;
-            while(length == 0)
+            /*while(length == 0)
             {
                 top++;
                 line = sheet.getRow(top);
                 start = line.getFirstCellNum();
                 end = line.getLastCellNum();    
                 length = end - start;
-            }
+            }*/
             int hight = bottom - top;
             this.header =  new String[length];
-            this.body = new Object[hight][length];
+            this.body = new String[hight][length];
             for (int i = 0; i < length; i++)
             {
-                header[i] = line.getCell(start + i).getStringCellValue();    
+                header[i] = line.getCell(start + i).getStringCellValue();  
+               
             }
             
-            for (int index = 0; index < hight; index++) 
-            {
-                line = sheet.getRow(index + top + 1);
-                for (int i = 0; i < length; i++)
+            if(sheet != null){
+                for (int index = 1; index < hight; index++) 
                 {
-                    Cell cellule = line.getCell(start + i);
-                    switch (cellule.getCellType())
-                    {
-                        case Cell.CELL_TYPE_STRING : 
-                            this.body[index][i] = cellule.getStringCellValue();
-                            break;
-                        case Cell.CELL_TYPE_BOOLEAN : 
-                            this.body[index][i] = cellule.getBooleanCellValue();
-                            break;
-                        default :
-                            this.body[index][i] = cellule.getNumericCellValue();
+                    line = sheet.getRow(index);
+                    if(line != null){
+                        for (int i = 0; i < length; i++)
+                        {
+                            if(line != null){
+                                Cell cellule = line.getCell(i);
+                                if(cellule != null){
+                                    cellule.setCellType(Cell.CELL_TYPE_STRING);
+                                    this.body[index][i] = new String(String.valueOf(cellule.getStringCellValue()).getBytes(), Charset.forName("UTF-8"));
+                                    /*switch (cellule.getCellType())
+                                    {
+                                        case Cell.CELL_TYPE_STRING : 
+                                            this.body[index][i] = new String(String.valueOf(cellule.getStringCellValue()).getBytes(), Charset.forName("UTF-8"));
+                                            break;
+                                        case Cell.CELL_TYPE_BOOLEAN : 
+                                            this.body[index][i] = new String(String.valueOf(cellule.getBooleanCellValue()).getBytes(), Charset.forName("UTF-8"));
+                                            break;
+                                        default :
+                                            this.body[index][i] = new String(String.valueOf(cellule.getNumericCellValue()).getBytes(), Charset.forName("UTF-8"));
+                                    }*/
+                                }
+
+                            }
+
+                        }
                     }
+
                 }
             }
+            
             workbook.close();
             file.close();
         }
@@ -128,7 +146,7 @@ public class ExcelFile
         return this.header;
     }
     
-    public Object[][] getBody() 
+    public String[][] getBody() 
     {
         return this.body;
     }

@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="i.2_subreport2" language="groovy" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="33f95b63-d664-45ef-821b-522b6d569404">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Crosstab Data Text" hAlign="Center"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+     poids.`port_Embarquement` AS port_Embarquement,
+     SUM(CONVERT(poids.`poids_Net`, UNSIGNED INTEGER)) AS str_value,
+     'a_str_name' AS str_name
+FROM
+     `poids` poids
+
+WHERE 
+     poids.`type_Produit` = 'Fèves' AND
+     poids.`produit` = 'Cacao' AND
+     poids.`port_Embarquement` != 'null'
+     
+
+GROUP BY 
+     poids.`port_Embarquement`
+     
+
+UNION
+
+SELECT
+     poids.`port_Embarquement` AS port_Embarquement,
+     SUM(CONVERT(poids.`poids_Reel`, UNSIGNED INTEGER)) AS str_name,
+     'b_str_name' AS str_name
+FROM
+     `poids` poids
+
+WHERE 
+     poids.`type_Produit` = 'Fèves' AND
+     poids.`produit` = 'Cacao' AND
+     poids.`port_Embarquement` != 'null'
+     
+
+GROUP BY 
+     poids.`port_Embarquement`
+
+UNION
+
+SELECT
+     poids.`port_Embarquement` AS port_Embarquement,
+     (
+      IF ((SUM(CONVERT(poids.`poids_Reel`, UNSIGNED INTEGER)) - 
+      SUM(CONVERT(poids.`poids_Net`, UNSIGNED INTEGER))) > 0, 
+     (SUM(CONVERT(poids.`poids_Reel`, UNSIGNED INTEGER)) - 
+      SUM(CONVERT(poids.`poids_Net`, UNSIGNED INTEGER))), -(SUM(CONVERT(poids.`poids_Reel`, UNSIGNED INTEGER)) - 
+      SUM(CONVERT(poids.`poids_Net`, UNSIGNED INTEGER))))
+     )  AS str_value,
+     'c_str_name' AS str_name
+FROM
+     `poids` poids
+
+WHERE 
+     poids.`type_Produit` = 'Fèves' AND
+     poids.`produit` = 'Cacao' AND
+     poids.`port_Embarquement` != 'null'
+     
+
+GROUP BY 
+     poids.`port_Embarquement`]]>
+	</queryString>
+	<field name="port_Embarquement" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="str_value" class="java.math.BigDecimal"/>
+	<field name="str_name" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch"/>
+	</title>
+	<summary>
+		<band height="288" splitType="Stretch">
+			<crosstab>
+				<reportElement x="0" y="0" width="555" height="288" uuid="d57fcf52-ec4c-4f5b-a8f8-3ce063a794fa"/>
+				<rowGroup name="str_name" width="70" totalPosition="End">
+					<bucket class="java.lang.String">
+						<bucketExpression><![CDATA[$F{str_name}]]></bucketExpression>
+					</bucket>
+					<crosstabRowHeader>
+						<cellContents backcolor="#F0F8FF" mode="Opaque">
+							<box>
+								<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textField>
+								<reportElement style="Crosstab Data Text" x="0" y="0" width="70" height="25" uuid="5f656c91-a777-4432-80d7-ce8a0309bb6c"/>
+								<textFieldExpression><![CDATA[$V{str_name}]]></textFieldExpression>
+							</textField>
+						</cellContents>
+					</crosstabRowHeader>
+					<crosstabTotalRowHeader>
+						<cellContents backcolor="#BFE1FF" mode="Opaque">
+							<box>
+								<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<staticText>
+								<reportElement x="0" y="0" width="70" height="25" uuid="eaea603e-0ad8-4f89-95a9-34d54374b461"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<text><![CDATA[Total str_name]]></text>
+							</staticText>
+						</cellContents>
+					</crosstabTotalRowHeader>
+				</rowGroup>
+				<columnGroup name="port_Embarquement" height="30" totalPosition="End">
+					<bucket class="java.lang.String">
+						<bucketExpression><![CDATA[$F{port_Embarquement}]]></bucketExpression>
+					</bucket>
+					<crosstabColumnHeader>
+						<cellContents backcolor="#F0F8FF" mode="Opaque">
+							<box>
+								<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textField>
+								<reportElement style="Crosstab Data Text" x="0" y="0" width="50" height="30" uuid="ca0a8577-5c70-4e0a-95c9-fad6e5414c7d"/>
+								<textFieldExpression><![CDATA[$V{port_Embarquement}]]></textFieldExpression>
+							</textField>
+						</cellContents>
+					</crosstabColumnHeader>
+					<crosstabTotalColumnHeader>
+						<cellContents backcolor="#BFE1FF" mode="Opaque">
+							<box>
+								<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<staticText>
+								<reportElement x="0" y="0" width="50" height="30" uuid="2fc6aba5-4225-4d88-b119-ae64a7230bc2"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<text><![CDATA[Total port_Embarquement]]></text>
+							</staticText>
+						</cellContents>
+					</crosstabTotalColumnHeader>
+				</columnGroup>
+				<measure name="str_valueMeasure" class="java.math.BigDecimal" calculation="Sum">
+					<measureExpression><![CDATA[$F{str_value}]]></measureExpression>
+				</measure>
+				<crosstabCell width="50" height="25">
+					<cellContents>
+						<box>
+							<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+						</box>
+						<textField>
+							<reportElement style="Crosstab Data Text" x="0" y="0" width="50" height="25" uuid="86c8f3a5-01f7-4ed3-b023-7e424975f599"/>
+							<textFieldExpression><![CDATA[$V{str_valueMeasure}]]></textFieldExpression>
+						</textField>
+					</cellContents>
+				</crosstabCell>
+				<crosstabCell height="25" rowTotalGroup="str_name">
+					<cellContents backcolor="#BFE1FF" mode="Opaque">
+						<box>
+							<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+						</box>
+						<textField>
+							<reportElement style="Crosstab Data Text" x="0" y="0" width="50" height="25" uuid="bb4f8c7a-122d-49b6-ad98-50fe7ae90f83"/>
+							<textFieldExpression><![CDATA[$V{str_valueMeasure}]]></textFieldExpression>
+						</textField>
+					</cellContents>
+				</crosstabCell>
+				<crosstabCell width="50" columnTotalGroup="port_Embarquement">
+					<cellContents backcolor="#BFE1FF" mode="Opaque">
+						<box>
+							<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+						</box>
+						<textField>
+							<reportElement style="Crosstab Data Text" x="0" y="0" width="50" height="25" uuid="7daf87c2-303e-4e99-9d2d-3ac7d3738945"/>
+							<textFieldExpression><![CDATA[$V{str_valueMeasure}]]></textFieldExpression>
+						</textField>
+					</cellContents>
+				</crosstabCell>
+				<crosstabCell rowTotalGroup="str_name" columnTotalGroup="port_Embarquement">
+					<cellContents backcolor="#BFE1FF" mode="Opaque">
+						<box>
+							<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+						</box>
+						<textField>
+							<reportElement style="Crosstab Data Text" x="0" y="0" width="50" height="25" uuid="df08f9f0-8f6f-4726-b439-63d4d8e878ac"/>
+							<textFieldExpression><![CDATA[$V{str_valueMeasure}]]></textFieldExpression>
+						</textField>
+					</cellContents>
+				</crosstabCell>
+			</crosstab>
+		</band>
+	</summary>
+</jasperReport>

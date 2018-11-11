@@ -5,6 +5,8 @@
  */
 package com.kffekko_report.ui;
 
+import com.kffekko_report.mysql.models.Montant;
+import com.kffekko_report.mysql.models.Poids;
 import com.kffekko_report.util.DialogFile;
 import com.kffekko_report.util.ExcelFile;
 import com.kffekko_report.util.FileChooser;
@@ -12,6 +14,9 @@ import com.kffekko_report.util.FileUtils;
 import java.awt.Dialog.ModalityType;
 import java.io.File;
 import java.io.IOException;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JDialog;
@@ -48,7 +53,12 @@ public class ImportPanel extends javax.swing.JPanel {
         btImportExcel = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        lbFileSelected = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
 
         btFileSelect.setText("Selectionner fichier");
         btFileSelect.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -82,14 +92,13 @@ public class ImportPanel extends javax.swing.JPanel {
         btImportSqlLayout.setHorizontalGroup(
             btImportSqlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(btImportSqlLayout.createSequentialGroup()
-                .addGroup(btImportSqlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(btImportSqlLayout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel1))
-                    .addGroup(btImportSqlLayout.createSequentialGroup()
-                        .addGap(55, 55, 55)
-                        .addComponent(jLabel3)))
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addGap(55, 55, 55)
+                .addComponent(jLabel3)
+                .addContainerGap(66, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btImportSqlLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addContainerGap())
         );
         btImportSqlLayout.setVerticalGroup(
             btImportSqlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -103,6 +112,9 @@ public class ImportPanel extends javax.swing.JPanel {
 
         btImportExcel.setBackground(new java.awt.Color(224, 224, 224));
         btImportExcel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btImportExcelMouseClicked(evt);
+            }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 btImportExcelMouseExited(evt);
             }
@@ -136,47 +148,70 @@ public class ImportPanel extends javax.swing.JPanel {
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel4)
-                .addContainerGap(61, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jTextField1.setText("Chemin de votre fichier");
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        lbFileSelected.setText("Chemin de votre fichier");
+        lbFileSelected.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                lbFileSelectedActionPerformed(evt);
             }
         });
+
+        jLabel5.setText("File");
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jLabel6.setText("Nom de la feuille ");
+
+        jLabel7.setText("Quel type de fichier avez vous ? ");
+
+        jLabel8.setText("<html><p>Téléchargez votre fichier Excel, choisissez la feuille de calcul avec les données, sélectionnez la plage de cellules et cliquez sur Convertir. Nous convertirons votre fichier en script MySQL avec une définition de table et plusieurs instructions INSERT.</p></html>");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(70, 70, 70)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(51, 51, 51)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(57, 57, 57)
+                        .addGap(6, 6, 6)
+                        .addComponent(jLabel7))
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(btImportSql, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(64, 64, 64)
-                        .addComponent(btImportExcel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 525, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btFileSelect, javax.swing.GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE)
-                        .addGap(91, 91, 91))))
+                        .addGap(70, 70, 70)
+                        .addComponent(btImportExcel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btFileSelect, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel6)
+                    .addComponent(lbFileSelected)
+                    .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addContainerGap(44, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(36, 36, 36)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btFileSelect, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 93, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btImportSql, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btImportExcel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(73, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btFileSelect, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lbFileSelected, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btImportSql, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btImportExcel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -186,25 +221,41 @@ public class ImportPanel extends javax.swing.JPanel {
         JFileChooser choix = new JFileChooser();
         int retour = choix.showOpenDialog(this);
         if(retour==JFileChooser.APPROVE_OPTION){
-            // un fichier a été choisi (sortie par OK)
-            // nom du fichier  choisi 
-            String name = choix.getSelectedFile().getName();
-             ExcelFile excel = new ExcelFile("./docs/" + name, "sheet1");
-        Object body[][] = excel.getBody();
-        for(int i = 0; i < body.length; i++){
-            for(int j = 0; j < body[i].length; j++){
-               System.out.println(body[i][j]);  
-            }
-        }
-            // chemin absolu du fichier choisi
-            String s  = choix.getSelectedFile().getAbsolutePath();
             
+            String s  = choix.getSelectedFile().getAbsolutePath();
             FileUtils file = new FileUtils(s);
             try {
                 file.moveInDirectory("./docs/");
             } catch (IOException ex) {
                 Logger.getLogger(ImportPanel.class.getName()).log(Level.SEVERE, null, ex);
             }
+                    
+            // un fichier a été choisi (sortie par OK)
+            // nom du fichier  choisi 
+            String name = choix.getSelectedFile().getName();
+            this.fileUrl = "./docs/" + name;
+            
+           
+            //Object body[][] = excel.getBody();
+         
+            
+            /*for(int i = 0; i < body.length; i++){
+                for(int j = 0; j < body[i].length; j++){
+                    System.out.println(body[i][j]);  
+                }
+            }*/
+            // chemin absolu du fichier choisi
+            //String s  = choix.getSelectedFile().getAbsolutePath();
+            
+            /*lbFileSelected.setText(s);
+            repaint();
+            revalidate();*/
+            /*FileUtils file = new FileUtils(s);
+            try {
+                file.moveInDirectory("./docs/");
+            } catch (IOException ex) {
+                Logger.getLogger(ImportPanel.class.getName()).log(Level.SEVERE, null, ex);
+            }*/
             
             
         }
@@ -214,9 +265,9 @@ public class ImportPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_btFileSelectActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void lbFileSelectedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lbFileSelectedActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_lbFileSelectedActionPerformed
 
     private void btImportSqlMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btImportSqlMouseEntered
         // TODO add your handling code here:
@@ -238,15 +289,62 @@ public class ImportPanel extends javax.swing.JPanel {
         btImportExcel.setBackground(new java.awt.Color(224, 224, 224));
     }//GEN-LAST:event_btImportExcelMouseExited
 
+    private void btImportExcelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btImportExcelMouseClicked
+        // TODO add your handling code here:
+        System.out.println(this.fileUrl);
+        System.out.println(this.lbFileSelected.getText());
+        
+        String sheetName = this.lbFileSelected.getText();
+        if("POIDS F01".equals(sheetName)){
+            ExcelFile excel = new ExcelFile(this.fileUrl, this.lbFileSelected.getText());
+            Object body[][] = excel.getBody();
 
+            for (Object[] body1 : body) {
+                Poids poids = new Poids((String[]) body1);
+                try {
+                    poids.save();
+                } catch (SQLException ex) {
+                    Logger.getLogger(ImportPanel.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+        if("MONTANTS F01".equals(sheetName)){
+            ExcelFile excel = new ExcelFile(this.fileUrl, sheetName);
+            Object body[][] = excel.getBody();
+
+            for (Object[] body1 : body) {
+                Montant montant = new Montant((String[]) body1);
+                try {
+                    montant.save();
+                } catch (SQLException ex) {
+                    Logger.getLogger(ImportPanel.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+        
+        
+            
+    }//GEN-LAST:event_btImportExcelMouseClicked
+
+
+    private String fileUrl;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton btFileSelect;
     private javax.swing.JPanel btImportExcel;
     private javax.swing.JPanel btImportSql;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JTextField lbFileSelected;
     // End of variables declaration//GEN-END:variables
+
+    private void Poids(Object[] object) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

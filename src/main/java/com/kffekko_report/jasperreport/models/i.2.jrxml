@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="302330a3-ca90-4338-b4f4-11d9c90e30f8">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Crosstab Data Text" hAlign="Center"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["/Users/akil/NetBeansProjects/kffekko/src/main/java/com/kffekko_report/jasperreport/models/"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     poids.`port_Embarquement` AS port_Embarquement,
+     SUM(CONVERT(poids.`poids_Net`, UNSIGNED INTEGER)) AS str_value,
+     'a_str_name' AS str_name
+FROM
+     `poids` poids
+
+WHERE 
+     poids.`type_Produit` = 'Fèves' AND
+     poids.`produit` = 'Cacao' AND
+     poids.`port_Embarquement` != 'null'
+     
+
+GROUP BY 
+     poids.`port_Embarquement`
+     
+
+UNION
+
+SELECT
+     poids.`port_Embarquement` AS port_Embarquement,
+     SUM(CONVERT(poids.`poids_Reel`, UNSIGNED INTEGER)) AS str_name,
+     'b_str_name' AS str_name
+FROM
+     `poids` poids
+
+WHERE 
+     poids.`type_Produit` = 'Fèves' AND
+     poids.`produit` = 'Cacao' AND
+     poids.`port_Embarquement` != 'null'
+     
+
+GROUP BY 
+     poids.`port_Embarquement`
+
+UNION
+
+SELECT
+     poids.`port_Embarquement` AS port_Embarquement,
+     (
+      IF ((SUM(CONVERT(poids.`poids_Reel`, UNSIGNED INTEGER)) - 
+      SUM(CONVERT(poids.`poids_Net`, UNSIGNED INTEGER))) > 0, 
+     (SUM(CONVERT(poids.`poids_Reel`, UNSIGNED INTEGER)) - 
+      SUM(CONVERT(poids.`poids_Net`, UNSIGNED INTEGER))), -(SUM(CONVERT(poids.`poids_Reel`, UNSIGNED INTEGER)) - 
+      SUM(CONVERT(poids.`poids_Net`, UNSIGNED INTEGER))))
+     )  AS str_value,
+     'c_str_name' AS str_name
+FROM
+     `poids` poids
+
+WHERE 
+     poids.`type_Produit` = 'Fèves' AND
+     poids.`produit` = 'Cacao' AND
+     poids.`port_Embarquement` != 'null'
+     
+
+GROUP BY 
+     poids.`port_Embarquement`]]>
+	</queryString>
+	<field name="port_Embarquement" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="str_value" class="java.math.BigDecimal"/>
+	<field name="str_name" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="30" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="555" height="30" uuid="50e272bb-3f9a-4440-bad5-c8ab1ae23ff7"/>
+				<textElement>
+					<font fontName="Arial Narrow" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[L'ACTIVITE DE CONTROLE DE L'ACTIVITE DU POIDS DECLARE ET DE PESAGEDES FEVES DE CACAO]]></text>
+			</staticText>
+		</band>
+	</title>
+	<summary>
+		<band height="503" splitType="Stretch">
+			<subreport>
+				<reportElement x="0" y="202" width="555" height="98" uuid="1c2b383b-6ee0-41e9-b238-e10bee6a2d12"/>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "i.2_subreport1.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</summary>
+</jasperReport>

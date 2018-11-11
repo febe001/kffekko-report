@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="i.2_subreport1" language="groovy" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="dc521456-a1bb-4ac9-98ac-f99b1a116bdb">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Crosstab Data Text" hAlign="Center"/>
+	<queryString>
+		<![CDATA[SELECT
+     poids.`port_Embarquement` AS port_embarquement,
+     SUM(CONVERT(poids.`poids_Net`, UNSIGNED INTEGER)) AS str_value,
+     SUM(CONVERT(poids.`poids_Net`, UNSIGNED INTEGER)) AS poids_net,
+     (
+      IF ((SUM(CONVERT(poids.`poids_Reel`, UNSIGNED INTEGER)) - 
+      SUM(CONVERT(poids.`poids_Net`, UNSIGNED INTEGER))) > 0, 
+     (SUM(CONVERT(poids.`poids_Reel`, UNSIGNED INTEGER)) - 
+      SUM(CONVERT(poids.`poids_Net`, UNSIGNED INTEGER))), -(SUM(CONVERT(poids.`poids_Reel`, UNSIGNED INTEGER)) - 
+      SUM(CONVERT(poids.`poids_Net`, UNSIGNED INTEGER))))
+     ) AS diff,
+     'a_str_name' AS str_name
+FROM
+     `poids` poids
+
+WHERE 
+     poids.`type_Produit` = 'Fèves' AND
+     poids.`produit` = 'Cacao' AND
+     poids.`port_Embarquement` != 'null'
+     
+
+GROUP BY 
+     poids.`port_Embarquement`
+     
+
+UNION
+
+SELECT
+     poids.`port_Embarquement` AS port_Embarquement,
+     SUM(CONVERT(poids.`poids_Reel`, UNSIGNED INTEGER)) AS str_name,
+     SUM(CONVERT(poids.`poids_Net`, UNSIGNED INTEGER)) AS poids_net,
+     (
+      IF ((SUM(CONVERT(poids.`poids_Reel`, UNSIGNED INTEGER)) - 
+      SUM(CONVERT(poids.`poids_Net`, UNSIGNED INTEGER))) > 0, 
+     (SUM(CONVERT(poids.`poids_Reel`, UNSIGNED INTEGER)) - 
+      SUM(CONVERT(poids.`poids_Net`, UNSIGNED INTEGER))), -(SUM(CONVERT(poids.`poids_Reel`, UNSIGNED INTEGER)) - 
+      SUM(CONVERT(poids.`poids_Net`, UNSIGNED INTEGER))))
+     ) AS diff,
+     'b_str_name' AS str_name
+FROM
+     `poids` poids
+
+WHERE 
+     poids.`type_Produit` = 'Fèves' AND
+     poids.`produit` = 'Cacao' AND
+     poids.`port_Embarquement` != 'null'
+     
+
+GROUP BY 
+     poids.`port_Embarquement`
+
+UNION
+
+SELECT
+     poids.`port_Embarquement` AS port_Embarquement,
+     (
+      IF ((SUM(CONVERT(poids.`poids_Reel`, UNSIGNED INTEGER)) - 
+      SUM(CONVERT(poids.`poids_Net`, UNSIGNED INTEGER))) > 0, 
+     (SUM(CONVERT(poids.`poids_Reel`, UNSIGNED INTEGER)) - 
+      SUM(CONVERT(poids.`poids_Net`, UNSIGNED INTEGER))), -(SUM(CONVERT(poids.`poids_Reel`, UNSIGNED INTEGER)) - 
+      SUM(CONVERT(poids.`poids_Net`, UNSIGNED INTEGER))))
+     )  AS str_value,
+     SUM(CONVERT(poids.`poids_Net`, UNSIGNED INTEGER)) AS poids_net,
+     (
+      IF ((SUM(CONVERT(poids.`poids_Reel`, UNSIGNED INTEGER)) - 
+      SUM(CONVERT(poids.`poids_Net`, UNSIGNED INTEGER))) > 0, 
+     (SUM(CONVERT(poids.`poids_Reel`, UNSIGNED INTEGER)) - 
+      SUM(CONVERT(poids.`poids_Net`, UNSIGNED INTEGER))), -(SUM(CONVERT(poids.`poids_Reel`, UNSIGNED INTEGER)) - 
+      SUM(CONVERT(poids.`poids_Net`, UNSIGNED INTEGER))))
+     ) AS diff,
+     'c_str_name' AS str_name
+FROM
+     `poids` poids
+
+WHERE 
+     poids.`type_Produit` = 'Fèves' AND
+     poids.`produit` = 'Cacao' AND
+     poids.`port_Embarquement` != 'null'
+     
+
+GROUP BY 
+     poids.`port_Embarquement`]]>
+	</queryString>
+	<field name="port_embarquement" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="str_value" class="java.math.BigDecimal"/>
+	<field name="poids_net" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="diff" class="java.math.BigDecimal"/>
+	<field name="str_name" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="39" splitType="Stretch"/>
+	</title>
+	<summary>
+		<band height="321" splitType="Stretch"/>
+	</summary>
+</jasperReport>
