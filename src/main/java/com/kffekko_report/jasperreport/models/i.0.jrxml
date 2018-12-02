@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="32dea7cc-269f-4e7c-9084-c84f71b2b654">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="PERIODE" class="java.lang.String">
+		<defaultValueExpression><![CDATA["OCTOBRE-DECEMRE 2017"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="PRODUIT" class="java.lang.String">
+		<defaultValueExpression><![CDATA["Cacao"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="PRODUIT_TYPE" class="java.lang.String">
+		<defaultValueExpression><![CDATA["Fèves"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="CATEGORIES" class="java.lang.String"/>
+	<parameter name="parameter1" class="java.lang.String"/>
+	<parameter name="EXPORT_TYPES" class="java.lang.String"/>
+	<parameter name="EXPORT_SPE" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT COUNT(poids.no_Formule) as nb_emise,
+(SELECT COUNT(poids_recu.no_Formule)
+ FROM poids poids_recu 
+ WHERE poids_recu.statut_Formule = 'Complète'
+) as nb_recu
+FROM poids
+WHERE poids.no_Formule != 'null']]>
+	</queryString>
+	<field name="nb_emise" class="java.lang.Long"/>
+	<field name="nb_recu" class="java.lang.Long"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="24" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="555" height="23" uuid="5db46f91-be93-47f9-9342-9251fa8267fc"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1251" isPdfEmbedded="false"/>
+				</textElement>
+				<text><![CDATA[DONNEES DE REFERENCES STATISTIQUES]]></text>
+			</staticText>
+		</band>
+	</title>
+	<summary>
+		<band height="364" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="34" width="555" height="26" uuid="d5b9cda2-bb6a-4136-b03d-019ab0a43651"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="12"/>
+				</textElement>
+				<text><![CDATA[Tableau 1: Taux d'exportation réellement pesé et constaté aux port d'Abidjan et de San Pédro]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="60" width="502" height="30" forecolor="#FFFFFF" backcolor="#CC0033" uuid="58d6fe78-a3b2-456f-a72c-ce2f04a56f32"/>
+				<box leftPadding="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[DONNEE DE REFERENCES STATISTIQUES]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="89" width="287" height="26" forecolor="#000000" backcolor="#BDBDBD" uuid="626e3247-ba95-4111-97b0-2a10a6e44550"/>
+				<box leftPadding="5"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[  Période]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="115" width="287" height="26" backcolor="#BDBDBD" uuid="590a20fc-3774-465e-9b1e-d7c90461ce03"/>
+				<box leftPadding="5"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[  Produit]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="141" width="287" height="26" backcolor="#BDBDBD" uuid="8cd75bf0-96dd-464c-acca-4e97281c51e6"/>
+				<box leftPadding="5"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[  Type de produit]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="287" y="89" width="215" height="26" uuid="24fbd1b6-ad92-4810-96e6-596c74d044d0"/>
+				<box leftPadding="5"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<paragraph rightIndent="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{PERIODE}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="167" width="287" height="26" backcolor="#BDBDBD" uuid="d7bce4be-6dcf-42b0-84a6-c785f889036f"/>
+				<box leftPadding="5"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[  Catégorie exportateurs]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="219" width="287" height="26" backcolor="#BDBDBD" uuid="3d21a762-7449-4d1f-8c2b-14267ea7e037"/>
+				<box leftPadding="5"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[  Specifité exportations]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="193" width="287" height="26" backcolor="#BDBDBD" uuid="b244ad69-4bd4-43f3-bd7f-08033e7cd3c1"/>
+				<box leftPadding="5"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[  Type exportateurs]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="245" width="287" height="26" forecolor="#000000" backcolor="#BDBDBD" uuid="8aa12910-db28-43c4-997c-5d741dbaeb57"/>
+				<box leftPadding="5"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[  NB de Fo1 emise sur la periode]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="271" width="287" height="26" backcolor="#BDBDBD" uuid="856f4b92-813e-4512-bb11-6a3fe1644d44"/>
+				<box leftPadding="5"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[  NB de Fo1 reçues sur la periode]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="297" width="287" height="26" backcolor="#BDBDBD" uuid="c43f83aa-8714-49f9-9bc5-31e2ea99ce99"/>
+				<box leftPadding="5"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[  Nb de Fo1 peses a lexport sur la periode]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="323" width="287" height="26" backcolor="#BDBDBD" uuid="b97df6e6-d0c3-44f2-8096-49f7f1bfd868"/>
+				<box leftPadding="5"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[  Taux de traitement de l'Activite pesage sur la Période]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="287" y="115" width="215" height="26" uuid="a244d2ad-dd40-443a-8ecc-c45519eb0560"/>
+				<box leftPadding="5"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{PRODUIT}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="287" y="141" width="215" height="26" uuid="499a0719-512d-4e8d-b5a3-00e15eea1a13"/>
+				<box leftPadding="5"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{PRODUIT_TYPE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="287" y="167" width="215" height="26" uuid="c3573bc4-c5ca-4655-8996-9a6bb5f21e96"/>
+				<box leftPadding="5"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{CATEGORIES}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="287" y="193" width="215" height="26" uuid="2c4e5544-d27f-4272-9c50-cc6eb0aeceec"/>
+				<box leftPadding="5"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{EXPORT_TYPES}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="287" y="219" width="215" height="26" uuid="fdcf3d7b-531c-4838-8459-5217503b0885"/>
+				<box leftPadding="5"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{EXPORT_SPE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="287" y="245" width="215" height="26" uuid="98bddb1a-7cd0-4da6-9912-f1e6794053df"/>
+				<box leftPadding="5"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{nb_emise}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="287" y="271" width="215" height="26" uuid="6899a41d-9481-450b-b05f-0cb4c1945945"/>
+				<box leftPadding="5"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{nb_emise}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="287" y="297" width="215" height="26" uuid="1641c365-6f10-4faf-8178-0153cd768934"/>
+				<box leftPadding="5"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{nb_recu}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Opaque" x="287" y="323" width="215" height="26" backcolor="#BDBDBD" uuid="d0f96edb-0a23-4e2a-bb1f-c424cb746fed"/>
+				<box leftPadding="5"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[(new BigDecimal(String.valueOf(new Double(
+    (
+        $F{nb_recu}.doubleValue()
+    /
+    $F{nb_emise}.doubleValue()
+    )*100
+))).setScale(2, RoundingMode.HALF_UP)).toString().concat("%")]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

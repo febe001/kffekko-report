@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="i.4_subreport1" language="groovy" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="3c5d459b-526e-4bb7-8116-4235878b10ee">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Crosstab Data Text" hAlign="Center"/>
+	<parameter name="DATE_DEBUT" class="java.lang.String">
+		<defaultValueExpression><![CDATA["2017-10-01"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="DATE_FIN" class="java.lang.String">
+		<defaultValueExpression><![CDATA["2017-12-31"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="PRODUIT" class="java.lang.String">
+		<defaultValueExpression><![CDATA["Cacao"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="PRODUIT_TYPE" class="java.lang.String">
+		<defaultValueExpression><![CDATA["Fèves"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     poids.`type_Exportateur` AS poids_type_Exportateur,
+CONCAT(LPAD(ROUND(1/(( SELECT SUM(CONVERT(__poids.`poids_Reel`, SIGNED INTEGER))
+	FROM `poids` __poids
+	WHERE 
+	__poids.`type_Exportateur` = poids.`type_Exportateur` AND
+          __poids.`port_Embarquement` != 'null' AND
+     	__poids.`produit` = $P{PRODUIT} AND
+     	__poids.`date_CGFCC` >= $P{DATE_DEBUT} AND
+     	__poids.`date_CGFCC` <= $P{DATE_FIN} AND
+     	__poids.`statut_Formule` = 'Complète'
+ 	 GROUP BY __poids.`type_Exportateur`)/
+     (SELECT SUM(CONVERT(_poids.`poids_Reel`, SIGNED INTEGER))
+      FROM `poids` _poids
+      WHERE 
+           _poids.`port_Embarquement` != 'null' AND
+     	_poids.`produit` = $P{PRODUIT} AND
+     	_poids.`date_CGFCC` >= $P{DATE_DEBUT} AND
+     	_poids.`date_CGFCC` <= $P{DATE_FIN} AND
+     	_poids.`statut_Formule` = 'Complète'
+         
+     ))), 5, 0), poids.`type_Exportateur`) AS poids_type_Exportateur,
+     poids.`port_Embarquement` AS poids_port_Embarquement,
+     SUM(CONVERT(poids.`poids_Reel`, UNSIGNED INTEGER)) AS poids_poids_Reel
+FROM
+     `poids` poids
+
+
+WHERE poids.`port_Embarquement` != 'null'  AND 
+     poids.`date_CGFCC` >= $P{DATE_DEBUT} AND
+     poids.`date_CGFCC` <= $P{DATE_FIN} AND
+     poids.`statut_Formule` = 'Complète' AND
+     poids.`produit` = $P{PRODUIT}
+
+GROUP BY
+      poids.`type_Exportateur`,
+      poids.`port_Embarquement`]]>
+	</queryString>
+	<field name="poids_type_Exportateur" class="java.lang.String"/>
+	<field name="poids_port_Embarquement" class="java.lang.String"/>
+	<field name="poids_poids_Reel" class="java.math.BigDecimal"/>
+	<title>
+		<band height="37" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="555" height="37" uuid="0132076a-51d7-45a1-8161-f70c3d75fef3"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA["Tableau 11: Quantités de Cacao pesées a l'export par groupe d'exportateurs: Octobre-Decembre 2017 (kg)"]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<summary>
+		<band height="179" splitType="Stretch">
+			<crosstab>
+				<reportElement x="0" y="0" width="555" height="179" uuid="8c24ab2a-ea46-4dab-b8bc-9d73bc984d6a"/>
+				<crosstabHeaderCell>
+					<cellContents>
+						<staticText>
+							<reportElement style="Crosstab Data Text" mode="Opaque" x="0" y="0" width="119" height="30" forecolor="#FFFFFF" backcolor="#CC0033" uuid="a1305ed2-fa33-47f5-8cf6-181cd0c6482b"/>
+							<box leftPadding="2"/>
+							<textElement textAlignment="Left" verticalAlignment="Middle">
+								<font pdfFontName="Helvetica-Bold"/>
+							</textElement>
+							<text><![CDATA[Groupe Exportateurs]]></text>
+						</staticText>
+					</cellContents>
+				</crosstabHeaderCell>
+				<rowGroup name="poids_type_Exportateur" width="119" totalPosition="End">
+					<bucket class="java.lang.String">
+						<bucketExpression><![CDATA[$F{poids_type_Exportateur}]]></bucketExpression>
+					</bucket>
+					<crosstabRowHeader>
+						<cellContents backcolor="#F0F8FF" mode="Opaque">
+							<box>
+								<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textField>
+								<reportElement style="Crosstab Data Text" mode="Opaque" x="0" y="0" width="119" height="25" backcolor="#CCCCCC" uuid="0b4358a5-ff1e-4db6-966f-c2dd6cbb7757"/>
+								<box leftPadding="2"/>
+								<textElement textAlignment="Left" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$V{poids_type_Exportateur}.substring(5).toUpperCase()]]></textFieldExpression>
+							</textField>
+						</cellContents>
+					</crosstabRowHeader>
+					<crosstabTotalRowHeader>
+						<cellContents backcolor="#BFE1FF" mode="Opaque">
+							<box>
+								<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="119" height="25" backcolor="#CCCCCC" uuid="bc45bc8f-76c6-426b-9361-d9634bf48d25"/>
+								<box leftPadding="2"/>
+								<textElement verticalAlignment="Middle">
+									<font isBold="true" pdfFontName="Helvetica-Bold"/>
+								</textElement>
+								<text><![CDATA[TOTAL GENERAL]]></text>
+							</staticText>
+						</cellContents>
+					</crosstabTotalRowHeader>
+				</rowGroup>
+				<columnGroup name="poids_port_Embarquement" height="30" totalPosition="End">
+					<bucket class="java.lang.String">
+						<bucketExpression><![CDATA[$F{poids_port_Embarquement}]]></bucketExpression>
+					</bucket>
+					<crosstabColumnHeader>
+						<cellContents backcolor="#F0F8FF" mode="Opaque">
+							<box>
+								<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textField>
+								<reportElement style="Crosstab Data Text" mode="Opaque" x="0" y="0" width="88" height="30" forecolor="#FFFFFF" backcolor="#CC0000" uuid="673024c8-b7ac-4f0c-bc41-a0af472b8e71"/>
+								<textElement verticalAlignment="Middle">
+									<font isBold="true" pdfFontName="Helvetica-Bold"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{poids_port_Embarquement}]]></textFieldExpression>
+							</textField>
+							<staticText>
+								<reportElement style="Crosstab Data Text" mode="Opaque" x="88" y="0" width="45" height="30" forecolor="#FFFFFF" backcolor="#CC0000" uuid="6a5b0cec-a8a3-4d24-8e81-7d67ae64f6af"/>
+								<textElement verticalAlignment="Middle">
+									<font isBold="true" pdfFontName="Helvetica-Bold"/>
+								</textElement>
+								<text><![CDATA[%]]></text>
+							</staticText>
+						</cellContents>
+					</crosstabColumnHeader>
+					<crosstabTotalColumnHeader>
+						<cellContents backcolor="#BFE1FF" mode="Opaque">
+							<box>
+								<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="93" height="30" forecolor="#FFFFFF" backcolor="#CC0000" uuid="51605961-1318-4152-bf0c-5f1ac86dbd7e"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true" pdfFontName="Helvetica-Bold"/>
+								</textElement>
+								<text><![CDATA[Total]]></text>
+							</staticText>
+							<staticText>
+								<reportElement style="Crosstab Data Text" mode="Opaque" x="93" y="0" width="48" height="30" forecolor="#FFFFFF" backcolor="#CC0000" uuid="098dac7a-3a3e-439d-a1e7-b1493ffa5706"/>
+								<textElement verticalAlignment="Middle">
+									<font isBold="true" pdfFontName="Helvetica-Bold"/>
+								</textElement>
+								<text><![CDATA[%]]></text>
+							</staticText>
+						</cellContents>
+					</crosstabTotalColumnHeader>
+				</columnGroup>
+				<measure name="poids_poids_ReelMeasure" class="java.math.BigDecimal" calculation="Sum">
+					<measureExpression><![CDATA[$F{poids_poids_Reel}]]></measureExpression>
+				</measure>
+				<crosstabCell width="133" height="25">
+					<cellContents>
+						<box>
+							<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+						</box>
+						<textField>
+							<reportElement style="Crosstab Data Text" x="0" y="0" width="88" height="25" uuid="758903a2-84c1-4d5a-9af9-1867fb7f99de"/>
+							<box leftPadding="2"/>
+							<textElement textAlignment="Left" verticalAlignment="Middle"/>
+							<textFieldExpression><![CDATA[NumberFormat.getInstance(Locale.FRENCH).format($V{poids_poids_ReelMeasure})]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement style="Crosstab Data Text" x="88" y="0" width="45" height="25" uuid="a078f3fa-b9e7-467f-9645-162c4e7078dd"/>
+							<box leftPadding="2"/>
+							<textElement textAlignment="Left" verticalAlignment="Middle"/>
+							<textFieldExpression><![CDATA[(new BigDecimal(String.valueOf(new Double(
+    (
+        $V{poids_poids_ReelMeasure}.doubleValue()
+    /
+    $V{poids_poids_ReelMeasure_poids_port_Embarquement_ALL}.doubleValue()
+    )*100
+))).setScale(2, RoundingMode.HALF_UP)).toString().concat("%")]]></textFieldExpression>
+						</textField>
+					</cellContents>
+				</crosstabCell>
+				<crosstabCell width="133" height="25" rowTotalGroup="poids_type_Exportateur">
+					<cellContents backcolor="#BFE1FF" mode="Opaque">
+						<box>
+							<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+						</box>
+						<textField>
+							<reportElement style="Crosstab Data Text" mode="Opaque" x="0" y="0" width="88" height="25" backcolor="#CCCCCC" uuid="5042b573-62b7-47b8-9065-b18f56c0a314"/>
+							<box leftPadding="2"/>
+							<textElement textAlignment="Left" verticalAlignment="Middle">
+								<font isBold="true" pdfFontName="Helvetica-Bold"/>
+							</textElement>
+							<textFieldExpression><![CDATA[NumberFormat.getInstance(Locale.FRENCH).format($V{poids_poids_ReelMeasure})]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement style="Crosstab Data Text" mode="Opaque" x="88" y="0" width="45" height="24" backcolor="#CCCCCC" uuid="fd5f31ba-cfa7-438a-b380-c427747b3659"/>
+							<box leftPadding="2"/>
+							<textElement textAlignment="Left" verticalAlignment="Middle">
+								<font isBold="true" pdfFontName="Helvetica-Bold"/>
+							</textElement>
+							<textFieldExpression><![CDATA[(new BigDecimal(String.valueOf(new Double(
+    (
+        $V{poids_poids_ReelMeasure}.doubleValue()
+    /
+    $V{poids_poids_ReelMeasure_poids_port_Embarquement_ALL}.doubleValue()
+    )*100
+))).setScale(2, RoundingMode.HALF_UP)).toString().concat("%")]]></textFieldExpression>
+						</textField>
+					</cellContents>
+				</crosstabCell>
+				<crosstabCell width="141" height="25" columnTotalGroup="poids_port_Embarquement">
+					<cellContents backcolor="#BFE1FF" mode="Opaque">
+						<box>
+							<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+						</box>
+						<textField>
+							<reportElement style="Crosstab Data Text" mode="Opaque" x="0" y="0" width="93" height="25" backcolor="#CCCCCC" uuid="6ab79b4a-2e33-4964-93b6-5fca2572b0e0"/>
+							<box leftPadding="2"/>
+							<textElement textAlignment="Left" verticalAlignment="Middle"/>
+							<textFieldExpression><![CDATA[NumberFormat.getInstance(Locale.FRENCH).format($V{poids_poids_ReelMeasure})]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement style="Crosstab Data Text" mode="Opaque" x="93" y="0" width="48" height="25" backcolor="#CCCCCC" uuid="a2e67f49-938e-4c16-ad1b-1a643e6bd2a4"/>
+							<box leftPadding="2"/>
+							<textElement textAlignment="Left" verticalAlignment="Middle"/>
+							<textFieldExpression><![CDATA[(new BigDecimal(String.valueOf(new Double(
+    (
+        $V{poids_poids_ReelMeasure}.doubleValue()
+    /
+    $V{poids_poids_ReelMeasure_poids_type_Exportateur_poids_port_Embarquement_ALL}.doubleValue()
+    )*100
+))).setScale(2, RoundingMode.HALF_UP)).toString().concat("%")]]></textFieldExpression>
+						</textField>
+					</cellContents>
+				</crosstabCell>
+				<crosstabCell width="141" height="25" rowTotalGroup="poids_type_Exportateur" columnTotalGroup="poids_port_Embarquement">
+					<cellContents backcolor="#BFE1FF" mode="Opaque">
+						<box>
+							<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+						</box>
+						<textField>
+							<reportElement style="Crosstab Data Text" mode="Opaque" x="0" y="0" width="93" height="24" backcolor="#CCCCCC" uuid="b26980f4-59a5-4ab6-a6a9-fd2e9f51e441"/>
+							<box leftPadding="2"/>
+							<textElement textAlignment="Left" verticalAlignment="Middle">
+								<font isBold="true" pdfFontName="Helvetica-Bold"/>
+							</textElement>
+							<textFieldExpression><![CDATA[NumberFormat.getInstance(Locale.FRENCH).format($V{poids_poids_ReelMeasure})]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement style="Crosstab Data Text" mode="Opaque" x="93" y="0" width="48" height="24" backcolor="#CCCCCC" uuid="17fc60eb-b693-4ab4-8461-75de9d74ca2c"/>
+							<box leftPadding="2"/>
+							<textElement textAlignment="Left" verticalAlignment="Middle">
+								<font isBold="true" pdfFontName="Helvetica-Bold"/>
+							</textElement>
+							<textFieldExpression><![CDATA[(new BigDecimal(String.valueOf(new Double(
+    (
+        $V{poids_poids_ReelMeasure}.doubleValue()
+    /
+    $V{poids_poids_ReelMeasure_poids_type_Exportateur_poids_port_Embarquement_ALL}.doubleValue()
+    )*100
+))).setScale(2, RoundingMode.HALF_UP)).toString().concat("%")]]></textFieldExpression>
+						</textField>
+					</cellContents>
+				</crosstabCell>
+			</crosstab>
+		</band>
+	</summary>
+</jasperReport>

@@ -1,85 +1,131 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="i.2_subreport2" language="groovy" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="33f95b63-d664-45ef-821b-522b6d569404">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="i.2_subreport2" language="groovy" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="a4ba0f43-76ce-4daa-9b39-df65f0169b0d">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<style name="Crosstab Data Text" hAlign="Center"/>
-	<queryString language="SQL">
+	<parameter name="DATE_DEBUT" class="java.lang.String">
+		<defaultValueExpression><![CDATA["2017-10-01"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="DATE_FIN" class="java.lang.String">
+		<defaultValueExpression><![CDATA["2017-12-31"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="PRODUIT_TYPE" class="java.lang.String">
+		<defaultValueExpression><![CDATA["Fèves"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="PRODUIT" class="java.lang.String">
+		<defaultValueExpression><![CDATA["Cacao"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="MOIS_FIN_int" class="java.lang.String">
+		<defaultValueExpression><![CDATA[12]]></defaultValueExpression>
+	</parameter>
+	<parameter name="ANNEE_FIN" class="java.lang.String">
+		<defaultValueExpression><![CDATA[2017]]></defaultValueExpression>
+	</parameter>
+	<queryString>
 		<![CDATA[SELECT
      poids.`port_Embarquement` AS port_Embarquement,
-     SUM(CONVERT(poids.`poids_Net`, UNSIGNED INTEGER)) AS str_value,
-     'a_str_name' AS str_name
+     SUM(CONVERT(poids.`poids_Reel`, UNSIGNED INTEGER)) AS poids,
+     'a POIDS THEORIQUE' AS str_name
 FROM
      `poids` poids
 
 WHERE 
-     poids.`type_Produit` = 'Fèves' AND
-     poids.`produit` = 'Cacao' AND
-     poids.`port_Embarquement` != 'null'
-     
+     poids.`port_Embarquement` != 'null' AND
+     poids.`type_Produit` = $P{PRODUIT_TYPE} AND 
+     poids.`mois` =  $P{MOIS_FIN_int} AND
+     poids.`annee` =  $P{ANNEE_FIN} AND 
+     poids.`produit` = $P{PRODUIT} AND
+     poids.`statut_Formule` = 'Complète'
 
-GROUP BY 
+GROUP BY
+     poids.`port_Embarquement`  
+
+UNION 
+
+SELECT
+     poids.`port_Embarquement` AS port_Embarquement,
+     SUM(CONVERT(poids.`poids_Reel`, UNSIGNED INTEGER)) AS poids,
+     'b POIDS REEL' AS str_name
+FROM
+     `poids` poids
+
+WHERE 
+     poids.`port_Embarquement` != 'null' AND
+     poids.`type_Produit` = $P{PRODUIT_TYPE} AND 
+     poids.`mois` =  $P{MOIS_FIN_int} AND
+     poids.`annee` =  $P{ANNEE_FIN} AND 
+     poids.`produit` = $P{PRODUIT} AND
+     poids.`statut_Formule` = 'Complète'
+
+GROUP BY
      poids.`port_Embarquement`
-     
 
 UNION
 
 SELECT
      poids.`port_Embarquement` AS port_Embarquement,
-     SUM(CONVERT(poids.`poids_Reel`, UNSIGNED INTEGER)) AS str_name,
-     'b_str_name' AS str_name
+     IF(SUM(CONVERT(poids.`poids_Net`, UNSIGNED INTEGER)) - SUM(CONVERT(poids.`poids_Reel`, UNSIGNED INTEGER))>0,
+SUM(CONVERT(poids.`poids_Net`, UNSIGNED INTEGER)) - SUM(CONVERT(poids.`poids_Reel`, UNSIGNED INTEGER)), -SUM(CONVERT(poids.`poids_Net`, UNSIGNED INTEGER)) + SUM(CONVERT(poids.`poids_Reel`, UNSIGNED INTEGER))) AS poids,
+     'c ECART' AS str_name
 FROM
      `poids` poids
 
 WHERE 
-     poids.`type_Produit` = 'Fèves' AND
-     poids.`produit` = 'Cacao' AND
-     poids.`port_Embarquement` != 'null'
-     
+     poids.`port_Embarquement` != 'null' AND
+     poids.`type_Produit` = $P{PRODUIT_TYPE} AND 
+     poids.`mois` =  $P{MOIS_FIN_int} AND
+     poids.`annee` =  $P{ANNEE_FIN} AND 
+     poids.`produit` = $P{PRODUIT} AND
+     poids.`statut_Formule` = 'Complète'
 
-GROUP BY 
+GROUP BY
      poids.`port_Embarquement`
 
 UNION
 
 SELECT
      poids.`port_Embarquement` AS port_Embarquement,
-     (
-      IF ((SUM(CONVERT(poids.`poids_Reel`, UNSIGNED INTEGER)) - 
-      SUM(CONVERT(poids.`poids_Net`, UNSIGNED INTEGER))) > 0, 
-     (SUM(CONVERT(poids.`poids_Reel`, UNSIGNED INTEGER)) - 
-      SUM(CONVERT(poids.`poids_Net`, UNSIGNED INTEGER))), -(SUM(CONVERT(poids.`poids_Reel`, UNSIGNED INTEGER)) - 
-      SUM(CONVERT(poids.`poids_Net`, UNSIGNED INTEGER))))
-     )  AS str_value,
-     'c_str_name' AS str_name
+     ROUND((IF(SUM(CONVERT(poids.`poids_Net`, UNSIGNED INTEGER)) - SUM(CONVERT(poids.`poids_Reel`, UNSIGNED INTEGER))>0,
+SUM(CONVERT(poids.`poids_Net`, UNSIGNED INTEGER)) - SUM(CONVERT(poids.`poids_Reel`, UNSIGNED INTEGER)), -SUM(CONVERT(poids.`poids_Net`, UNSIGNED INTEGER)) + SUM(CONVERT(poids.`poids_Reel`, UNSIGNED INTEGER))))/ 
+	SUM(CONVERT(poids.`poids_Reel`, UNSIGNED INTEGER))*100, 2) AS poids,
+     'd TAUX DE SURTARAGE' AS str_name
 FROM
      `poids` poids
 
 WHERE 
-     poids.`type_Produit` = 'Fèves' AND
-     poids.`produit` = 'Cacao' AND
-     poids.`port_Embarquement` != 'null'
-     
+    poids.`port_Embarquement` != 'null' AND
+     poids.`type_Produit` = $P{PRODUIT_TYPE} AND 
+     poids.`mois` =  $P{MOIS_FIN_int} AND
+     poids.`annee` =  $P{ANNEE_FIN} AND 
+     poids.`produit` = $P{PRODUIT} AND
+     poids.`statut_Formule` = 'Complète'
 
-GROUP BY 
+GROUP BY
      poids.`port_Embarquement`]]>
 	</queryString>
 	<field name="port_Embarquement" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="str_value" class="java.math.BigDecimal"/>
+	<field name="poids" class="java.math.BigDecimal"/>
 	<field name="str_name" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="79" splitType="Stretch"/>
+		<band height="31" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="555" height="31" uuid="923f5ed7-4fcc-4404-8a32-c91ea01fa0c5"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA["Tableau 6: Ecart entre les poids théoriques controlés et les poids réels des feves en Decembre 2017"]]></textFieldExpression>
+			</textField>
+		</band>
 	</title>
 	<summary>
-		<band height="288" splitType="Stretch">
+		<band height="191" splitType="Stretch">
 			<crosstab>
-				<reportElement x="0" y="0" width="555" height="288" uuid="d57fcf52-ec4c-4f5b-a8f8-3ce063a794fa"/>
-				<rowGroup name="str_name" width="70" totalPosition="End">
+				<reportElement x="0" y="0" width="555" height="191" uuid="9623d199-2e54-40e0-bdf2-83e7d13dc03b"/>
+				<rowGroup name="str_name" width="105">
 					<bucket class="java.lang.String">
 						<bucketExpression><![CDATA[$F{str_name}]]></bucketExpression>
 					</bucket>
@@ -89,22 +135,15 @@ GROUP BY
 								<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
 							</box>
 							<textField>
-								<reportElement style="Crosstab Data Text" x="0" y="0" width="70" height="25" uuid="5f656c91-a777-4432-80d7-ce8a0309bb6c"/>
-								<textFieldExpression><![CDATA[$V{str_name}]]></textFieldExpression>
+								<reportElement style="Crosstab Data Text" mode="Opaque" x="0" y="0" width="105" height="25" backcolor="#CCCCCC" uuid="f7a3b7fc-e229-4532-82e8-9dd04c31238c"/>
+								<box leftPadding="2"/>
+								<textElement textAlignment="Left" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$V{str_name}.substring(1)]]></textFieldExpression>
 							</textField>
 						</cellContents>
 					</crosstabRowHeader>
 					<crosstabTotalRowHeader>
-						<cellContents backcolor="#BFE1FF" mode="Opaque">
-							<box>
-								<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
-							</box>
-							<staticText>
-								<reportElement x="0" y="0" width="70" height="25" uuid="eaea603e-0ad8-4f89-95a9-34d54374b461"/>
-								<textElement textAlignment="Center" verticalAlignment="Middle"/>
-								<text><![CDATA[Total str_name]]></text>
-							</staticText>
-						</cellContents>
+						<cellContents/>
 					</crosstabTotalRowHeader>
 				</rowGroup>
 				<columnGroup name="port_Embarquement" height="30" totalPosition="End">
@@ -117,9 +156,21 @@ GROUP BY
 								<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
 							</box>
 							<textField>
-								<reportElement style="Crosstab Data Text" x="0" y="0" width="50" height="30" uuid="ca0a8577-5c70-4e0a-95c9-fad6e5414c7d"/>
+								<reportElement style="Crosstab Data Text" mode="Opaque" x="0" y="0" width="92" height="30" forecolor="#FFFFFF" backcolor="#CC0000" uuid="aadd0257-a646-4baf-b542-eef35f249fbd"/>
+								<box leftPadding="2"/>
+								<textElement textAlignment="Left" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
 								<textFieldExpression><![CDATA[$V{port_Embarquement}]]></textFieldExpression>
 							</textField>
+							<staticText>
+								<reportElement style="Crosstab Data Text" mode="Opaque" x="92" y="0" width="42" height="30" forecolor="#FFFFFF" backcolor="#CC0000" uuid="0ccf4694-c4fc-4459-abc5-5454e7d971ec"/>
+								<box leftPadding="2"/>
+								<textElement textAlignment="Left" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[%]]></text>
+							</staticText>
 						</cellContents>
 					</crosstabColumnHeader>
 					<crosstabTotalColumnHeader>
@@ -128,24 +179,42 @@ GROUP BY
 								<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
 							</box>
 							<staticText>
-								<reportElement x="0" y="0" width="50" height="30" uuid="2fc6aba5-4225-4d88-b119-ae64a7230bc2"/>
-								<textElement textAlignment="Center" verticalAlignment="Middle"/>
-								<text><![CDATA[Total port_Embarquement]]></text>
+								<reportElement mode="Opaque" x="0" y="0" width="86" height="30" forecolor="#FFFFFF" backcolor="#CC0000" uuid="83133d9c-00b6-4487-9cee-3e7ac166211a"/>
+								<box leftPadding="2"/>
+								<textElement verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[Total]]></text>
 							</staticText>
 						</cellContents>
 					</crosstabTotalColumnHeader>
 				</columnGroup>
-				<measure name="str_valueMeasure" class="java.math.BigDecimal" calculation="Sum">
-					<measureExpression><![CDATA[$F{str_value}]]></measureExpression>
+				<measure name="poidsMeasure" class="java.math.BigDecimal" calculation="Sum">
+					<measureExpression><![CDATA[$F{poids}]]></measureExpression>
 				</measure>
-				<crosstabCell width="50" height="25">
+				<crosstabCell width="134" height="25">
 					<cellContents>
 						<box>
 							<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
 						</box>
 						<textField>
-							<reportElement style="Crosstab Data Text" x="0" y="0" width="50" height="25" uuid="86c8f3a5-01f7-4ed3-b023-7e424975f599"/>
-							<textFieldExpression><![CDATA[$V{str_valueMeasure}]]></textFieldExpression>
+							<reportElement style="Crosstab Data Text" mode="Opaque" x="0" y="0" width="92" height="24" uuid="b03deb19-5ce9-4e78-bfe0-5ecc09ff31d4"/>
+							<box leftPadding="2"/>
+							<textElement textAlignment="Left" verticalAlignment="Middle"/>
+							<textFieldExpression><![CDATA[$V{poidsMeasure}> 100 ? NumberFormat.getInstance(Locale.FRENCH).format($V{poidsMeasure}): $V{poidsMeasure}.toString().concat("%")]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement style="Crosstab Data Text" mode="Opaque" x="92" y="1" width="42" height="24" uuid="83236efa-a08d-4c7d-ac4c-a31032553485"/>
+							<box leftPadding="2"/>
+							<textElement textAlignment="Left" verticalAlignment="Middle"/>
+							<textFieldExpression><![CDATA[$V{poidsMeasure}.doubleValue()> 100 ? 
+(new BigDecimal(String.valueOf(new Double(
+    (
+        $V{poidsMeasure}.doubleValue()
+    /
+    $V{poidsMeasure_port_Embarquement_ALL}.doubleValue()
+    )*100
+))).setScale(2, RoundingMode.HALF_UP)).toString().concat("%"):String.valueOf("")]]></textFieldExpression>
 						</textField>
 					</cellContents>
 				</crosstabCell>
@@ -155,19 +224,22 @@ GROUP BY
 							<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
 						</box>
 						<textField>
-							<reportElement style="Crosstab Data Text" x="0" y="0" width="50" height="25" uuid="bb4f8c7a-122d-49b6-ad98-50fe7ae90f83"/>
-							<textFieldExpression><![CDATA[$V{str_valueMeasure}]]></textFieldExpression>
+							<reportElement style="Crosstab Data Text" x="0" y="0" width="50" height="25" uuid="ae67073e-9980-47be-87d2-9970741c39c1"/>
+							<textFieldExpression><![CDATA[$V{poidsMeasure}]]></textFieldExpression>
 						</textField>
 					</cellContents>
 				</crosstabCell>
-				<crosstabCell width="50" columnTotalGroup="port_Embarquement">
+				<crosstabCell width="86" height="25" columnTotalGroup="port_Embarquement">
 					<cellContents backcolor="#BFE1FF" mode="Opaque">
 						<box>
 							<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
 						</box>
 						<textField>
-							<reportElement style="Crosstab Data Text" x="0" y="0" width="50" height="25" uuid="7daf87c2-303e-4e99-9d2d-3ac7d3738945"/>
-							<textFieldExpression><![CDATA[$V{str_valueMeasure}]]></textFieldExpression>
+							<reportElement style="Crosstab Data Text" mode="Opaque" x="0" y="0" width="86" height="25" backcolor="#FFFFFF" uuid="c09595d6-e7b9-4242-868b-eb7ed904eb60"/>
+							<box leftPadding="2"/>
+							<textElement textAlignment="Left" verticalAlignment="Middle"/>
+							<textFieldExpression><![CDATA[$V{poidsMeasure}.doubleValue()> 100 ? 
+NumberFormat.getInstance(Locale.FRENCH).format($V{poidsMeasure}) :($V{poidsMeasure}/2).toString().concat("%")]]></textFieldExpression>
 						</textField>
 					</cellContents>
 				</crosstabCell>
@@ -177,8 +249,8 @@ GROUP BY
 							<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
 						</box>
 						<textField>
-							<reportElement style="Crosstab Data Text" x="0" y="0" width="50" height="25" uuid="df08f9f0-8f6f-4726-b439-63d4d8e878ac"/>
-							<textFieldExpression><![CDATA[$V{str_valueMeasure}]]></textFieldExpression>
+							<reportElement style="Crosstab Data Text" x="0" y="0" width="50" height="25" uuid="2c4781c3-2ce4-4fa0-a1cd-ada5f2954ba3"/>
+							<textFieldExpression><![CDATA[$V{poidsMeasure}]]></textFieldExpression>
 						</textField>
 					</cellContents>
 				</crosstabCell>

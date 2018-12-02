@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="2de87a5e-f460-4050-bd2a-8d89285ea29d">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="47"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["/Users/akil/Developement/java-workspace/kffekko/src/main/java/com/kffekko_report/jasperreport/models/"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     montant.`banque` AS banque,
+     montant.`port_Embarquement` AS port_embarquement,
+     SUM(CONVERT(montant.`montant_Reel`, UNSIGNED INTEGER)) AS montant_reel
+FROM
+     `montant` montant
+
+GROUP BY
+      montant.`banque`,
+      montant.`port_Embarquement`
+LIMIT 1]]>
+	</queryString>
+	<field name="banque" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="port_embarquement" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="montant_reel" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="23" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="555" height="23" uuid="52ea5313-c2c4-4a03-9b6f-d838e7876dd0"/>
+				<textElement>
+					<font isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA["I.8- LES BANQUES"]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<detail>
+		<band height="163">
+			<subreport>
+				<reportElement x="0" y="0" width="555" height="163" uuid="f1cd9ad0-b29b-464d-b9b7-88bc90936bb3"/>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "i.8_subreport1.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="163">
+			<subreport>
+				<reportElement x="0" y="0" width="555" height="163" uuid="2f513eff-f00e-47e1-85e1-88b164040e13"/>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "i.8_subreport2.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+</jasperReport>

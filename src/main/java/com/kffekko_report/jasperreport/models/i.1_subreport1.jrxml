@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="i.1_subreport1" language="groovy" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="ed9943fd-f3ff-441b-b260-08b57684e9b4">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Crosstab Data Text" hAlign="Center"/>
+	<parameter name="PRODUIT" class="java.lang.String">
+		<defaultValueExpression><![CDATA["Cacao"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["/Users/akil/Developement/java-workspace/kffekko/src/main/java/com/kffekko_report/jasperreport/models/"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     poids.`type_Produit` AS nature_produit,
+     poids.`port_Embarquement` AS port_embarquement,
+     CONCAT(poids.`port_Embarquement`,' ', poids.`type_Produit`) AS nature_port_embarquement, 
+     SUM(CONVERT(poids.`poids_Reel`, UNSIGNED INTEGER)) AS poids
+FROM
+     `poids` poids
+
+WHERE 
+     poids.`port_Embarquement` != 'null' AND
+     poids.`produit` = $P{PRODUIT}
+
+GROUP BY
+     poids.`type_Produit`,
+     poids.`port_Embarquement`
+
+LIMIT 1]]>
+	</queryString>
+	<field name="nature_produit" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="port_embarquement" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nature_port_embarquement" class="java.lang.String"/>
+	<field name="poids" class="java.math.BigDecimal"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="229" splitType="Stretch">
+			<subreport>
+				<reportElement x="0" y="0" width="555" height="229" uuid="bff66bbd-87df-4fe8-8e07-54617b12df91"/>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "i.1_subreport1_subreport2.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="261">
+			<subreport>
+				<reportElement x="0" y="0" width="555" height="261" uuid="68dc098c-7abe-43a7-80bb-f795303de070"/>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "i.1_subreport1_subreport1.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+</jasperReport>

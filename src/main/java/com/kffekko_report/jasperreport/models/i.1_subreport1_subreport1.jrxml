@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="i.1_subreport1_subreport1" language="groovy" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="b517adc9-527d-48ff-b209-73f5e25d799c">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="42"/>
+	<parameter name="PRODUIT" class="java.lang.String">
+		<defaultValueExpression><![CDATA["Cacao"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="DATE_DEBUT" class="java.lang.String">
+		<defaultValueExpression><![CDATA["2017-10-01"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="DATE_FIN" class="java.lang.String">
+		<defaultValueExpression><![CDATA["2017-12-31"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     poids.`type_Produit` AS nature_produit,
+     poids.`port_Embarquement` AS port_embarquement,
+     CONCAT(poids.`port_Embarquement`,' ', poids.`type_Produit`) AS nature_port_embarquement, 
+     SUM(CONVERT(poids.`poids_Reel`, UNSIGNED INTEGER)) AS poids,
+     ROUND(((SUM(CONVERT(poids.`poids_Reel`, UNSIGNED INTEGER))/
+     (SELECT SUM(CONVERT(_poids.`poids_Reel`, UNSIGNED INTEGER)) 
+      FROM `poids` _poids 
+      WHERE 
+           _poids.`port_Embarquement` != 'null' AND
+           _poids.`type_Produit` = poids.`type_Produit` AND
+           _poids.`produit` = $P{PRODUIT} AND
+           _poids.`date_CGFCC` >= $P{DATE_DEBUT} AND
+           _poids.`date_CGFCC` <= $P{DATE_FIN} AND
+           _poids.`statut_Formule`= 'Complète'
+      GROUP BY _poids.`type_Produit`
+     ))*100), 2) AS poids_percent
+FROM
+     `poids` poids
+
+WHERE 
+     poids.`port_Embarquement` != 'null' AND
+     poids.`produit` = $P{PRODUIT} AND
+     poids.`date_CGFCC` >= $P{DATE_DEBUT} AND
+     poids.`date_CGFCC` <= $P{DATE_FIN} AND 
+     poids.`statut_Formule`= 'Complète'
+
+GROUP BY
+     poids.`type_Produit`,
+     poids.`port_Embarquement`]]>
+	</queryString>
+	<field name="nature_produit" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="port_embarquement" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nature_port_embarquement" class="java.lang.String"/>
+	<field name="poids" class="java.math.BigDecimal"/>
+	<field name="poids_percent" class="java.math.BigDecimal"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<summary>
+		<band height="384" splitType="Stretch">
+			<pie3DChart>
+				<chart>
+					<reportElement x="0" y="0" width="555" height="361" uuid="9e072385-cf0b-463c-9ecf-b9acca8e1840"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<pieDataset>
+					<keyExpression><![CDATA[$F{nature_port_embarquement}]]></keyExpression>
+					<valueExpression><![CDATA[$F{poids}]]></valueExpression>
+					<labelExpression><![CDATA[$F{nature_port_embarquement} + " (" + $F{poids_percent}.toString() + ")"]]></labelExpression>
+				</pieDataset>
+				<pie3DPlot>
+					<plot/>
+					<itemLabel/>
+				</pie3DPlot>
+			</pie3DChart>
+			<textField>
+				<reportElement x="0" y="361" width="555" height="20" uuid="7193d9e2-b4f6-4d85-962f-d9a0925249be"/>
+				<textFieldExpression><![CDATA["Graphique 3: Répartition des quantités de " +$P{PRODUIT}.toLowerCase() + " pesées par port et par nature de produit"]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

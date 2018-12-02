@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="i.4_subreport2" language="groovy" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="5c2052f7-f1c4-42a2-8c30-548d3a017209">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="DATE_DEBUT" class="java.lang.String">
+		<defaultValueExpression><![CDATA["2017-10-01"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="DATE_FIN" class="java.lang.String">
+		<defaultValueExpression><![CDATA["2017-12-31"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="PRODUIT" class="java.lang.String">
+		<defaultValueExpression><![CDATA["Cacao"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     poids.`type_Exportateur` AS poids_type_Exportateur,
+     SUM(CONVERT(poids.`poids_Reel`, UNSIGNED INTEGER)) AS poids_poids_Reel
+FROM
+     `poids` poids
+
+
+WHERE poids.`port_Embarquement` != 'null'  AND 
+     poids.`date_CGFCC` >= $P{DATE_DEBUT} AND
+     poids.`date_CGFCC` <= $P{DATE_FIN} AND
+     poids.`statut_Formule` = 'Complète' AND
+     poids.`produit` = $P{PRODUIT}
+
+
+GROUP BY
+      poids.`type_Exportateur`]]>
+	</queryString>
+	<field name="poids_type_Exportateur" class="java.lang.String"/>
+	<field name="poids_poids_Reel" class="java.math.BigDecimal"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<summary>
+		<band height="290" splitType="Stretch">
+			<pie3DChart>
+				<chart>
+					<reportElement x="42" y="0" width="483" height="270" uuid="208f5ad7-2407-4d8a-9cab-960942b4d82a"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<pieDataset>
+					<keyExpression><![CDATA[$F{poids_type_Exportateur}]]></keyExpression>
+					<valueExpression><![CDATA[$F{poids_poids_Reel}]]></valueExpression>
+				</pieDataset>
+				<pie3DPlot>
+					<plot/>
+					<itemLabel/>
+				</pie3DPlot>
+			</pie3DChart>
+			<textField>
+				<reportElement x="42" y="270" width="393" height="20" uuid="24bc8315-74bf-425f-b94a-a0be69263801"/>
+				<textFieldExpression><![CDATA["Graphique 5: Répartition des quantités de cacao pesées à l'export par groupe d'exportateur"]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

@@ -36,7 +36,6 @@ public class ReportPanel extends javax.swing.JPanel {
 
         periodStartSB = new javax.swing.JComboBox();
         periodEndSB = new javax.swing.JComboBox();
-        jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -44,10 +43,8 @@ public class ReportPanel extends javax.swing.JPanel {
         jLabel5 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         btImportSql = new javax.swing.JPanel();
-        jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         btImportExcel = new javax.swing.JPanel();
-        jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         citiesSB = new javax.swing.JList<>();
@@ -55,18 +52,23 @@ public class ReportPanel extends javax.swing.JPanel {
         typesProductSB = new javax.swing.JList<>();
         jLabel6 = new javax.swing.JLabel();
         productSB = new javax.swing.JComboBox();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jLabel7 = new javax.swing.JLabel();
-        yearSB = new javax.swing.JComboBox<>();
+        jLabel11 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        categories = new javax.swing.JList<>();
+        jLabel16 = new javax.swing.JLabel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        typeExportateurs = new javax.swing.JList<>();
+        jLabel17 = new javax.swing.JLabel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        speExportateurs = new javax.swing.JList<>();
+        yearStart = new javax.swing.JComboBox<>();
+        yearEnd = new javax.swing.JComboBox<>();
 
         periodStartSB.setFont(new java.awt.Font("Trebuchet MS", 0, 16)); // NOI18N
         periodStartSB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Janvier", "Fevrier", "Mars", "Avril", "Mai", "Juin", "Juillet", "Aout ", "Septembre", "Octobre", "Novembre", "Decembre" }));
 
         periodEndSB.setFont(new java.awt.Font("Trebuchet MS", 0, 16)); // NOI18N
         periodEndSB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Janvier", "Fevrier", "Mars", "Avril", "Mai", "Juin", "Juillet", "Aout ", "Septembre", "Octobre", "Novembre", "Decembre" }));
-
-        jLabel1.setFont(new java.awt.Font("Trebuchet MS", 0, 16)); // NOI18N
-        jLabel1.setText("Selectionner periode(s)");
 
         jLabel2.setFont(new java.awt.Font("Trebuchet MS", 0, 16)); // NOI18N
         jLabel2.setText("Periode de debut");
@@ -78,7 +80,7 @@ public class ReportPanel extends javax.swing.JPanel {
         jLabel4.setText("Selectionner modèles");
 
         modelTypesSB.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
-        modelTypesSB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "I.1 LA CERTIFICATION DES PESEES A L'EXPORT", "I.2 L'ACTIVITE DE CONTROLE DES POIDS DECLARES ET DE PESAGES DES FEVES", "I.3 PRELEVEMENTS ET REAJUSTEMENTS DE TAXES SUR LES FEVES", "I.4 GROUPES EXPORTATEURS", "I.5 LES PESEES A L'EXPORT DES FEVES", "I.6 LA CERTTIFICATION A L EXPORT DES PESEE DE SEMI-FINIS", "I.7 LES TRANSITAIRES", "I.8 LES BANQUES", "I.9 LES DESTINATIONS" }));
+        modelTypesSB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "INTRODUCTION : REFERENTIEL DE DONNEES REELEMENT PESEES & CONSTATEES A L'EXPORT", "I.1 LA CERTIFICATION DES PESEES A L'EXPORT", "I.2 L'ACTIVITE DE CONTROLE DES POIDS DECLARES ET DE PESAGES DES FEVES", "I.3 PRELEVEMENTS ET REAJUSTEMENTS DE TAXES SUR LES FEVES", "I.4 GROUPES EXPORTATEURS", "I.5 LES PESEES A L'EXPORT DES FEVES", "I.6 LA CERTTIFICATION A L EXPORT DES PESEE DE SEMI-FINIS", "I.7 LES TRANSITAIRES", "I.8 LES BANQUES", "I.9 LES DESTINATIONS" }));
         modelTypesSB.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 modelTypesSBActionPerformed(evt);
@@ -101,9 +103,6 @@ public class ReportPanel extends javax.swing.JPanel {
             }
         });
 
-        jLabel12.setFont(new java.awt.Font("Monaco", 0, 14)); // NOI18N
-        jLabel12.setText("Telecharger en pdf");
-
         jLabel13.setIcon(new javax.swing.ImageIcon("/Users/akil/NetBeansProjects/pdf.png")); // NOI18N
 
         javax.swing.GroupLayout btImportSqlLayout = new javax.swing.GroupLayout(btImportSql);
@@ -111,20 +110,16 @@ public class ReportPanel extends javax.swing.JPanel {
         btImportSqlLayout.setHorizontalGroup(
             btImportSqlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(btImportSqlLayout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addGroup(btImportSqlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel13)
-                    .addComponent(jLabel12))
-                .addContainerGap(38, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(19, Short.MAX_VALUE))
         );
         btImportSqlLayout.setVerticalGroup(
             btImportSqlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(btImportSqlLayout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btImportSqlLayout.createSequentialGroup()
+                .addContainerGap(19, Short.MAX_VALUE)
                 .addComponent(jLabel13)
-                .addContainerGap(11, Short.MAX_VALUE))
+                .addGap(18, 18, 18))
         );
 
         btImportExcel.setBackground(new java.awt.Color(224, 224, 224));
@@ -140,46 +135,49 @@ public class ReportPanel extends javax.swing.JPanel {
             }
         });
 
-        jLabel14.setFont(new java.awt.Font("Monaco", 0, 14)); // NOI18N
-        jLabel14.setText("Telecharger en word");
-
         jLabel15.setIcon(new javax.swing.ImageIcon("/Users/akil/NetBeansProjects/word (1).png")); // NOI18N
+        jLabel15.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel15MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout btImportExcelLayout = new javax.swing.GroupLayout(btImportExcel);
         btImportExcel.setLayout(btImportExcelLayout);
         btImportExcelLayout.setHorizontalGroup(
             btImportExcelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(btImportExcelLayout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addGroup(btImportExcelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel14)
-                    .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addGap(15, 15, 15)
+                .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(24, Short.MAX_VALUE))
         );
         btImportExcelLayout.setVerticalGroup(
             btImportExcelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(btImportExcelLayout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btImportExcelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel15)
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addGap(14, 14, 14))
         );
 
         citiesSB.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
         citiesSB.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Abidjan", "San pedro" };
+            String[] strings = { "Tous", "Abidjan", "San pedro" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
+        citiesSB.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+        citiesSB.setSelectedIndices(new int[] {0});
         jScrollPane1.setViewportView(citiesSB);
 
         typesProductSB.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
         typesProductSB.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Fèves", "Fèves semi-fini", "Vertes" };
+            String[] strings = { "Tous", "Fèves", "Fèves semi-fini", "Vertes" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
+        typesProductSB.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+        typesProductSB.setToolTipText("");
+        typesProductSB.setSelectedIndices(new int[] {0});
         jScrollPane2.setViewportView(typesProductSB);
 
         jLabel6.setFont(new java.awt.Font("Trebuchet MS", 0, 16)); // NOI18N
@@ -193,95 +191,124 @@ public class ReportPanel extends javax.swing.JPanel {
             }
         });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        jLabel11.setFont(new java.awt.Font("Trebuchet MS", 0, 16)); // NOI18N
+        jLabel11.setText("Selectionner categories");
+
+        categories.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
+        categories.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "TOUS", "TRANSFORMATEUR", "NON TRANSFORMATEUR" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        categories.setSelectedIndices(new int[] {0});
+        jScrollPane3.setViewportView(categories);
+
+        jLabel16.setFont(new java.awt.Font("Trebuchet MS", 0, 16)); // NOI18N
+        jLabel16.setText("Selectionner type exportateurs");
+
+        typeExportateurs.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
+        typeExportateurs.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "TOUS", "MULTINATIONALE", "NATIONALE" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        typeExportateurs.setSelectedIndices(new int[] {0});
+        jScrollPane4.setViewportView(typeExportateurs);
+
+        jLabel17.setFont(new java.awt.Font("Trebuchet MS", 0, 16)); // NOI18N
+        jLabel17.setText("Selectionner specificité exportateurs");
+
+        speExportateurs.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
+        speExportateurs.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "TOUS", "COOPEX", "PMEX" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        speExportateurs.setSelectedIndices(new int[] {0});
+        jScrollPane5.setViewportView(speExportateurs);
+
+        yearStart.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2016", "2017", "2018", "2019", "2020" }));
+        yearStart.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+                yearStartActionPerformed(evt);
             }
         });
 
-        jLabel7.setFont(new java.awt.Font("Trebuchet MS", 0, 16)); // NOI18N
-        jLabel7.setText("Selectionner année");
-
-        yearSB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2016", "2017", "2018", "2019", "2020" }));
-        yearSB.addActionListener(new java.awt.event.ActionListener() {
+        yearEnd.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2016", "2017", "2018", "2019", "2020" }));
+        yearEnd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                yearSBActionPerformed(evt);
+                yearEndActionPerformed(evt);
             }
         });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(234, 234, 234)
+                .addComponent(btImportSql, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(51, 51, 51)
+                .addComponent(btImportExcel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 107, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane2)
-                            .addComponent(jScrollPane1)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(modelTypesSB, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(productSB, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(89, 89, 89))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addGap(23, 23, 23)
-                                .addComponent(periodStartSB, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(periodEndSB, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(yearSB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(118, 118, 118)))
-                        .addGap(0, 0, Short.MAX_VALUE))))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(148, 148, 148)
-                        .addComponent(btImportSql, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(48, 48, 48)
-                        .addComponent(btImportExcel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel5)
-                            .addComponent(jLabel6))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jLabel6))
+                        .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addGap(18, 18, 18)
+                                .addComponent(periodStartSB, 0, 1, Short.MAX_VALUE))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(23, 23, 23)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(productSB, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jScrollPane3)
+                                    .addComponent(jScrollPane4)
+                                    .addComponent(jScrollPane5)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(yearStart, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(periodEndSB, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(yearEnd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(5, 5, 5))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addGap(135, 135, 135)
+                        .addComponent(modelTypesSB, 0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(12, 12, 12)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(yearSB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(periodStartSB, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(periodEndSB, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(yearStart, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(yearEnd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(productSB, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(productSB, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -290,19 +317,31 @@ public class ReportPanel extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(25, 25, 25)))
+                        .addGap(20, 20, 20)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(modelTypesSB, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btImportExcel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btImportSql, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(104, 104, 104))
+                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(modelTypesSB, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btImportSql, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btImportExcel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -318,12 +357,16 @@ public class ReportPanel extends javax.swing.JPanel {
 
     private void btImportExcelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btImportExcelMouseClicked
         BuildReport report = new BuildReport(
-                this.yearSB.getSelectedItem().toString(),
                 this.periodStartSB.getSelectedItem().toString(),
+                this.yearStart.getSelectedItem().toString(),
                 this.periodEndSB.getSelectedItem().toString(),
+                this.yearEnd.getSelectedItem().toString(),
                 this.productSB.getSelectedItem().toString(), 
                 this.typesProductSB.getSelectedValuesList(),
                 this.citiesSB.getSelectedValuesList(),
+                this.categories.getSelectedValuesList(),
+                this.typeExportateurs.getSelectedValuesList(),
+                this.speExportateurs.getSelectedValuesList(),
                 this.modelTypesSB.getSelectedItem().toString()
         );
         try {
@@ -353,39 +396,48 @@ public class ReportPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_productSBActionPerformed
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+    private void jLabel15MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel15MouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
+    }//GEN-LAST:event_jLabel15MouseClicked
 
-    private void yearSBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_yearSBActionPerformed
+    private void yearStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_yearStartActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_yearSBActionPerformed
+    }//GEN-LAST:event_yearStartActionPerformed
+
+    private void yearEndActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_yearEndActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_yearEndActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel btImportExcel;
     private javax.swing.JPanel btImportSql;
+    private javax.swing.JList<String> categories;
     private javax.swing.JList<String> citiesSB;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JComboBox modelTypesSB;
     private javax.swing.JComboBox periodEndSB;
     private javax.swing.JComboBox periodStartSB;
     private javax.swing.JComboBox productSB;
+    private javax.swing.JList<String> speExportateurs;
+    private javax.swing.JList<String> typeExportateurs;
     private javax.swing.JList<String> typesProductSB;
-    private javax.swing.JComboBox<String> yearSB;
+    private javax.swing.JComboBox<String> yearEnd;
+    private javax.swing.JComboBox<String> yearStart;
     // End of variables declaration//GEN-END:variables
 }

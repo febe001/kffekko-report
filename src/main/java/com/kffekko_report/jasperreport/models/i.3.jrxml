@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="24a75ddb-dd96-4228-95a3-ab8c99e4160a">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["/Users/akil/Developement/java-workspace/kffekko/src/main/java/com/kffekko_report/jasperreport/models/"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     montant.`taxe_Redevance` AS montant_taxe_Redevance,
+     montant.`port_Embarquement` AS montant_port_Embarquement,
+     SUM(CONVERT(montant.`montant_Preleve`, UNSIGNED INTEGER)) AS montant_montant_Preleve
+FROM
+     `montant` montant
+
+GROUP BY 
+       montant.`taxe_Redevance`,
+       montant.`port_Embarquement`
+LIMIT 1]]>
+	</queryString>
+	<field name="montant_taxe_Redevance" class="java.lang.String"/>
+	<field name="montant_port_Embarquement" class="java.lang.String"/>
+	<field name="montant_montant_Preleve" class="java.math.BigDecimal"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="35" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="555" height="35" uuid="e721b3ff-6480-4d62-9fc0-a95861fd785d"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA["I.3- PRELEVEMENTS ET REAJUSTEMENTS DES TAXES SUR LESFEVES DE CACAO"]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<detail>
+		<band height="143">
+			<subreport>
+				<reportElement isPrintRepeatedValues="false" x="0" y="0" width="555" height="143" uuid="26ad9987-6595-4475-84cd-830d41d302c9">
+					<printWhenExpression><![CDATA[$V{REPORT_COUNT}==1]]></printWhenExpression>
+				</reportElement>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "i.3_subreport1.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="111">
+			<subreport>
+				<reportElement isPrintRepeatedValues="false" x="0" y="0" width="555" height="110" uuid="ec4f8cbc-c983-46cf-8f28-e042b5a6f6dd">
+					<printWhenExpression><![CDATA[$V{REPORT_COUNT}==1]]></printWhenExpression>
+				</reportElement>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "i.3_subreport2.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="109">
+			<subreport>
+				<reportElement x="0" y="0" width="555" height="109" uuid="c5e1e969-ba91-45f5-ad0a-250570b5ee95"/>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "i.3_subreport3.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="147">
+			<subreport>
+				<reportElement x="0" y="0" width="555" height="147" uuid="19db3ccc-b0a5-4849-85cb-be992597e7a4"/>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "i.3_subreport4.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+</jasperReport>

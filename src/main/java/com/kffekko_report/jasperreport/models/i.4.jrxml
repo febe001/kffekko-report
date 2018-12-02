@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="54fe704a-e4cd-4d8d-a1bd-8dca8b75e977">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="315"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["/Users/akil/Developement/java-workspace/kffekko/src/main/java/com/kffekko_report/jasperreport/models/"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     poids.`type_Exportateur` AS poids_type_Exportateur,
+     poids.`port_Embarquement` AS poids_port_Embarquement,
+     poids.`poids_Reel` AS poids_poids_Reel
+FROM
+     `poids` poids
+
+GROUP BY
+      poids.`type_Exportateur`,
+      poids.`port_Embarquement`
+
+LIMIT 1]]>
+	</queryString>
+	<field name="poids_type_Exportateur" class="java.lang.String"/>
+	<field name="poids_port_Embarquement" class="java.lang.String"/>
+	<field name="poids_poids_Reel" class="java.lang.String"/>
+	<title>
+		<band height="24" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="555" height="24" uuid="d2c7eef1-49fa-4c09-8801-0982aee23ca0"/>
+				<textElement>
+					<font isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA["I.4- LES GROUPES D'EXPORTATEURS DE CACAO"]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<detail>
+		<band height="197">
+			<subreport>
+				<reportElement x="0" y="0" width="555" height="197" uuid="d5c947d0-dbf2-434d-9fab-a2766451c5db"/>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "i.4_subreport1.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="176">
+			<subreport>
+				<reportElement x="0" y="0" width="555" height="176" uuid="d9cfced9-9687-4631-b9b1-7edc7754f846"/>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "i.4_subreport2.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="220">
+			<subreport>
+				<reportElement x="0" y="0" width="555" height="220" uuid="13cf2ec9-6d2a-46f7-b6d8-e79f7a921f8e"/>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "i.4_subreport3.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+</jasperReport>

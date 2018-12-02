@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="i.9_subreport2" language="groovy" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="02dd3f57-bd9d-4f52-9a73-c1d53bc137e7">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="DATE_DEBUT" class="java.lang.String">
+		<defaultValueExpression><![CDATA["2017-10-01"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="DATE_FIN" class="java.lang.String">
+		<defaultValueExpression><![CDATA["2017-12-31"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="ANNEE_FIN" class="java.lang.String">
+		<defaultValueExpression><![CDATA["2017"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="MOIS_FIN_int" class="java.lang.String">
+		<defaultValueExpression><![CDATA["12"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="PRODUIT" class="java.lang.String">
+		<defaultValueExpression><![CDATA["Cacao"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     poids.`continent_Destination` AS continent,
+     SUM(CONVERT(poids.`poids_Reel`, UNSIGNED INTEGER))AS poids_reel,
+     ROUND(SUM(CONVERT(poids.`poids_Reel`, UNSIGNED INTEGER))
+     /(SELECT SUM(CONVERT(_poids.`poids_Reel`, UNSIGNED INTEGER))
+      FROM `poids` _poids
+      WHERE
+          _poids.`continent_Destination` <> 'null' AND
+     	_poids.`produit` = $P{PRODUIT} AND
+     	_poids.`date_CGFCC` >=  $P{DATE_DEBUT} AND
+     	_poids.`date_CGFCC` <=  $P{DATE_FIN} AND
+     	_poids.`statut_Formule` = 'Complète'
+     
+     ) *100, 2) as percent_poids
+FROM
+     `poids` poids
+
+WHERE 
+     poids.`port_Embarquement` <> 'null' AND
+     poids.`produit` = $P{PRODUIT} AND
+     poids.`date_CGFCC` >=  $P{DATE_DEBUT} AND
+     poids.`date_CGFCC` <=  $P{DATE_FIN} AND
+     poids.`statut_Formule` = 'Complète'
+
+GROUP BY 
+poids.`continent_Destination`]]>
+	</queryString>
+	<field name="continent" class="java.lang.String"/>
+	<field name="poids_reel" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="percent_poids" class="java.math.BigDecimal"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="26" splitType="Stretch"/>
+	</title>
+	<summary>
+		<band height="298" splitType="Stretch">
+			<pie3DChart>
+				<chart>
+					<reportElement x="32" y="0" width="466" height="278" uuid="06e785db-b97b-4fe5-94c8-2bd8b156b9bd"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<pieDataset>
+					<keyExpression><![CDATA[$F{continent}]]></keyExpression>
+					<valueExpression><![CDATA[$F{poids_reel}]]></valueExpression>
+					<labelExpression><![CDATA[$F{continent}.concat(" (" + $F{percent_poids} + ")")]]></labelExpression>
+				</pieDataset>
+				<pie3DPlot>
+					<plot/>
+					<itemLabel/>
+				</pie3DPlot>
+			</pie3DChart>
+			<staticText>
+				<reportElement x="0" y="278" width="555" height="20" uuid="a6156def-084d-4997-97b4-cf27d97e7910"/>
+				<text><![CDATA[Graphique 6: Repartition des quantités de cacao pésees à l'export par continent]]></text>
+			</staticText>
+		</band>
+	</summary>
+</jasperReport>

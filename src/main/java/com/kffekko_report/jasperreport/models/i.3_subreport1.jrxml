@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="i.3_subreport1" language="groovy" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="a1ab4330-1a54-4f80-b908-76075f026ad8">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Crosstab Data Text" hAlign="Center"/>
+	<parameter name="DATE_DEBUT" class="java.lang.String">
+		<defaultValueExpression><![CDATA["2017-10-01"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="DATE_FIN" class="java.lang.String">
+		<defaultValueExpression><![CDATA["2017-12-31"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="PRODUIT" class="java.lang.String">
+		<defaultValueExpression><![CDATA["Cacao"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="PRODUIT_TYPE" class="java.lang.String">
+		<defaultValueExpression><![CDATA["Fèves"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     CONCAT(LPAD(ROUND(1/(( SELECT SUM(CONVERT(__montant.`montant_Preleve`, SIGNED INTEGER))
+	FROM `montant` __montant
+	WHERE 
+	__montant.`taxe_Redevance` = montant.`taxe_Redevance` AND
+          __montant.`taxe_Redevance` <> 'null'   AND 
+     	__montant.`date_CGFCC` >= $P{DATE_DEBUT} AND
+     	__montant.`date_CGFCC` <= $P{DATE_FIN} AND
+     	__montant.`statut_Formule` = 'Complète' AND
+     	__montant.`produit` = $P{PRODUIT} AND 
+     	__montant.`taxe_Redevance` <> 'DECOTE' AND
+     	__montant.`taxe_Redevance` <> 'CCC STABILISATION'
+ 	 GROUP BY __montant.`taxe_Redevance`)/
+     (SELECT SUM(CONVERT(_montant.`montant_Preleve`, SIGNED INTEGER))
+      FROM `montant` _montant
+      WHERE 
+     	_montant.`taxe_Redevance` <> 'null'   AND 
+     	_montant.`date_CGFCC` >= $P{DATE_DEBUT} AND
+     	_montant.`date_CGFCC` <= $P{DATE_FIN} AND
+     	_montant.`statut_Formule` = 'Complète' AND
+     	_montant.`produit` = $P{PRODUIT} AND 
+     	_montant.`taxe_Redevance` <> 'DECOTE' AND
+     	_montant.`taxe_Redevance` <> 'CCC STABILISATION'
+         
+     ))), 5, 0), montant.`taxe_Redevance`) AS montant_taxe_Redevance,
+     (CASE montant.`port_Embarquement`
+	WHEN 'ABIDJAN' THEN 'Abidjan'
+	WHEN 'SAN PEDRO' THEN 'San Pedro'
+          ELSE montant.`port_Embarquement`
+      END
+) AS montant_port_Embarquement,
+     SUM(CONVERT(montant.`montant_Preleve`, UNSIGNED INTEGER)) AS montant_montant_Preleve
+FROM
+     `montant` montant
+
+WHERE 
+     montant.`taxe_Redevance` <> 'null'   AND 
+     montant.`date_CGFCC` >= $P{DATE_DEBUT} AND
+     montant.`date_CGFCC` <= $P{DATE_FIN} AND
+     montant.`statut_Formule` = 'Complète' AND
+     montant.`produit` = $P{PRODUIT} AND 
+     montant.`taxe_Redevance` <> 'DECOTE' AND
+     montant.`taxe_Redevance` <> 'CCC STABILISATION'
+
+GROUP BY 
+      montant.`taxe_Redevance`,
+      montant.`port_Embarquement`]]>
+	</queryString>
+	<field name="montant_taxe_Redevance" class="java.lang.String"/>
+	<field name="montant_port_Embarquement" class="java.lang.String"/>
+	<field name="montant_montant_Preleve" class="java.math.BigDecimal"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="28" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="555" height="28" uuid="5ac2bbf5-e1ae-4aaf-8287-59733f49f0b7"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA["Tableau 7: Montant des prélèvements induits Octobre-Decembre 2017 (FCFA)"]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<summary>
+		<band height="218" splitType="Stretch">
+			<crosstab>
+				<reportElement x="0" y="0" width="555" height="218" uuid="b2f6df3f-3a8b-447f-b30d-6a304f181985"/>
+				<crosstabHeaderCell>
+					<cellContents>
+						<staticText>
+							<reportElement style="Crosstab Data Text" mode="Opaque" x="0" y="0" width="105" height="29" forecolor="#FFFFFF" backcolor="#CC0033" uuid="c2dcfd4f-36c7-4601-b54a-f8e624610093"/>
+							<box leftPadding="2"/>
+							<textElement textAlignment="Left" verticalAlignment="Middle">
+								<font pdfFontName="Helvetica-Bold"/>
+							</textElement>
+							<text><![CDATA[Taxes]]></text>
+						</staticText>
+					</cellContents>
+				</crosstabHeaderCell>
+				<rowGroup name="montant_taxe_Redevance" width="105" totalPosition="End">
+					<bucket class="java.lang.String">
+						<bucketExpression><![CDATA[$F{montant_taxe_Redevance}]]></bucketExpression>
+					</bucket>
+					<crosstabRowHeader>
+						<cellContents backcolor="#F0F8FF" mode="Opaque">
+							<box>
+								<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textField>
+								<reportElement style="Crosstab Data Text" mode="Opaque" x="0" y="0" width="105" height="31" backcolor="#CCCCCC" uuid="da5552a6-d04d-4365-9f1c-7bbacba27fe2"/>
+								<box leftPadding="2"/>
+								<textElement textAlignment="Left" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$V{montant_taxe_Redevance}.substring(5).toUpperCase()]]></textFieldExpression>
+							</textField>
+						</cellContents>
+					</crosstabRowHeader>
+					<crosstabTotalRowHeader>
+						<cellContents backcolor="#BFE1FF" mode="Opaque">
+							<box>
+								<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="105" height="31" backcolor="#CCCCCC" uuid="9f6887ed-9c5d-4c79-9f2d-c547bcef5a60"/>
+								<box leftPadding="2"/>
+								<textElement verticalAlignment="Middle">
+									<font isBold="true" pdfFontName="Helvetica-Bold"/>
+								</textElement>
+								<text><![CDATA[TOTAL GENERAL]]></text>
+							</staticText>
+						</cellContents>
+					</crosstabTotalRowHeader>
+				</rowGroup>
+				<columnGroup name="montant_port_Embarquement" height="29" totalPosition="End">
+					<bucket class="java.lang.String">
+						<bucketExpression><![CDATA[$F{montant_port_Embarquement}]]></bucketExpression>
+					</bucket>
+					<crosstabColumnHeader>
+						<cellContents backcolor="#F0F8FF" mode="Opaque">
+							<box>
+								<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textField>
+								<reportElement style="Crosstab Data Text" mode="Opaque" x="0" y="0" width="105" height="29" forecolor="#FFFFFF" backcolor="#CC0033" uuid="a0bf48a9-14a9-4d8d-9b1e-c972c45bf4eb"/>
+								<box leftPadding="2"/>
+								<textElement textAlignment="Left" verticalAlignment="Middle">
+									<font size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{montant_port_Embarquement}]]></textFieldExpression>
+							</textField>
+							<staticText>
+								<reportElement style="Crosstab Data Text" mode="Opaque" x="105" y="0" width="40" height="29" forecolor="#FFFFFF" backcolor="#CC0033" uuid="21127e00-1b02-45d7-b392-09969f7077cf"/>
+								<box leftPadding="2"/>
+								<textElement textAlignment="Left" verticalAlignment="Middle">
+									<font size="9" pdfFontName="Helvetica-Bold"/>
+								</textElement>
+								<text><![CDATA[%]]></text>
+							</staticText>
+						</cellContents>
+					</crosstabColumnHeader>
+					<crosstabTotalColumnHeader>
+						<cellContents backcolor="#BFE1FF" mode="Opaque">
+							<box>
+								<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="96" height="29" forecolor="#FFFFFF" backcolor="#CC0033" uuid="a7bfdd58-d25b-4b2e-9142-cb079c3681ec"/>
+								<box leftPadding="2"/>
+								<textElement verticalAlignment="Middle">
+									<font size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
+								</textElement>
+								<text><![CDATA[Total]]></text>
+							</staticText>
+							<staticText>
+								<reportElement style="Crosstab Data Text" mode="Opaque" x="96" y="0" width="52" height="29" forecolor="#FFFFFF" backcolor="#CC0033" uuid="1eab3744-8815-414e-8a3d-032f787fa8bf"/>
+								<box leftPadding="2"/>
+								<textElement textAlignment="Left" verticalAlignment="Middle">
+									<font size="9" pdfFontName="Helvetica-Bold"/>
+								</textElement>
+								<text><![CDATA[%]]></text>
+							</staticText>
+						</cellContents>
+					</crosstabTotalColumnHeader>
+				</columnGroup>
+				<measure name="montant_montant_PreleveMeasure" class="java.math.BigDecimal" calculation="Sum">
+					<measureExpression><![CDATA[$F{montant_montant_Preleve}]]></measureExpression>
+				</measure>
+				<crosstabCell width="145" height="31">
+					<cellContents>
+						<box>
+							<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+						</box>
+						<textField>
+							<reportElement style="Crosstab Data Text" x="0" y="0" width="105" height="31" uuid="50ab1a48-39a4-4ef2-b53c-9d12de74780b"/>
+							<box leftPadding="2"/>
+							<textElement textAlignment="Left" verticalAlignment="Middle"/>
+							<textFieldExpression><![CDATA[NumberFormat.getInstance(Locale.FRENCH).format($V{montant_montant_PreleveMeasure})]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement style="Crosstab Data Text" x="105" y="0" width="40" height="31" uuid="567b24f4-91a4-448a-b12d-752c35dcfd00"/>
+							<box leftPadding="2"/>
+							<textElement textAlignment="Left" verticalAlignment="Middle"/>
+							<textFieldExpression><![CDATA[(new BigDecimal(String.valueOf(new Double(
+    (
+        ($V{montant_montant_PreleveMeasure}.doubleValue()
+    /
+    $V{montant_montant_PreleveMeasure_montant_port_Embarquement_ALL}.doubleValue()
+    )*100
+)))).setScale(2, RoundingMode.HALF_UP)).toString().concat("%")]]></textFieldExpression>
+						</textField>
+					</cellContents>
+				</crosstabCell>
+				<crosstabCell width="145" height="31" rowTotalGroup="montant_taxe_Redevance">
+					<cellContents backcolor="#BFE1FF" mode="Opaque">
+						<box>
+							<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+						</box>
+						<textField>
+							<reportElement style="Crosstab Data Text" mode="Opaque" x="0" y="0" width="105" height="31" backcolor="#CCCCCC" uuid="3d8c20ce-353e-41b4-b5ad-c87527ff8877"/>
+							<box leftPadding="2"/>
+							<textElement textAlignment="Left" verticalAlignment="Middle">
+								<font isBold="true" pdfFontName="Helvetica-Bold"/>
+							</textElement>
+							<textFieldExpression><![CDATA[NumberFormat.getInstance(Locale.FRENCH).format($V{montant_montant_PreleveMeasure})]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement style="Crosstab Data Text" mode="Opaque" x="105" y="0" width="40" height="31" backcolor="#CCCCCC" uuid="edd17bcb-6d1d-44b9-b83a-1907afcb1a46"/>
+							<box leftPadding="2"/>
+							<textElement textAlignment="Left" verticalAlignment="Middle">
+								<font isBold="true" pdfFontName="Helvetica-Bold"/>
+							</textElement>
+							<textFieldExpression><![CDATA[(new BigDecimal(String.valueOf(new Double(
+    (
+        ($V{montant_montant_PreleveMeasure}.doubleValue()
+    /
+    $V{montant_montant_PreleveMeasure_montant_port_Embarquement_ALL}.doubleValue()
+    )*100
+)))).setScale(2, RoundingMode.HALF_UP)).toString().concat("%")]]></textFieldExpression>
+						</textField>
+					</cellContents>
+				</crosstabCell>
+				<crosstabCell width="148" height="31" columnTotalGroup="montant_port_Embarquement">
+					<cellContents backcolor="#BFE1FF" mode="Opaque">
+						<box>
+							<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+						</box>
+						<textField>
+							<reportElement style="Crosstab Data Text" mode="Opaque" x="0" y="0" width="96" height="31" backcolor="#FFFFFF" uuid="5b71886e-033e-4e3e-a860-f7f07a820e67"/>
+							<box leftPadding="2"/>
+							<textElement textAlignment="Left" verticalAlignment="Middle"/>
+							<textFieldExpression><![CDATA[NumberFormat.getInstance(Locale.FRENCH).format($V{montant_montant_PreleveMeasure})]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement style="Crosstab Data Text" mode="Opaque" x="96" y="0" width="52" height="31" backcolor="#FFFFFF" uuid="8eb7c68f-5f7e-4460-9c24-711f826ea66a"/>
+							<box leftPadding="2"/>
+							<textElement textAlignment="Left" verticalAlignment="Middle"/>
+							<textFieldExpression><![CDATA[(new BigDecimal(String.valueOf(new Double(
+    (
+        ($V{montant_montant_PreleveMeasure}.doubleValue()
+    /
+    $V{montant_montant_PreleveMeasure_montant_taxe_Redevance_montant_port_Embarquement_ALL}.doubleValue()
+    )*100
+)))).setScale(2, RoundingMode.HALF_UP)).toString().concat("%")]]></textFieldExpression>
+						</textField>
+					</cellContents>
+				</crosstabCell>
+				<crosstabCell width="148" height="31" rowTotalGroup="montant_taxe_Redevance" columnTotalGroup="montant_port_Embarquement">
+					<cellContents backcolor="#BFE1FF" mode="Opaque">
+						<box>
+							<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+						</box>
+						<textField>
+							<reportElement style="Crosstab Data Text" mode="Opaque" x="0" y="0" width="96" height="31" backcolor="#CCCCCC" uuid="06f5bca7-a7ac-43db-be7a-b090f2b00042"/>
+							<box leftPadding="2"/>
+							<textElement textAlignment="Left" verticalAlignment="Middle">
+								<font isBold="true" isItalic="false" pdfFontName="Helvetica-Bold"/>
+							</textElement>
+							<textFieldExpression><![CDATA[NumberFormat.getInstance(Locale.FRENCH).format($V{montant_montant_PreleveMeasure})]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement style="Crosstab Data Text" mode="Opaque" x="96" y="0" width="52" height="31" backcolor="#CCCCCC" uuid="ba87883e-3b53-4c40-aa03-5d36fa98ac18"/>
+							<box leftPadding="2"/>
+							<textElement textAlignment="Left" verticalAlignment="Middle">
+								<font isBold="true" isItalic="false" pdfFontName="Helvetica-Bold"/>
+							</textElement>
+							<textFieldExpression><![CDATA[(new BigDecimal(String.valueOf(new Double(
+    (
+        ($V{montant_montant_PreleveMeasure}.doubleValue()
+    /
+    $V{montant_montant_PreleveMeasure_montant_taxe_Redevance_montant_port_Embarquement_ALL}.doubleValue()
+    )*100
+)))).setScale(2, RoundingMode.HALF_UP)).toString().concat("%")]]></textFieldExpression>
+						</textField>
+					</cellContents>
+				</crosstabCell>
+			</crosstab>
+		</band>
+	</summary>
+</jasperReport>

@@ -11,6 +11,7 @@ package com.kffekko_report.jasperreport;
  */
 public enum EnumReportModel {
     
+    I_0("i.0.jrxml"),
     I_1("i.1.jrxml"), 
     I_2("i.2.jrxml"),
     I_3("i.3.jrxml"),

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="i.1_subreport2_subreport2" language="groovy" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="e5d99a1c-e3c2-487f-b947-717ade83c893">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="DATE_DEBUT" class="java.lang.String">
+		<defaultValueExpression><![CDATA["2017-10-01"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="DATE_FIN" class="java.lang.String">
+		<defaultValueExpression><![CDATA["2017-12-31"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="PRODUIT" class="java.lang.String">
+		<defaultValueExpression><![CDATA["Cacao"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     poids.`port_Embarquement` AS port_embarquement,
+     SUM(CONVERT(poids.`poids_Reel`, UNSIGNED INTEGER)) AS poids_reel,
+     CONCAT((
+       CASE poids.`mois`
+	WHEN 1 THEN 'JANVIER'
+	WHEN 2 THEN 'FEVRIER'
+	WHEN 3 THEN 'MARS'
+	WHEN 4 THEN 'AVRIL'
+	WHEN 5 THEN 'MAI'
+	WHEN 6 THEN 'JUIN'
+	WHEN 7 THEN 'JUILLET'
+	WHEN 8 THEN 'AOUT'
+	WHEN 9 THEN 'SEPTEMBRE'
+	WHEN 10 THEN 'OCTOBRE'
+	WHEN 11 THEN 'NOVEMBRE'
+	WHEN 12 THEN 'DECEMBRE'
+        END
+		
+      ), ' ', poids.`annee`) AS mois_annee
+FROM
+     `poids` poids
+
+WHERE 
+     poids.`port_Embarquement` != 'null' AND 
+     poids.`date_CGFCC` >= $P{DATE_DEBUT} AND
+     poids.`date_CGFCC` <= $P{DATE_FIN} AND 
+      poids.`produit` <= $P{PRODUIT}
+GROUP BY 
+     poids.`mois`, 
+     poids.`annee`, 
+     poids.`port_Embarquement`]]>
+	</queryString>
+	<field name="port_embarquement" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="poids_reel" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="mois_annee" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="33" splitType="Stretch"/>
+	</title>
+	<summary>
+		<band height="200" splitType="Stretch">
+			<bar3DChart>
+				<chart>
+					<reportElement x="0" y="0" width="555" height="199" uuid="2f7c7864-6c07-42bb-9229-ed64a0fb2219"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<categoryDataset>
+					<categorySeries>
+						<seriesExpression><![CDATA[$F{port_embarquement}]]></seriesExpression>
+						<categoryExpression><![CDATA[$F{mois_annee}]]></categoryExpression>
+						<valueExpression><![CDATA[$F{poids_reel}]]></valueExpression>
+					</categorySeries>
+				</categoryDataset>
+				<bar3DPlot>
+					<plot>
+						<seriesColor seriesOrder="0" color="#00CC66"/>
+						<seriesColor seriesOrder="1" color="#33FF00"/>
+					</plot>
+					<itemLabel/>
+					<categoryAxisFormat>
+						<axisFormat/>
+					</categoryAxisFormat>
+					<valueAxisFormat>
+						<axisFormat/>
+					</valueAxisFormat>
+				</bar3DPlot>
+			</bar3DChart>
+		</band>
+	</summary>
+</jasperReport>

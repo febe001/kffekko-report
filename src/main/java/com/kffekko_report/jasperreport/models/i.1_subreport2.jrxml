@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="i.1_subreport2" language="groovy" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="55caec87-3165-49d5-a2ec-83dec5edb99d">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["/Users/akil/Developement/java-workspace/kffekko/src/main/java/com/kffekko_report/jasperreport/models/"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     poids.`type_Produit` AS poids_type_Produit,
+     poids.`port_Embarquement` AS poids_port_Embarquement,
+     CONCAT(poids.`port_Embarquement`, ' ', poids.`type_Produit`) as port_Embarquement_type_produit,
+     SUM(CONVERT(poids.`poids_Reel`, UNSIGNED INTEGER)) AS poids_Reel,
+     ROUND(SUM(CONVERT(poids.`poids_Reel`, UNSIGNED INTEGER))
+     /(SELECT SUM(CONVERT(_poids.`poids_Reel`, UNSIGNED INTEGER))
+      FROM `poids` _poids
+      WHERE _poids.`type_Produit` = poids.`type_Produit` AND
+      	_poids.`type_Produit` != 'null' AND 
+          _poids.`produit` = 'Cacao'
+      GROUP BY _poids.`type_Produit`
+     ) *100, 2) AS percent_poids_Reel,
+     (SELECT SUM(CONVERT(_poids.`poids_Reel`, UNSIGNED INTEGER))
+      FROM `poids` _poids
+      WHERE _poids.`type_Produit` = poids.`type_Produit` AND
+      	_poids.`type_Produit` != 'null' AND 
+          _poids.`produit` = 'Cacao'
+      GROUP BY _poids.`type_Produit`
+     ) AS sum_poids_Reel
+FROM
+     `poids` poids
+
+WHERE 
+     poids.`type_Produit` != 'null' AND
+     poids.`produit` = 'Cacao'
+
+GROUP BY
+     poids.`type_Produit`, 
+     poids.`port_Embarquement`
+     
+
+LIMIT 1]]>
+	</queryString>
+	<field name="poids_type_Produit" class="java.lang.String"/>
+	<field name="poids_port_Embarquement" class="java.lang.String"/>
+	<field name="port_Embarquement_type_produit" class="java.lang.String"/>
+	<field name="poids_Reel" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="percent_poids_Reel" class="java.math.BigDecimal"/>
+	<field name="sum_poids_Reel" class="java.math.BigDecimal"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="139" splitType="Stretch">
+			<subreport>
+				<reportElement x="0" y="0" width="555" height="138" uuid="5cd84afd-0e46-4be7-82d9-6d9be15818e0"/>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "i.1_subreport2_subreport1.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="153">
+			<subreport>
+				<reportElement x="0" y="0" width="555" height="153" uuid="5996e028-bfa2-4a2e-a40f-b5a144b904f0"/>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "i.1_subreport2_subreport2.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="170">
+			<subreport>
+				<reportElement x="0" y="0" width="555" height="170" uuid="7c406937-d8ce-462f-846b-7675f2230407"/>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "i.1_subreport2_subreport3.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+</jasperReport>
