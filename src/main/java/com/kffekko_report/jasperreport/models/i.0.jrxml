@@ -51,7 +51,7 @@ WHERE poids.no_Formule != 'null']]>
 				<text><![CDATA[Tableau 1: Taux d'exportation réellement pesé et constaté aux port d'Abidjan et de San Pédro]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="0" y="60" width="502" height="30" forecolor="#FFFFFF" backcolor="#CC0033" uuid="58d6fe78-a3b2-456f-a72c-ce2f04a56f32"/>
+				<reportElement mode="Opaque" x="0" y="60" width="502" height="30" forecolor="#FFFFFF" backcolor="#BD0000" uuid="58d6fe78-a3b2-456f-a72c-ce2f04a56f32"/>
 				<box leftPadding="20"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isBold="true" pdfFontName="Helvetica-Bold"/>

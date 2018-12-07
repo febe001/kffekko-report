@@ -63,10 +63,10 @@ GROUP BY
 				<crosstabHeaderCell>
 					<cellContents>
 						<staticText>
-							<reportElement style="Crosstab Data Text" mode="Opaque" x="0" y="0" width="130" height="30" forecolor="#FFFFFF" backcolor="#CC0033" uuid="ba069910-d8a1-469f-a388-53ca35502410"/>
+							<reportElement style="Crosstab Data Text" mode="Opaque" x="0" y="0" width="130" height="30" forecolor="#FFFFFF" backcolor="#BD0000" uuid="ba069910-d8a1-469f-a388-53ca35502410"/>
 							<box leftPadding="5"/>
-							<textElement textAlignment="Left" verticalAlignment="Middle">
-								<font isBold="true" pdfFontName="Helvetica-Bold"/>
+							<textElement verticalAlignment="Middle">
+								<font isBold="true" pdfFontName="Helvetica-Bold" isPdfEmbedded="true"/>
 							</textElement>
 							<text><![CDATA[Type de produit]]></text>
 						</staticText>
@@ -84,7 +84,9 @@ GROUP BY
 							<textField>
 								<reportElement style="Crosstab Data Text" mode="Opaque" x="0" y="0" width="130" height="25" backcolor="#CCCCCC" uuid="930b92af-4c24-441e-9add-c24adb63786b"/>
 								<box leftPadding="5"/>
-								<textElement textAlignment="Left" verticalAlignment="Middle"/>
+								<textElement textAlignment="Left" verticalAlignment="Middle">
+									<font pdfFontName="Helvetica" isPdfEmbedded="true"/>
+								</textElement>
 								<textFieldExpression><![CDATA[$V{nature_produit}.toUpperCase()]]></textFieldExpression>
 							</textField>
 						</cellContents>
@@ -98,7 +100,7 @@ GROUP BY
 								<reportElement mode="Opaque" x="0" y="0" width="130" height="24" backcolor="#CCCCCC" uuid="7a8625a4-9ca7-4290-a4de-d4002f5e0fe7"/>
 								<box leftPadding="5"/>
 								<textElement verticalAlignment="Middle">
-									<font isBold="true" pdfFontName="Helvetica-Bold"/>
+									<font isBold="true" pdfFontName="Helvetica" isPdfEmbedded="true"/>
 								</textElement>
 								<text><![CDATA[TOTAL GENERAL]]></text>
 							</staticText>
@@ -115,18 +117,18 @@ GROUP BY
 								<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
 							</box>
 							<textField>
-								<reportElement style="Crosstab Data Text" mode="Opaque" x="0" y="0" width="94" height="30" forecolor="#FFFFFF" backcolor="#CC0033" uuid="454d74a7-d116-4809-a69d-3089b342ba7a"/>
+								<reportElement style="Crosstab Data Text" mode="Opaque" x="0" y="0" width="94" height="30" forecolor="#FFFFFF" backcolor="#BD0000" uuid="454d74a7-d116-4809-a69d-3089b342ba7a"/>
 								<box leftPadding="5"/>
 								<textElement verticalAlignment="Middle">
-									<font isBold="true" pdfFontName="Helvetica-Bold"/>
+									<font isBold="true" pdfFontName="Helvetica-Bold" isPdfEmbedded="true"/>
 								</textElement>
 								<textFieldExpression><![CDATA[$V{port_embarquement}]]></textFieldExpression>
 							</textField>
 							<staticText>
-								<reportElement style="Crosstab Data Text" mode="Opaque" x="94" y="0" width="44" height="30" forecolor="#FFFFFF" backcolor="#CC0033" uuid="fd420f3a-93b4-4884-989c-fd9ab2e63d9e"/>
+								<reportElement style="Crosstab Data Text" mode="Opaque" x="94" y="0" width="44" height="30" forecolor="#FFFFFF" backcolor="#BD0000" uuid="fd420f3a-93b4-4884-989c-fd9ab2e63d9e"/>
 								<box leftPadding="5"/>
 								<textElement verticalAlignment="Middle">
-									<font isBold="true" pdfFontName="Helvetica-Bold"/>
+									<font isBold="true" pdfFontName="Helvetica-Bold" isPdfEmbedded="true"/>
 								</textElement>
 								<text><![CDATA[%]]></text>
 							</staticText>
@@ -138,18 +140,18 @@ GROUP BY
 								<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
 							</box>
 							<staticText>
-								<reportElement mode="Opaque" x="0" y="0" width="94" height="30" forecolor="#FFFFFF" backcolor="#CC0033" uuid="eb44a821-1926-47da-a782-edf95930b39d"/>
+								<reportElement mode="Opaque" x="0" y="0" width="94" height="30" forecolor="#FFFFFF" backcolor="#BD0000" uuid="eb44a821-1926-47da-a782-edf95930b39d"/>
 								<box leftPadding="5"/>
 								<textElement textAlignment="Center" verticalAlignment="Middle">
-									<font isBold="true" pdfFontName="Helvetica-Bold"/>
+									<font isBold="true" pdfFontName="Helvetica-Bold" isPdfEmbedded="true"/>
 								</textElement>
 								<text><![CDATA[Total]]></text>
 							</staticText>
 							<staticText>
-								<reportElement style="Crosstab Data Text" mode="Opaque" x="94" y="0" width="55" height="30" forecolor="#FFFFFF" backcolor="#CC0033" uuid="058b036e-c795-4f3d-8e7b-0b62a9a9eabb"/>
+								<reportElement style="Crosstab Data Text" mode="Opaque" x="94" y="0" width="55" height="30" forecolor="#FFFFFF" backcolor="#BD0000" uuid="058b036e-c795-4f3d-8e7b-0b62a9a9eabb"/>
 								<box leftPadding="5"/>
 								<textElement verticalAlignment="Middle">
-									<font isBold="true" pdfFontName="Helvetica-Bold"/>
+									<font isBold="true" pdfFontName="Helvetica-Bold" isPdfEmbedded="true"/>
 								</textElement>
 								<text><![CDATA[%]]></text>
 							</staticText>
@@ -168,7 +170,7 @@ GROUP BY
 							<reportElement style="Crosstab Data Text" mode="Opaque" x="0" y="0" width="94" height="24" uuid="e3681bb4-abd2-4584-9828-4fca7c078283"/>
 							<box leftPadding="2"/>
 							<textElement textAlignment="Left" verticalAlignment="Middle">
-								<font size="10"/>
+								<font size="10" pdfFontName="Helvetica" isPdfEmbedded="true"/>
 							</textElement>
 							<textFieldExpression><![CDATA[NumberFormat.getInstance(Locale.FRENCH).format($V{poidsMeasure})]]></textFieldExpression>
 						</textField>
@@ -176,7 +178,7 @@ GROUP BY
 							<reportElement style="Crosstab Data Text" mode="Opaque" x="94" y="0" width="32" height="24" uuid="25d741d7-ebab-44fa-8a58-233e3d7cd758"/>
 							<box leftPadding="2"/>
 							<textElement textAlignment="Right" verticalAlignment="Middle">
-								<font size="10"/>
+								<font size="10" pdfFontName="Helvetica" isPdfEmbedded="true"/>
 							</textElement>
 							<textFieldExpression><![CDATA[new BigDecimal(String.valueOf(new Double(
     (
@@ -189,7 +191,7 @@ GROUP BY
 						<staticText>
 							<reportElement style="Crosstab Data Text" x="126" y="0" width="12" height="25" uuid="934b5560-4486-4410-9c4d-1051a4e5840b"/>
 							<textElement verticalAlignment="Middle">
-								<font size="10"/>
+								<font size="10" pdfFontName="Helvetica" isPdfEmbedded="true"/>
 							</textElement>
 							<text><![CDATA[%]]></text>
 						</staticText>
@@ -204,7 +206,7 @@ GROUP BY
 							<reportElement style="Crosstab Data Text" mode="Opaque" x="0" y="0" width="94" height="24" backcolor="#CCCCCC" uuid="00f9c835-8195-45e6-9c66-1a7a8235388f"/>
 							<box leftPadding="2"/>
 							<textElement textAlignment="Left" verticalAlignment="Middle">
-								<font size="10" isBold="true" pdfFontName="Helvetica-Bold"/>
+								<font size="10" isBold="true" pdfFontName="Helvetica" isPdfEmbedded="true"/>
 							</textElement>
 							<textFieldExpression><![CDATA[NumberFormat.getInstance(Locale.FRENCH).format($V{poidsMeasure})]]></textFieldExpression>
 						</textField>
@@ -212,7 +214,7 @@ GROUP BY
 							<reportElement style="Crosstab Data Text" mode="Opaque" x="94" y="0" width="32" height="24" backcolor="#CCCCCC" uuid="6f4a6ec3-05a7-493b-aff7-29f79d3afebc"/>
 							<box leftPadding="2"/>
 							<textElement textAlignment="Right" verticalAlignment="Middle">
-								<font size="10" isBold="true" pdfFontName="Helvetica-Bold"/>
+								<font size="10" isBold="true" pdfFontName="Helvetica" isPdfEmbedded="true"/>
 							</textElement>
 							<textFieldExpression><![CDATA[new BigDecimal(String.valueOf(new Double(
     (
@@ -225,7 +227,7 @@ GROUP BY
 						<staticText>
 							<reportElement style="Crosstab Data Text" mode="Opaque" x="126" y="0" width="12" height="24" backcolor="#CCCCCC" uuid="14d1dabf-1db5-40d9-a557-fbb0fa9c254b"/>
 							<textElement verticalAlignment="Middle">
-								<font size="10"/>
+								<font size="10" pdfFontName="Helvetica" isPdfEmbedded="true"/>
 							</textElement>
 							<text><![CDATA[%]]></text>
 						</staticText>
@@ -237,15 +239,19 @@ GROUP BY
 							<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
 						</box>
 						<textField>
-							<reportElement style="Crosstab Data Text" mode="Opaque" x="0" y="0" width="94" height="25" backcolor="#CCCCCC" uuid="6d5ec4b8-bb92-41bd-b556-04197e1405c7"/>
+							<reportElement style="Crosstab Data Text" mode="Opaque" x="0" y="0" width="94" height="25" backcolor="#FFFFFF" uuid="6d5ec4b8-bb92-41bd-b556-04197e1405c7"/>
 							<box leftPadding="2"/>
-							<textElement textAlignment="Left" verticalAlignment="Middle"/>
+							<textElement textAlignment="Left" verticalAlignment="Middle">
+								<font pdfFontName="Helvetica" isPdfEmbedded="true"/>
+							</textElement>
 							<textFieldExpression><![CDATA[NumberFormat.getInstance(Locale.FRENCH).format($V{poidsMeasure})]]></textFieldExpression>
 						</textField>
 						<textField>
-							<reportElement style="Crosstab Data Text" mode="Opaque" x="94" y="0" width="55" height="25" backcolor="#CCCCCC" uuid="8ce69489-b48c-4eba-9745-1922c997acb5"/>
+							<reportElement style="Crosstab Data Text" mode="Opaque" x="94" y="0" width="55" height="25" backcolor="#FFFFFF" uuid="8ce69489-b48c-4eba-9745-1922c997acb5"/>
 							<box leftPadding="2"/>
-							<textElement textAlignment="Left" verticalAlignment="Middle"/>
+							<textElement textAlignment="Left" verticalAlignment="Middle">
+								<font pdfFontName="Helvetica" isPdfEmbedded="true"/>
+							</textElement>
 							<textFieldExpression><![CDATA[(new BigDecimal(String.valueOf(new Double(
     (
         $V{poidsMeasure}.doubleValue()
@@ -265,7 +271,7 @@ GROUP BY
 							<reportElement style="Crosstab Data Text" mode="Opaque" x="0" y="0" width="94" height="24" backcolor="#CCCCCC" uuid="6878ac14-d7a6-4ec7-9aca-c4f81aaab6f0"/>
 							<box leftPadding="2"/>
 							<textElement textAlignment="Left" verticalAlignment="Middle">
-								<font isBold="true" pdfFontName="Helvetica-Bold"/>
+								<font isBold="true" pdfFontName="Helvetica" isPdfEmbedded="true"/>
 							</textElement>
 							<textFieldExpression><![CDATA[NumberFormat.getInstance(Locale.FRENCH).format($V{poidsMeasure})]]></textFieldExpression>
 						</textField>
@@ -273,7 +279,7 @@ GROUP BY
 							<reportElement style="Crosstab Data Text" mode="Opaque" x="94" y="0" width="55" height="24" backcolor="#CCCCCC" uuid="88833c94-d3c9-460c-97e6-50e4a6df2ae7"/>
 							<box leftPadding="2"/>
 							<textElement textAlignment="Left" verticalAlignment="Middle">
-								<font isBold="true" pdfFontName="Helvetica-Bold"/>
+								<font isBold="true" pdfFontName="Helvetica" isPdfEmbedded="true"/>
 							</textElement>
 							<textFieldExpression><![CDATA[(new BigDecimal(String.valueOf(new Double(
     (

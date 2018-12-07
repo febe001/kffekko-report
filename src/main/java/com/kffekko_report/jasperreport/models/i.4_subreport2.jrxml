@@ -49,7 +49,12 @@ GROUP BY
 					<valueExpression><![CDATA[$F{poids_poids_Reel}]]></valueExpression>
 				</pieDataset>
 				<pie3DPlot>
-					<plot/>
+					<plot>
+						<seriesColor seriesOrder="0" color="#009999"/>
+						<seriesColor seriesOrder="1" color="#00CCCC"/>
+						<seriesColor seriesOrder="2" color="#CC0033"/>
+						<seriesColor seriesOrder="3" color="#990000"/>
+					</plot>
 					<itemLabel/>
 				</pie3DPlot>
 			</pie3DChart>

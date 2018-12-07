@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="e02e1598-3ee6-4130-8d55-e6cc0d0b6ef5">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="46"/>
+	<property name="ireport.y" value="0"/>
 	<style name="Crosstab Data Text" hAlign="Center"/>
 	<parameter name="PRODUIT_TYPE" class="java.lang.String">
 		<defaultValueExpression><![CDATA["Fèves"]]></defaultValueExpression>
@@ -74,7 +74,7 @@ GROUP BY
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="34" splitType="Stretch">
+		<band height="81" splitType="Stretch">
 			<textField>
 				<reportElement x="0" y="0" width="555" height="34" uuid="9a707f39-28f6-4aa0-b92f-40d392bb7b25"/>
 				<textElement>
@@ -82,21 +82,23 @@ GROUP BY
 				</textElement>
 				<textFieldExpression><![CDATA["I.5- LES PESES A L'EXPORT DES "+ $P{PRODUIT_TYPE}.toUpperCase() + " DE "+ $P{PRODUIT}.toUpperCase()]]></textFieldExpression>
 			</textField>
+			<textField>
+				<reportElement x="0" y="61" width="555" height="20" uuid="90c02174-312b-4a41-abd9-b497026bbe88"/>
+				<textFieldExpression><![CDATA["Tableau 13: Quantiteé de feves de cacao pésés a l'export par exportateur: Octobre-Decembre 2017 (kg)"]]></textFieldExpression>
+			</textField>
 		</band>
 	</title>
 	<summary>
 		<band height="407" splitType="Stretch">
-			<textField>
-				<reportElement x="0" y="387" width="555" height="20" uuid="90c02174-312b-4a41-abd9-b497026bbe88"/>
-				<textFieldExpression><![CDATA["Tableau 13: Quantiteé de feves de cacao pésés a l'export par exportateur: Octobre-Decembre 2017 (kg)"]]></textFieldExpression>
-			</textField>
 			<crosstab>
-				<reportElement mode="Opaque" x="0" y="0" width="555" height="407" forecolor="#FFFFFF" backcolor="#CC0033" uuid="359f9940-291b-4453-afd3-d4eb507a71f2"/>
+				<reportElement mode="Opaque" x="0" y="0" width="555" height="407" forecolor="#FFFFFF" backcolor="#FFFFFF" uuid="359f9940-291b-4453-afd3-d4eb507a71f2"/>
 				<crosstabHeaderCell>
 					<cellContents>
 						<staticText>
-							<reportElement style="Crosstab Data Text" mode="Opaque" x="0" y="0" width="127" height="30" forecolor="#FFFFFF" backcolor="#CC0033" uuid="494eca0b-da05-454f-ae4c-359882fbb51d"/>
-							<textElement textAlignment="Left" verticalAlignment="Middle"/>
+							<reportElement style="Crosstab Data Text" mode="Opaque" x="0" y="0" width="127" height="30" forecolor="#FFFFFF" backcolor="#BD0000" uuid="494eca0b-da05-454f-ae4c-359882fbb51d"/>
+							<textElement verticalAlignment="Middle">
+								<font isBold="true" pdfFontName="Helvetica-Bold"/>
+							</textElement>
 							<text><![CDATA[Exportateurs]]></text>
 						</staticText>
 					</cellContents>
@@ -144,16 +146,16 @@ GROUP BY
 								<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
 							</box>
 							<textField>
-								<reportElement style="Crosstab Data Text" mode="Opaque" x="0" y="0" width="89" height="30" forecolor="#FFFFFF" backcolor="#CC0033" uuid="61b27398-8b2b-4359-ab2c-969ff0fe89cd"/>
+								<reportElement style="Crosstab Data Text" mode="Opaque" x="0" y="0" width="89" height="30" forecolor="#FFFFFF" backcolor="#BD0000" uuid="61b27398-8b2b-4359-ab2c-969ff0fe89cd"/>
 								<textElement verticalAlignment="Middle">
-									<font isBold="true"/>
+									<font isBold="true" pdfFontName="Helvetica-Bold"/>
 								</textElement>
 								<textFieldExpression><![CDATA[$V{port_embarquement}]]></textFieldExpression>
 							</textField>
 							<staticText>
-								<reportElement style="Crosstab Data Text" mode="Opaque" x="89" y="0" width="31" height="30" forecolor="#FFFFFF" backcolor="#CC0033" uuid="dc59bd1b-7d25-4e6b-8bc6-3cc2d5d4213e"/>
+								<reportElement style="Crosstab Data Text" mode="Opaque" x="89" y="0" width="54" height="30" forecolor="#FFFFFF" backcolor="#BD0000" uuid="dc59bd1b-7d25-4e6b-8bc6-3cc2d5d4213e"/>
 								<textElement verticalAlignment="Middle">
-									<font isBold="true"/>
+									<font isBold="true" pdfFontName="Helvetica-Bold"/>
 								</textElement>
 								<text><![CDATA[%]]></text>
 							</staticText>
@@ -165,16 +167,16 @@ GROUP BY
 								<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
 							</box>
 							<staticText>
-								<reportElement mode="Opaque" x="0" y="0" width="79" height="30" forecolor="#FFFFFF" backcolor="#CC0033" uuid="c517f98b-e5c0-4f13-92f7-4365bab48dd6"/>
+								<reportElement mode="Opaque" x="0" y="0" width="79" height="30" forecolor="#FFFFFF" backcolor="#BD0000" uuid="c517f98b-e5c0-4f13-92f7-4365bab48dd6"/>
 								<textElement textAlignment="Center" verticalAlignment="Middle">
-									<font isBold="true"/>
+									<font isBold="true" pdfFontName="Helvetica-Bold"/>
 								</textElement>
 								<text><![CDATA[Total]]></text>
 							</staticText>
 							<staticText>
-								<reportElement style="Crosstab Data Text" mode="Opaque" x="79" y="0" width="32" height="30" forecolor="#FFFFFF" backcolor="#CC0033" uuid="b8ad0ccd-2a07-4a3b-bfcf-2fb06317c126"/>
+								<reportElement style="Crosstab Data Text" mode="Opaque" x="79" y="0" width="49" height="30" forecolor="#FFFFFF" backcolor="#BD0000" uuid="b8ad0ccd-2a07-4a3b-bfcf-2fb06317c126"/>
 								<textElement verticalAlignment="Middle">
-									<font isBold="true"/>
+									<font isBold="true" pdfFontName="Helvetica-Bold"/>
 								</textElement>
 								<text><![CDATA[%]]></text>
 							</staticText>
@@ -184,7 +186,7 @@ GROUP BY
 				<measure name="poids_reelMeasure" class="java.math.BigDecimal" calculation="Sum">
 					<measureExpression><![CDATA[$F{poids_reel}]]></measureExpression>
 				</measure>
-				<crosstabCell width="120" height="25">
+				<crosstabCell width="143" height="25">
 					<cellContents>
 						<box>
 							<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
@@ -192,42 +194,53 @@ GROUP BY
 						<textField>
 							<reportElement style="Crosstab Data Text" mode="Opaque" x="0" y="0" width="89" height="24" uuid="7290091e-cfbf-4ccc-946f-b177f00510c0"/>
 							<box leftPadding="2"/>
-							<textElement textAlignment="Left" verticalAlignment="Middle"/>
-							<textFieldExpression><![CDATA[$V{poids_reelMeasure}]]></textFieldExpression>
+							<textElement textAlignment="Left" verticalAlignment="Middle">
+								<font size="10"/>
+							</textElement>
+							<textFieldExpression><![CDATA[NumberFormat.getInstance(Locale.FRENCH).format($V{poids_reelMeasure})]]></textFieldExpression>
 						</textField>
 						<textField>
-							<reportElement style="Crosstab Data Text" mode="Opaque" x="89" y="0" width="31" height="24" uuid="4d01f40a-ccd8-47e0-9dbc-a6c7db457b09"/>
+							<reportElement style="Crosstab Data Text" mode="Opaque" x="89" y="0" width="41" height="24" uuid="4d01f40a-ccd8-47e0-9dbc-a6c7db457b09"/>
 							<box leftPadding="2"/>
-							<textElement textAlignment="Left" verticalAlignment="Middle"/>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font size="10"/>
+							</textElement>
 							<textFieldExpression><![CDATA[$V{poids_reelMeasure}.doubleValue()!= 0 ? 
-    new BigDecimal(String.valueOf(new Double(
+    (new BigDecimal(String.valueOf(new Double(
     (
         $V{poids_reelMeasure}.doubleValue()
     /
     $V{poids_reelMeasure_port_embarquement_ALL}.doubleValue()
     )*100
-))).setScale(2, RoundingMode.HALF_UP):new BigDecimal(String.valueOf(0))]]></textFieldExpression>
+))).setScale(2, RoundingMode.HALF_UP)):new BigDecimal(String.valueOf(0))]]></textFieldExpression>
 						</textField>
+						<staticText>
+							<reportElement style="Crosstab Data Text" mode="Opaque" x="130" y="0" width="13" height="24" uuid="2b46ac26-2b0c-42ee-910a-e18fadcf4d51"/>
+							<textElement verticalAlignment="Middle">
+								<font size="10"/>
+							</textElement>
+							<text><![CDATA[%]]></text>
+						</staticText>
 					</cellContents>
 				</crosstabCell>
-				<crosstabCell width="120" height="25" rowTotalGroup="exportateur_cross">
+				<crosstabCell width="143" height="25" rowTotalGroup="exportateur_cross">
 					<cellContents backcolor="#BFE1FF" mode="Opaque">
 						<box>
 							<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
 						</box>
 						<textField>
-							<reportElement style="Crosstab Data Text" mode="Opaque" x="0" y="0" width="89" height="25" backcolor="#CCCCCC" uuid="285fbcc7-fe50-4b5e-bb26-0375234c3eef"/>
+							<reportElement style="Crosstab Data Text" mode="Opaque" x="0" y="0" width="89" height="24" backcolor="#CCCCCC" uuid="285fbcc7-fe50-4b5e-bb26-0375234c3eef"/>
 							<box leftPadding="2"/>
 							<textElement textAlignment="Left" verticalAlignment="Middle">
-								<font isBold="true" pdfFontName="Helvetica-Bold"/>
+								<font size="10" isBold="true" pdfFontName="Helvetica-Bold"/>
 							</textElement>
-							<textFieldExpression><![CDATA[$V{poids_reelMeasure}]]></textFieldExpression>
+							<textFieldExpression><![CDATA[NumberFormat.getInstance(Locale.FRENCH).format($V{poids_reelMeasure})]]></textFieldExpression>
 						</textField>
 						<textField>
-							<reportElement style="Crosstab Data Text" mode="Opaque" x="89" y="0" width="31" height="24" backcolor="#CCCCCC" uuid="64ac246a-662c-4719-968f-ae99c9c52e84"/>
+							<reportElement style="Crosstab Data Text" mode="Opaque" x="89" y="0" width="41" height="24" backcolor="#CCCCCC" uuid="64ac246a-662c-4719-968f-ae99c9c52e84"/>
 							<box leftPadding="2"/>
-							<textElement textAlignment="Left" verticalAlignment="Middle">
-								<font isBold="true" pdfFontName="Helvetica-Bold"/>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font size="10" isBold="true" pdfFontName="Helvetica-Bold"/>
 							</textElement>
 							<textFieldExpression><![CDATA[$V{poids_reelMeasure}.doubleValue()!= 0 ? 
     new BigDecimal(String.valueOf(new Double(
@@ -238,9 +251,16 @@ GROUP BY
     )*100
 ))).setScale(2, RoundingMode.HALF_UP):new BigDecimal(String.valueOf(0))]]></textFieldExpression>
 						</textField>
+						<staticText>
+							<reportElement style="Crosstab Data Text" mode="Opaque" x="130" y="0" width="13" height="24" backcolor="#CCCCCC" uuid="eea2e252-638c-42f8-b711-050944a117fd"/>
+							<textElement verticalAlignment="Middle">
+								<font size="10"/>
+							</textElement>
+							<text><![CDATA[%]]></text>
+						</staticText>
 					</cellContents>
 				</crosstabCell>
-				<crosstabCell width="111" height="25" columnTotalGroup="port_embarquement">
+				<crosstabCell width="128" height="25" columnTotalGroup="port_embarquement">
 					<cellContents backcolor="#BFE1FF" mode="Opaque">
 						<box>
 							<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
@@ -248,25 +268,36 @@ GROUP BY
 						<textField>
 							<reportElement style="Crosstab Data Text" mode="Opaque" x="0" y="0" width="79" height="24" backcolor="#FFFFFF" uuid="b786ea6f-0fa1-4061-bfbe-fe00c40303a6"/>
 							<box leftPadding="2"/>
-							<textElement textAlignment="Left" verticalAlignment="Middle"/>
-							<textFieldExpression><![CDATA[$V{poids_reelMeasure}]]></textFieldExpression>
+							<textElement textAlignment="Left" verticalAlignment="Middle">
+								<font size="10"/>
+							</textElement>
+							<textFieldExpression><![CDATA[NumberFormat.getInstance(Locale.FRENCH).format($V{poids_reelMeasure})]]></textFieldExpression>
 						</textField>
 						<textField>
-							<reportElement style="Crosstab Data Text" mode="Opaque" x="79" y="0" width="32" height="24" backcolor="#FFFFFF" uuid="8551c29b-5aa5-4d2f-9626-d371c6073ebd"/>
+							<reportElement style="Crosstab Data Text" mode="Opaque" x="79" y="0" width="31" height="24" backcolor="#FFFFFF" uuid="8551c29b-5aa5-4d2f-9626-d371c6073ebd"/>
 							<box leftPadding="2"/>
-							<textElement textAlignment="Left" verticalAlignment="Middle"/>
+							<textElement textAlignment="Left" verticalAlignment="Middle">
+								<font size="10"/>
+							</textElement>
 							<textFieldExpression><![CDATA[$V{poids_reelMeasure}.doubleValue()!= 0 ? 
-    new BigDecimal(String.valueOf(new Double(
+    (new BigDecimal(String.valueOf(new Double(
     (
         $V{poids_reelMeasure}.doubleValue()
     /
     $V{poids_reelMeasure_exportateur_cross_port_embarquement_ALL}.doubleValue()
     )*100
-))).setScale(2, RoundingMode.HALF_UP):new BigDecimal(String.valueOf(0))]]></textFieldExpression>
+))).setScale(2, RoundingMode.HALF_UP)):new BigDecimal(String.valueOf(0))]]></textFieldExpression>
 						</textField>
+						<staticText>
+							<reportElement style="Crosstab Data Text" mode="Opaque" x="110" y="0" width="18" height="24" uuid="38171f41-de88-4898-ae21-e89412f9ec7a"/>
+							<textElement verticalAlignment="Middle">
+								<font size="10"/>
+							</textElement>
+							<text><![CDATA[%]]></text>
+						</staticText>
 					</cellContents>
 				</crosstabCell>
-				<crosstabCell width="111" rowTotalGroup="exportateur_cross" columnTotalGroup="port_embarquement">
+				<crosstabCell width="128" height="25" rowTotalGroup="exportateur_cross" columnTotalGroup="port_embarquement">
 					<cellContents backcolor="#BFE1FF" mode="Opaque">
 						<box>
 							<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
@@ -275,15 +306,15 @@ GROUP BY
 							<reportElement style="Crosstab Data Text" mode="Opaque" x="0" y="0" width="79" height="24" backcolor="#CCCCCC" uuid="84a706ce-ce3d-4d97-88be-549b62a691dc"/>
 							<box leftPadding="2"/>
 							<textElement textAlignment="Left" verticalAlignment="Middle">
-								<font isBold="true" pdfFontName="Helvetica-Bold"/>
+								<font size="10" isBold="true" pdfFontName="Helvetica-Bold"/>
 							</textElement>
-							<textFieldExpression><![CDATA[$V{poids_reelMeasure}]]></textFieldExpression>
+							<textFieldExpression><![CDATA[NumberFormat.getInstance(Locale.FRENCH).format($V{poids_reelMeasure})]]></textFieldExpression>
 						</textField>
 						<textField>
-							<reportElement style="Crosstab Data Text" mode="Opaque" x="79" y="0" width="32" height="24" backcolor="#CCCCCC" uuid="74260f34-4029-45b4-82f5-bc28ad970f05"/>
+							<reportElement style="Crosstab Data Text" mode="Opaque" x="79" y="0" width="31" height="24" backcolor="#CCCCCC" uuid="74260f34-4029-45b4-82f5-bc28ad970f05"/>
 							<box leftPadding="2"/>
 							<textElement textAlignment="Left" verticalAlignment="Middle">
-								<font isBold="true" pdfFontName="Helvetica-Bold"/>
+								<font size="10" isBold="true" pdfFontName="Helvetica-Bold"/>
 							</textElement>
 							<textFieldExpression><![CDATA[$V{poids_reelMeasure}.doubleValue()!= 0 ? 
     new BigDecimal(String.valueOf(new Double(
@@ -294,6 +325,13 @@ GROUP BY
     )*100
 ))).setScale(2, RoundingMode.HALF_UP):new BigDecimal(String.valueOf(0))]]></textFieldExpression>
 						</textField>
+						<staticText>
+							<reportElement style="Crosstab Data Text" mode="Opaque" x="110" y="1" width="18" height="24" backcolor="#CCCCCC" uuid="57d8efd7-3f9d-404e-83a1-92d6df00ebd7"/>
+							<textElement verticalAlignment="Middle">
+								<font size="10"/>
+							</textElement>
+							<text><![CDATA[%]]></text>
+						</staticText>
 					</cellContents>
 				</crosstabCell>
 			</crosstab>

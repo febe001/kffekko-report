@@ -59,8 +59,8 @@ GROUP BY
 	<summary>
 		<band height="384" splitType="Stretch">
 			<pie3DChart>
-				<chart>
-					<reportElement x="0" y="0" width="555" height="361" uuid="9e072385-cf0b-463c-9ecf-b9acca8e1840"/>
+				<chart theme="default">
+					<reportElement mode="Transparent" x="0" y="0" width="555" height="361" uuid="9e072385-cf0b-463c-9ecf-b9acca8e1840"/>
 					<chartTitle/>
 					<chartSubtitle/>
 					<chartLegend/>
@@ -70,9 +70,16 @@ GROUP BY
 					<valueExpression><![CDATA[$F{poids}]]></valueExpression>
 					<labelExpression><![CDATA[$F{nature_port_embarquement} + " (" + $F{poids_percent}.toString() + ")"]]></labelExpression>
 				</pieDataset>
-				<pie3DPlot>
-					<plot/>
-					<itemLabel/>
+				<pie3DPlot isShowLabels="true">
+					<plot orientation="Horizontal">
+						<seriesColor seriesOrder="0" color="#009999"/>
+						<seriesColor seriesOrder="1" color="#00CCCC"/>
+						<seriesColor seriesOrder="2" color="#CC0033"/>
+						<seriesColor seriesOrder="3" color="#990000"/>
+					</plot>
+					<itemLabel>
+						<font pdfEncoding="Cp1252"/>
+					</itemLabel>
 				</pie3DPlot>
 			</pie3DChart>
 			<textField>

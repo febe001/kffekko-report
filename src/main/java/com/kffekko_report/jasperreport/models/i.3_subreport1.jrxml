@@ -87,10 +87,10 @@ GROUP BY
 				<crosstabHeaderCell>
 					<cellContents>
 						<staticText>
-							<reportElement style="Crosstab Data Text" mode="Opaque" x="0" y="0" width="105" height="29" forecolor="#FFFFFF" backcolor="#CC0033" uuid="c2dcfd4f-36c7-4601-b54a-f8e624610093"/>
+							<reportElement style="Crosstab Data Text" mode="Opaque" x="0" y="0" width="105" height="29" forecolor="#FFFFFF" backcolor="#BD0000" uuid="c2dcfd4f-36c7-4601-b54a-f8e624610093"/>
 							<box leftPadding="2"/>
-							<textElement textAlignment="Left" verticalAlignment="Middle">
-								<font pdfFontName="Helvetica-Bold"/>
+							<textElement verticalAlignment="Middle">
+								<font isBold="true" pdfFontName="Helvetica-Bold"/>
 							</textElement>
 							<text><![CDATA[Taxes]]></text>
 						</staticText>
@@ -139,18 +139,18 @@ GROUP BY
 								<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
 							</box>
 							<textField>
-								<reportElement style="Crosstab Data Text" mode="Opaque" x="0" y="0" width="105" height="29" forecolor="#FFFFFF" backcolor="#CC0033" uuid="a0bf48a9-14a9-4d8d-9b1e-c972c45bf4eb"/>
+								<reportElement style="Crosstab Data Text" mode="Opaque" x="0" y="0" width="105" height="29" forecolor="#FFFFFF" backcolor="#BD0000" uuid="a0bf48a9-14a9-4d8d-9b1e-c972c45bf4eb"/>
 								<box leftPadding="2"/>
-								<textElement textAlignment="Left" verticalAlignment="Middle">
+								<textElement verticalAlignment="Middle">
 									<font size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
 								</textElement>
 								<textFieldExpression><![CDATA[$V{montant_port_Embarquement}]]></textFieldExpression>
 							</textField>
 							<staticText>
-								<reportElement style="Crosstab Data Text" mode="Opaque" x="105" y="0" width="40" height="29" forecolor="#FFFFFF" backcolor="#CC0033" uuid="21127e00-1b02-45d7-b392-09969f7077cf"/>
+								<reportElement style="Crosstab Data Text" mode="Opaque" x="105" y="0" width="40" height="29" forecolor="#FFFFFF" backcolor="#BD0000" uuid="21127e00-1b02-45d7-b392-09969f7077cf"/>
 								<box leftPadding="2"/>
-								<textElement textAlignment="Left" verticalAlignment="Middle">
-									<font size="9" pdfFontName="Helvetica-Bold"/>
+								<textElement verticalAlignment="Middle">
+									<font size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
 								</textElement>
 								<text><![CDATA[%]]></text>
 							</staticText>
@@ -162,18 +162,18 @@ GROUP BY
 								<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
 							</box>
 							<staticText>
-								<reportElement mode="Opaque" x="0" y="0" width="96" height="29" forecolor="#FFFFFF" backcolor="#CC0033" uuid="a7bfdd58-d25b-4b2e-9142-cb079c3681ec"/>
+								<reportElement mode="Opaque" x="0" y="0" width="96" height="29" forecolor="#FFFFFF" backcolor="#BD0000" uuid="a7bfdd58-d25b-4b2e-9142-cb079c3681ec"/>
 								<box leftPadding="2"/>
-								<textElement verticalAlignment="Middle">
+								<textElement textAlignment="Center" verticalAlignment="Middle">
 									<font size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
 								</textElement>
 								<text><![CDATA[Total]]></text>
 							</staticText>
 							<staticText>
-								<reportElement style="Crosstab Data Text" mode="Opaque" x="96" y="0" width="52" height="29" forecolor="#FFFFFF" backcolor="#CC0033" uuid="1eab3744-8815-414e-8a3d-032f787fa8bf"/>
+								<reportElement style="Crosstab Data Text" mode="Opaque" x="96" y="0" width="52" height="29" forecolor="#FFFFFF" backcolor="#BD0000" uuid="1eab3744-8815-414e-8a3d-032f787fa8bf"/>
 								<box leftPadding="2"/>
-								<textElement textAlignment="Left" verticalAlignment="Middle">
-									<font size="9" pdfFontName="Helvetica-Bold"/>
+								<textElement verticalAlignment="Middle">
+									<font size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
 								</textElement>
 								<text><![CDATA[%]]></text>
 							</staticText>

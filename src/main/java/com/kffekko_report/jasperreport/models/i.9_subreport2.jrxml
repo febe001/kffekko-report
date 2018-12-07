@@ -72,12 +72,18 @@ poids.`continent_Destination`]]>
 					<labelExpression><![CDATA[$F{continent}.concat(" (" + $F{percent_poids} + ")")]]></labelExpression>
 				</pieDataset>
 				<pie3DPlot>
-					<plot/>
+					<plot>
+						<seriesColor seriesOrder="0" color="#009999"/>
+						<seriesColor seriesOrder="1" color="#00CCCC"/>
+						<seriesColor seriesOrder="2" color="#CC0033"/>
+						<seriesColor seriesOrder="3" color="#990000"/>
+					</plot>
 					<itemLabel/>
 				</pie3DPlot>
 			</pie3DChart>
 			<staticText>
 				<reportElement x="0" y="278" width="555" height="20" uuid="a6156def-084d-4997-97b4-cf27d97e7910"/>
+				<textElement verticalAlignment="Middle"/>
 				<text><![CDATA[Graphique 6: Repartition des quantités de cacao pésees à l'export par continent]]></text>
 			</staticText>
 		</band>
