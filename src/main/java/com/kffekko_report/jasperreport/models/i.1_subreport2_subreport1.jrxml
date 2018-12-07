@@ -178,7 +178,7 @@ GROUP BY
 						<textField>
 							<reportElement style="Crosstab Data Text" mode="Opaque" x="0" y="0" width="94" height="24" uuid="d32b3b5b-069c-4161-9df5-924cdeae9d50"/>
 							<box leftPadding="2"/>
-							<textElement textAlignment="Left" verticalAlignment="Middle"/>
+							<textElement verticalAlignment="Middle"/>
 							<textFieldExpression><![CDATA[NumberFormat.getInstance(Locale.FRENCH).format($V{poids_reelMeasure})]]></textFieldExpression>
 						</textField>
 						<textField>
@@ -203,7 +203,7 @@ GROUP BY
 						<textField>
 							<reportElement style="Crosstab Data Text" mode="Opaque" x="0" y="0" width="94" height="24" backcolor="#CCCCCC" uuid="fe8b1a5f-f105-46cd-bce5-c43908517cd9"/>
 							<box leftPadding="2"/>
-							<textElement textAlignment="Left" verticalAlignment="Middle">
+							<textElement verticalAlignment="Middle">
 								<font isBold="true" pdfFontName="Helvetica-Bold"/>
 							</textElement>
 							<textFieldExpression><![CDATA[NumberFormat.getInstance(Locale.FRENCH).format($V{poids_reelMeasure})]]></textFieldExpression>
@@ -232,7 +232,7 @@ GROUP BY
 						<textField>
 							<reportElement style="Crosstab Data Text" mode="Opaque" x="0" y="0" width="88" height="24" backcolor="#FFFFFF" uuid="c4290661-2168-4488-a8dc-aeed678db71c"/>
 							<box leftPadding="2"/>
-							<textElement textAlignment="Left" verticalAlignment="Middle"/>
+							<textElement verticalAlignment="Middle"/>
 							<textFieldExpression><![CDATA[NumberFormat.getInstance(Locale.FRENCH).format($V{poids_reelMeasure})]]></textFieldExpression>
 						</textField>
 						<textField>
@@ -257,7 +257,7 @@ GROUP BY
 						<textField>
 							<reportElement style="Crosstab Data Text" mode="Opaque" x="0" y="0" width="88" height="24" backcolor="#CCCCCC" uuid="7dc5dbc5-41e4-4225-a440-02f6bc55edce"/>
 							<box leftPadding="2"/>
-							<textElement textAlignment="Left" verticalAlignment="Middle">
+							<textElement verticalAlignment="Middle">
 								<font isBold="true" pdfFontName="Helvetica-Bold"/>
 							</textElement>
 							<textFieldExpression><![CDATA[NumberFormat.getInstance(Locale.FRENCH).format($V{poids_reelMeasure})]]></textFieldExpression>

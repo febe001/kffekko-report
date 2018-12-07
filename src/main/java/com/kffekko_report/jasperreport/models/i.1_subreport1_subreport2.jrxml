@@ -169,7 +169,7 @@ GROUP BY
 						<textField pattern="# ##0.00">
 							<reportElement style="Crosstab Data Text" mode="Opaque" x="0" y="0" width="94" height="24" uuid="e3681bb4-abd2-4584-9828-4fca7c078283"/>
 							<box leftPadding="2"/>
-							<textElement textAlignment="Left" verticalAlignment="Middle">
+							<textElement verticalAlignment="Middle">
 								<font size="10" pdfFontName="Helvetica" isPdfEmbedded="true"/>
 							</textElement>
 							<textFieldExpression><![CDATA[NumberFormat.getInstance(Locale.FRENCH).format($V{poidsMeasure})]]></textFieldExpression>
@@ -205,7 +205,7 @@ GROUP BY
 						<textField>
 							<reportElement style="Crosstab Data Text" mode="Opaque" x="0" y="0" width="94" height="24" backcolor="#CCCCCC" uuid="00f9c835-8195-45e6-9c66-1a7a8235388f"/>
 							<box leftPadding="2"/>
-							<textElement textAlignment="Left" verticalAlignment="Middle">
+							<textElement verticalAlignment="Middle">
 								<font size="10" isBold="true" pdfFontName="Helvetica" isPdfEmbedded="true"/>
 							</textElement>
 							<textFieldExpression><![CDATA[NumberFormat.getInstance(Locale.FRENCH).format($V{poidsMeasure})]]></textFieldExpression>
@@ -241,7 +241,7 @@ GROUP BY
 						<textField>
 							<reportElement style="Crosstab Data Text" mode="Opaque" x="0" y="0" width="94" height="25" backcolor="#FFFFFF" uuid="6d5ec4b8-bb92-41bd-b556-04197e1405c7"/>
 							<box leftPadding="2"/>
-							<textElement textAlignment="Left" verticalAlignment="Middle">
+							<textElement verticalAlignment="Middle">
 								<font pdfFontName="Helvetica" isPdfEmbedded="true"/>
 							</textElement>
 							<textFieldExpression><![CDATA[NumberFormat.getInstance(Locale.FRENCH).format($V{poidsMeasure})]]></textFieldExpression>
@@ -270,7 +270,7 @@ GROUP BY
 						<textField>
 							<reportElement style="Crosstab Data Text" mode="Opaque" x="0" y="0" width="94" height="24" backcolor="#CCCCCC" uuid="6878ac14-d7a6-4ec7-9aca-c4f81aaab6f0"/>
 							<box leftPadding="2"/>
-							<textElement textAlignment="Left" verticalAlignment="Middle">
+							<textElement verticalAlignment="Middle">
 								<font isBold="true" pdfFontName="Helvetica" isPdfEmbedded="true"/>
 							</textElement>
 							<textFieldExpression><![CDATA[NumberFormat.getInstance(Locale.FRENCH).format($V{poidsMeasure})]]></textFieldExpression>

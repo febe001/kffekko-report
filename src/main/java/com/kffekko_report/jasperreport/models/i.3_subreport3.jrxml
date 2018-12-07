@@ -184,7 +184,7 @@ GROUP BY
 						<textField>
 							<reportElement style="Crosstab Data Text" x="0" y="0" width="107" height="24" uuid="d7b9289d-26ef-40b5-8192-a309661f23c2"/>
 							<box leftPadding="2"/>
-							<textElement textAlignment="Left" verticalAlignment="Middle"/>
+							<textElement verticalAlignment="Middle"/>
 							<textFieldExpression><![CDATA[NumberFormat.getInstance(Locale.FRENCH).format($V{montant_montant_PreleveMeasure})]]></textFieldExpression>
 						</textField>
 						<textField>
@@ -209,7 +209,7 @@ GROUP BY
 						<textField>
 							<reportElement style="Crosstab Data Text" mode="Opaque" x="0" y="0" width="107" height="24" backcolor="#CCCCCC" uuid="ca0a4c9c-f4cb-479e-bcc1-986fbd53aca8"/>
 							<box leftPadding="2"/>
-							<textElement textAlignment="Left" verticalAlignment="Middle">
+							<textElement verticalAlignment="Middle">
 								<font isBold="true" pdfFontName="Helvetica-Bold"/>
 							</textElement>
 							<textFieldExpression><![CDATA[NumberFormat.getInstance(Locale.FRENCH).format($V{montant_montant_PreleveMeasure})]]></textFieldExpression>
@@ -238,7 +238,7 @@ GROUP BY
 						<textField>
 							<reportElement style="Crosstab Data Text" mode="Opaque" x="0" y="0" width="83" height="24" backcolor="#CCCCCC" uuid="7031a4ae-67ec-4ef3-9563-f7f3d68f9edc"/>
 							<box leftPadding="2"/>
-							<textElement textAlignment="Left" verticalAlignment="Middle"/>
+							<textElement verticalAlignment="Middle"/>
 							<textFieldExpression><![CDATA[NumberFormat.getInstance(Locale.FRENCH).format($V{montant_montant_PreleveMeasure})]]></textFieldExpression>
 						</textField>
 						<textField>
@@ -263,7 +263,7 @@ GROUP BY
 						<textField>
 							<reportElement style="Crosstab Data Text" mode="Opaque" x="0" y="0" width="83" height="24" backcolor="#CCCCCC" uuid="8c9605e1-a1b5-42b3-a6f0-bedcde2fff1b"/>
 							<box leftPadding="2"/>
-							<textElement textAlignment="Left" verticalAlignment="Middle">
+							<textElement verticalAlignment="Middle">
 								<font isBold="true" pdfFontName="Helvetica-Bold"/>
 							</textElement>
 							<textFieldExpression><![CDATA[NumberFormat.getInstance(Locale.FRENCH).format($V{montant_montant_PreleveMeasure})]]></textFieldExpression>

@@ -211,7 +211,7 @@ GROUP BY
 						<textField>
 							<reportElement style="Crosstab Data Text" mode="Opaque" x="0" y="0" width="92" height="24" uuid="b03deb19-5ce9-4e78-bfe0-5ecc09ff31d4"/>
 							<box leftPadding="2"/>
-							<textElement textAlignment="Left" verticalAlignment="Middle"/>
+							<textElement verticalAlignment="Middle"/>
 							<textFieldExpression><![CDATA[$V{poidsMeasure}> 100 ? NumberFormat.getInstance(Locale.FRENCH).format($V{poidsMeasure}): $V{poidsMeasure}.toString().concat("%")]]></textFieldExpression>
 						</textField>
 						<textField>
@@ -248,7 +248,7 @@ GROUP BY
 						<textField>
 							<reportElement style="Crosstab Data Text" mode="Opaque" x="0" y="0" width="86" height="25" backcolor="#FFFFFF" uuid="c09595d6-e7b9-4242-868b-eb7ed904eb60"/>
 							<box leftPadding="2"/>
-							<textElement textAlignment="Left" verticalAlignment="Middle"/>
+							<textElement verticalAlignment="Middle"/>
 							<textFieldExpression><![CDATA[$V{poidsMeasure}.doubleValue()> 100 ? 
 NumberFormat.getInstance(Locale.FRENCH).format($V{poidsMeasure}) :($V{poidsMeasure}/2).toString().concat("%")]]></textFieldExpression>
 						</textField>

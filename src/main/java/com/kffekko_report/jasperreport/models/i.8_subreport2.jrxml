@@ -179,7 +179,7 @@ GROUP BY
 						<textField>
 							<reportElement style="Crosstab Data Text" mode="Opaque" x="0" y="0" width="98" height="24" uuid="f8bb6cd9-6d11-4250-9baf-f1d40e21e8a9"/>
 							<box leftPadding="2"/>
-							<textElement textAlignment="Left" verticalAlignment="Middle"/>
+							<textElement verticalAlignment="Middle"/>
 							<textFieldExpression><![CDATA[NumberFormat.getInstance(Locale.FRENCH).format($V{montant_reelMeasure})]]></textFieldExpression>
 						</textField>
 						<textField>
@@ -204,7 +204,7 @@ GROUP BY
 						<textField>
 							<reportElement style="Crosstab Data Text" mode="Opaque" x="0" y="0" width="98" height="24" backcolor="#CCCCCC" uuid="5dd15aae-b8db-4bfd-ad8a-1000e7ed3908"/>
 							<box leftPadding="2"/>
-							<textElement textAlignment="Left" verticalAlignment="Middle">
+							<textElement verticalAlignment="Middle">
 								<font isBold="true" pdfFontName="Helvetica-Bold"/>
 							</textElement>
 							<textFieldExpression><![CDATA[NumberFormat.getInstance(Locale.FRENCH).format($V{montant_reelMeasure})]]></textFieldExpression>
@@ -233,7 +233,7 @@ GROUP BY
 						<textField>
 							<reportElement style="Crosstab Data Text" mode="Opaque" x="0" y="0" width="92" height="25" backcolor="#FFFFFF" uuid="80b5ec1f-cc05-4ef9-8721-41fa1878c43b"/>
 							<box leftPadding="2"/>
-							<textElement textAlignment="Left" verticalAlignment="Middle"/>
+							<textElement verticalAlignment="Middle"/>
 							<textFieldExpression><![CDATA[NumberFormat.getInstance(Locale.FRENCH).format($V{montant_reelMeasure})]]></textFieldExpression>
 						</textField>
 					</cellContents>
@@ -246,7 +246,7 @@ GROUP BY
 						<textField>
 							<reportElement style="Crosstab Data Text" mode="Opaque" x="0" y="0" width="92" height="25" backcolor="#CCCCCC" uuid="48d8846c-92e3-4a60-b80b-19239a9cb5c8"/>
 							<box leftPadding="2"/>
-							<textElement textAlignment="Left" verticalAlignment="Middle">
+							<textElement verticalAlignment="Middle">
 								<font isBold="true" pdfFontName="Helvetica-Bold"/>
 							</textElement>
 							<textFieldExpression><![CDATA[NumberFormat.getInstance(Locale.FRENCH).format($V{montant_reelMeasure})]]></textFieldExpression>
