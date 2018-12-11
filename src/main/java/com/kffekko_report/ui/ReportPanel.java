@@ -100,7 +100,7 @@ public class ReportPanel extends javax.swing.JPanel {
             }
         });
 
-        jLabel13.setIcon(new javax.swing.ImageIcon("/Users/akil/NetBeansProjects/pdf.png")); // NOI18N
+        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pdf.png"))); // NOI18N
 
         javax.swing.GroupLayout btImportSqlLayout = new javax.swing.GroupLayout(btImportSql);
         btImportSql.setLayout(btImportSqlLayout);
@@ -132,7 +132,7 @@ public class ReportPanel extends javax.swing.JPanel {
             }
         });
 
-        jLabel15.setIcon(new javax.swing.ImageIcon("/Users/akil/NetBeansProjects/word (1).png")); // NOI18N
+        jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/word.png"))); // NOI18N
         jLabel15.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel15MouseClicked(evt);

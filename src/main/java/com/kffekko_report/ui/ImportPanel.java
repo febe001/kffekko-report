@@ -86,7 +86,7 @@ public class ImportPanel extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Roboto Mono", 0, 14)); // NOI18N
         jLabel1.setText("<html>importer votre <br/> fichier sql</html>");
 
-        jLabel3.setIcon(new javax.swing.ImageIcon("/Users/akil/NetBeansProjects/sql-file-format-symbol.png")); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sql.png"))); // NOI18N
 
         javax.swing.GroupLayout btImportSqlLayout = new javax.swing.GroupLayout(btImportSql);
         btImportSql.setLayout(btImportSqlLayout);
@@ -128,7 +128,7 @@ public class ImportPanel extends javax.swing.JPanel {
         jLabel2.setFont(new java.awt.Font("Roboto Mono", 0, 14)); // NOI18N
         jLabel2.setText("<html>importer votre <br />fichier excel</html>");
 
-        jLabel4.setIcon(new javax.swing.ImageIcon("/Users/akil/NetBeansProjects/excel.png")); // NOI18N
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/excel.png"))); // NOI18N
 
         javax.swing.GroupLayout btImportExcelLayout = new javax.swing.GroupLayout(btImportExcel);
         btImportExcel.setLayout(btImportExcelLayout);
