@@ -51,10 +51,10 @@ public class HomePanel extends javax.swing.JPanel {
 
         jPanel2.setBackground(new java.awt.Color(250, 250, 250));
 
-        jLabel1.setFont(new java.awt.Font("Trebuchet MS", 0, 36)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Roboto Mono", 1, 36)); // NOI18N
         jLabel1.setText("KffeKko V2.0");
 
-        jLabel2.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Roboto Mono", 0, 18)); // NOI18N
         jLabel2.setText("<html>Une application qui synthétise sous forme <br/>de rapport automatisé des données d'exportations.</html>");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -64,21 +64,21 @@ public class HomePanel extends javax.swing.JPanel {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(34, 34, 34)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addContainerGap(583, Short.MAX_VALUE))
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 691, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(65, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(45, 45, 45)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(52, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(67, Short.MAX_VALUE))
         );
 
-        add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 950, 220));
+        add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 790, 220));
 
         btImport.setBackground(new java.awt.Color(224, 224, 224));
         btImport.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -93,10 +93,10 @@ public class HomePanel extends javax.swing.JPanel {
             }
         });
 
-        jLabel19.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
-        jLabel19.setText("<html><p>Importer vos fichier d'exploitation au format excel ou sql</p></html>");
+        jLabel19.setFont(new java.awt.Font("Roboto Mono", 1, 14)); // NOI18N
+        jLabel19.setText("<html><p style=\"text-align:center\">Importer vos fichier d'exploitation au format excel ou sql</p></html>");
 
-        jLabel20.setFont(new java.awt.Font("Trebuchet MS", 0, 16)); // NOI18N
+        jLabel20.setFont(new java.awt.Font("Roboto", 1, 24)); // NOI18N
         jLabel20.setText("Import");
 
         jLabel21.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bt-import.png"))); // NOI18N
@@ -105,27 +105,27 @@ public class HomePanel extends javax.swing.JPanel {
         btImport.setLayout(btImportLayout);
         btImportLayout.setHorizontalGroup(
             btImportLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btImportLayout.createSequentialGroup()
+                .addGap(0, 26, Short.MAX_VALUE)
+                .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18))
             .addGroup(btImportLayout.createSequentialGroup()
                 .addGroup(btImportLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(btImportLayout.createSequentialGroup()
-                        .addGap(92, 92, 92)
-                        .addComponent(jLabel20))
-                    .addGroup(btImportLayout.createSequentialGroup()
                         .addGap(63, 63, 63)
-                        .addComponent(jLabel21)))
+                        .addComponent(jLabel21))
+                    .addGroup(btImportLayout.createSequentialGroup()
+                        .addGap(86, 86, 86)
+                        .addComponent(jLabel20)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btImportLayout.createSequentialGroup()
-                .addGap(0, 33, Short.MAX_VALUE)
-                .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(19, 19, 19))
         );
         btImportLayout.setVerticalGroup(
             btImportLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(btImportLayout.createSequentialGroup()
                 .addGap(37, 37, 37)
                 .addComponent(jLabel20)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel19)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel21)
                 .addGap(23, 23, 23))
@@ -144,10 +144,10 @@ public class HomePanel extends javax.swing.JPanel {
             }
         });
 
-        jLabel22.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
-        jLabel22.setText("<html><p>Editer vos données d'exploitation en PDF ou en word</p></html>");
+        jLabel22.setFont(new java.awt.Font("Roboto Mono", 1, 14)); // NOI18N
+        jLabel22.setText("<html><p style=\"text-align:center\">Editer vos données d'exploitation en PDF ou en word</p></html>");
 
-        jLabel23.setFont(new java.awt.Font("Trebuchet MS", 0, 16)); // NOI18N
+        jLabel23.setFont(new java.awt.Font("Roboto", 1, 24)); // NOI18N
         jLabel23.setText("Report");
 
         jLabel24.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bt-export.png"))); // NOI18N
@@ -156,27 +156,27 @@ public class HomePanel extends javax.swing.JPanel {
         btReport.setLayout(btReportLayout);
         btReportLayout.setHorizontalGroup(
             btReportLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(btReportLayout.createSequentialGroup()
-                .addContainerGap(19, Short.MAX_VALUE)
-                .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btReportLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+                .addGap(0, 69, Short.MAX_VALUE)
                 .addComponent(jLabel24)
                 .addGap(59, 59, 59))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btReportLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18))
             .addGroup(btReportLayout.createSequentialGroup()
-                .addGap(103, 103, 103)
+                .addGap(80, 80, 80)
                 .addComponent(jLabel23)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         btReportLayout.setVerticalGroup(
             btReportLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(btReportLayout.createSequentialGroup()
-                .addGap(30, 30, 30)
+                .addGap(39, 39, 39)
                 .addComponent(jLabel23)
-                .addGap(27, 27, 27)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(30, 30, 30)
                 .addComponent(jLabel24)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -194,11 +194,11 @@ public class HomePanel extends javax.swing.JPanel {
             }
         });
 
-        jLabel16.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
+        jLabel16.setFont(new java.awt.Font("Roboto Mono", 1, 14)); // NOI18N
         jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel16.setText("<html><p>Personnaliser les parametres de votre application</p></html>");
+        jLabel16.setText("<html><p style=\"text-align: center\">Personnaliser les parametres de votre application</p></html>");
 
-        jLabel17.setFont(new java.awt.Font("Trebuchet MS", 0, 16)); // NOI18N
+        jLabel17.setFont(new java.awt.Font("Roboto", 1, 24)); // NOI18N
         jLabel17.setText("Parametre");
 
         jLabel18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bt-settings.png"))); // NOI18N
@@ -207,26 +207,26 @@ public class HomePanel extends javax.swing.JPanel {
         btParam.setLayout(btParamLayout);
         btParamLayout.setHorizontalGroup(
             btParamLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(btParamLayout.createSequentialGroup()
-                .addGap(53, 53, 53)
-                .addComponent(jLabel18)
-                .addContainerGap(58, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btParamLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(22, Short.MAX_VALUE)
+                .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(17, 17, 17))
+            .addGroup(btParamLayout.createSequentialGroup()
                 .addGroup(btParamLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btParamLayout.createSequentialGroup()
-                        .addComponent(jLabel17)
-                        .addGap(77, 77, 77))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btParamLayout.createSequentialGroup()
-                        .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(17, 17, 17))))
+                    .addGroup(btParamLayout.createSequentialGroup()
+                        .addGap(53, 53, 53)
+                        .addComponent(jLabel18))
+                    .addGroup(btParamLayout.createSequentialGroup()
+                        .addGap(60, 60, 60)
+                        .addComponent(jLabel17)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         btParamLayout.setVerticalGroup(
             btParamLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(btParamLayout.createSequentialGroup()
-                .addGap(27, 27, 27)
+                .addGap(39, 39, 39)
                 .addComponent(jLabel17)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel18)
@@ -238,23 +238,23 @@ public class HomePanel extends javax.swing.JPanel {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(17, 17, 17)
+                .addContainerGap()
                 .addComponent(btImport, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(62, 62, 62)
+                .addGap(5, 5, 5)
                 .addComponent(btReport, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btParam, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(44, 44, 44))
+                .addContainerGap(183, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(109, Short.MAX_VALUE)
+                .addContainerGap(51, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btReport, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btParam, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btImport, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btParam, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(97, 97, 97))
+                    .addComponent(btReport, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(141, 141, 141))
         );
 
         add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 220, 950, 510));

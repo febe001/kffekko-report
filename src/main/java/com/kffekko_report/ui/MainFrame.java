@@ -38,8 +38,8 @@ public class MainFrame extends JFrame {
     public MainFrame()
     {
         Dimension screanSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
-        this.fHeight = (int)(0.8 * screanSize.getHeight());
-        this.fWidth = (int)(0.836 * screanSize.getWidth());
+        this.fHeight = 750;
+        this.fWidth = 1025;
         this.mainPanel = new BasePanel();
         initFrame(this.fWidth, this.fHeight, this.mainPanel);
     }

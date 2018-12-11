@@ -66,7 +66,6 @@ public class BasePanel extends javax.swing.JPanel {
         configMenu = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
         topbar = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         container = new javax.swing.JPanel();
@@ -86,6 +85,7 @@ public class BasePanel extends javax.swing.JPanel {
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
 
         bg.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -252,9 +252,6 @@ public class BasePanel extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
-        jLabel14.setFont(new java.awt.Font("Monospaced", 0, 10)); // NOI18N
-        jLabel14.setText("@Copyright by ben");
-
         javax.swing.GroupLayout sidebarLayout = new javax.swing.GroupLayout(sidebar);
         sidebar.setLayout(sidebarLayout);
         sidebarLayout.setHorizontalGroup(
@@ -263,13 +260,8 @@ public class BasePanel extends javax.swing.JPanel {
             .addComponent(reportMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(importMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(sidebarLayout.createSequentialGroup()
-                .addGroup(sidebarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(sidebarLayout.createSequentialGroup()
-                        .addGap(24, 24, 24)
-                        .addComponent(jLabel11))
-                    .addGroup(sidebarLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel14)))
+                .addGap(24, 24, 24)
+                .addComponent(jLabel11)
                 .addContainerGap(122, Short.MAX_VALUE))
             .addGroup(sidebarLayout.createSequentialGroup()
                 .addContainerGap()
@@ -288,12 +280,10 @@ public class BasePanel extends javax.swing.JPanel {
                 .addComponent(reportMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(configMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 390, Short.MAX_VALUE)
-                .addComponent(jLabel14)
-                .addContainerGap())
+                .addContainerGap(479, Short.MAX_VALUE))
         );
 
-        bg.add(sidebar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 250, 720));
+        bg.add(sidebar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 250, 790));
 
         topbar.setBackground(new java.awt.Color(255, 255, 255));
         topbar.setPreferredSize(new java.awt.Dimension((int)java.awt.Toolkit.getDefaultToolkit().getScreenSize().getHeight(),(int)java.awt.Toolkit.getDefaultToolkit().getScreenSize().getWidth()));
@@ -311,24 +301,25 @@ public class BasePanel extends javax.swing.JPanel {
         topbarLayout.setHorizontalGroup(
             topbarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, topbarLayout.createSequentialGroup()
-                .addGap(0, 911, Short.MAX_VALUE)
-                .addComponent(jLabel5))
+                .addContainerGap(724, Short.MAX_VALUE)
+                .addComponent(jLabel5)
+                .addContainerGap())
         );
         topbarLayout.setVerticalGroup(
             topbarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        bg.add(topbar, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 0, 950, 40));
+        bg.add(topbar, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 0, 770, 40));
 
         container.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel2.setBackground(new java.awt.Color(250, 250, 250));
 
-        jLabel6.setFont(new java.awt.Font("Trebuchet MS", 0, 36)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Roboto Mono", 1, 36)); // NOI18N
         jLabel6.setText("KffeKko V2.0");
 
-        jLabel15.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
+        jLabel15.setFont(new java.awt.Font("Roboto Mono", 1, 18)); // NOI18N
         jLabel15.setText("<html>Une application qui synthétise sous forme <br/>de rapport automatisé les données d'exportations.</html>");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -338,9 +329,9 @@ public class BasePanel extends javax.swing.JPanel {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(34, 34, 34)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6))
-                .addContainerGap(583, Short.MAX_VALUE))
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 491, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(245, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -349,10 +340,10 @@ public class BasePanel extends javax.swing.JPanel {
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(52, Short.MAX_VALUE))
+                .addContainerGap(46, Short.MAX_VALUE))
         );
 
-        container.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 950, 220));
+        container.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 770, 220));
 
         btImport.setBackground(new java.awt.Color(224, 224, 224));
         btImport.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -367,10 +358,10 @@ public class BasePanel extends javax.swing.JPanel {
             }
         });
 
-        jLabel19.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
-        jLabel19.setText("<html><p>Importer vos fichier d'exploitation au format excel ou sql</p></html>");
+        jLabel19.setFont(new java.awt.Font("Roboto Mono", 0, 14)); // NOI18N
+        jLabel19.setText("<html><p style=\"text-align:center\">Importer vos fichier d'exploitation au format excel ou sql</p></html>");
 
-        jLabel20.setFont(new java.awt.Font("Trebuchet MS", 0, 16)); // NOI18N
+        jLabel20.setFont(new java.awt.Font("Roboto", 1, 24)); // NOI18N
         jLabel20.setText("Import");
 
         jLabel21.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bt-import.png"))); // NOI18N
@@ -387,9 +378,9 @@ public class BasePanel extends javax.swing.JPanel {
                     .addGroup(btImportLayout.createSequentialGroup()
                         .addGap(63, 63, 63)
                         .addComponent(jLabel21)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(57, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btImportLayout.createSequentialGroup()
-                .addGap(0, 33, Short.MAX_VALUE)
+                .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(19, 19, 19))
         );
@@ -418,10 +409,10 @@ public class BasePanel extends javax.swing.JPanel {
             }
         });
 
-        jLabel22.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
-        jLabel22.setText("<html><p>Editer vos données d'exploitation en PDF ou en word</p></html>");
+        jLabel22.setFont(new java.awt.Font("Roboto Mono", 0, 14)); // NOI18N
+        jLabel22.setText("<html><p style=\"text-align:center\">Editer vos données d'exploitation en PDF ou en word</p></html>");
 
-        jLabel23.setFont(new java.awt.Font("Trebuchet MS", 0, 16)); // NOI18N
+        jLabel23.setFont(new java.awt.Font("Roboto", 1, 24)); // NOI18N
         jLabel23.setText("Report");
 
         jLabel24.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bt-export.png"))); // NOI18N
@@ -431,7 +422,7 @@ public class BasePanel extends javax.swing.JPanel {
         btReportLayout.setHorizontalGroup(
             btReportLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(btReportLayout.createSequentialGroup()
-                .addContainerGap(19, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btReportLayout.createSequentialGroup()
@@ -439,20 +430,20 @@ public class BasePanel extends javax.swing.JPanel {
                 .addComponent(jLabel24)
                 .addGap(59, 59, 59))
             .addGroup(btReportLayout.createSequentialGroup()
-                .addGap(103, 103, 103)
+                .addGap(84, 84, 84)
                 .addComponent(jLabel23)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         btReportLayout.setVerticalGroup(
             btReportLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(btReportLayout.createSequentialGroup()
-                .addGap(30, 30, 30)
+                .addGap(29, 29, 29)
                 .addComponent(jLabel23)
-                .addGap(27, 27, 27)
+                .addGap(28, 28, 28)
                 .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel24)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
         btParam.setBackground(new java.awt.Color(224, 224, 224));
@@ -468,11 +459,11 @@ public class BasePanel extends javax.swing.JPanel {
             }
         });
 
-        jLabel16.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
+        jLabel16.setFont(new java.awt.Font("Roboto Mono", 0, 14)); // NOI18N
         jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel16.setText("<html><p>Personnaliser les parametres de votre application</p></html>");
+        jLabel16.setText("<html><p style=\"text-align:center\">Personnaliser les parametres de votre application</p></html>");
 
-        jLabel17.setFont(new java.awt.Font("Trebuchet MS", 0, 16)); // NOI18N
+        jLabel17.setFont(new java.awt.Font("Roboto", 1, 24)); // NOI18N
         jLabel17.setText("Parametre");
 
         jLabel18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bt-settings.png"))); // NOI18N
@@ -489,11 +480,11 @@ public class BasePanel extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(btParamLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btParamLayout.createSequentialGroup()
-                        .addComponent(jLabel17)
-                        .addGap(77, 77, 77))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btParamLayout.createSequentialGroup()
                         .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(17, 17, 17))))
+                        .addGap(17, 17, 17))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btParamLayout.createSequentialGroup()
+                        .addComponent(jLabel17)
+                        .addGap(61, 61, 61))))
         );
         btParamLayout.setVerticalGroup(
             btParamLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -512,28 +503,31 @@ public class BasePanel extends javax.swing.JPanel {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(17, 17, 17)
+                .addContainerGap()
                 .addComponent(btImport, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(62, 62, 62)
+                .addGap(18, 18, 18)
                 .addComponent(btReport, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(btParam, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(44, 44, 44))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(108, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btReport, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btImport, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btParam, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(97, 97, 97))
+                .addGap(39, 39, 39))
         );
 
-        container.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 220, 950, 510));
+        container.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 260, 800, 360));
 
-        bg.add(container, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 40, 950, 680));
+        bg.add(container, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 40, 770, 660));
+
+        jLabel14.setFont(new java.awt.Font("Monospaced", 0, 10)); // NOI18N
+        jLabel14.setText("@Copyright");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -542,94 +536,35 @@ public class BasePanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(bg, javax.swing.GroupLayout.PREFERRED_SIZE, 1201, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addComponent(jLabel14)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(bg, javax.swing.GroupLayout.PREFERRED_SIZE, 715, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(bg, javax.swing.GroupLayout.PREFERRED_SIZE, 715, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel14)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void homeMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_homeMenuMouseClicked
-        // TODO add your handling code here:
-        container.removeAll();
-        container.add(new HomePanel(), new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 700));
-        container.repaint();
-        container.revalidate();
-    }//GEN-LAST:event_homeMenuMouseClicked
-
-    private void homeMenuMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_homeMenuMouseExited
-        // TODO add your handling code here:
-        homeMenu.setBackground(new java.awt.Color(255, 198, 38));
-    }//GEN-LAST:event_homeMenuMouseExited
-
-    private void homeMenuMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_homeMenuMouseEntered
-        homeMenu.setBackground(new java.awt.Color(255, 198, 70));
-    }//GEN-LAST:event_homeMenuMouseEntered
-
-    private void reportMenuMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_reportMenuMouseExited
-        // TODO add your handling code here:
-        reportMenu.setBackground(new java.awt.Color(255, 198, 38));
-    }//GEN-LAST:event_reportMenuMouseExited
-
-    private void reportMenuMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_reportMenuMouseEntered
-        // TODO add your handling code here:
-        reportMenu.setBackground(new java.awt.Color(255, 198, 70));
-    }//GEN-LAST:event_reportMenuMouseEntered
-
-    private void importMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_importMenuMouseClicked
-        // TODO add your handling code here:
-        container.removeAll();
-        container.add(new ImportPanel(), new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 950, 680));
-        container.repaint();
-        container.revalidate();
-    }//GEN-LAST:event_importMenuMouseClicked
-
-    private void importMenuMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_importMenuMouseExited
-        // TODO add your handling code here:
-        importMenu.setBackground(new java.awt.Color(255, 198, 38));
-    }//GEN-LAST:event_importMenuMouseExited
-
-    private void importMenuMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_importMenuMouseEntered
-        // TODO add your handling code here:
-        importMenu.setBackground(new java.awt.Color(255, 198, 70));
-    }//GEN-LAST:event_importMenuMouseEntered
 
     private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
         // TODO add your handling code here:
         System.exit(0);
     }//GEN-LAST:event_jLabel5MouseClicked
 
-    private void reportMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_reportMenuMouseClicked
+    private void btParamMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btParamMouseEntered
         // TODO add your handling code here:
-        container.removeAll();
-        container.add(new ReportPanel(), new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 950, 680));
-        container.repaint();
-        container.revalidate();
-    }//GEN-LAST:event_reportMenuMouseClicked
+        btParam.setBackground(Color.white);
+    }//GEN-LAST:event_btParamMouseEntered
 
-    private void configMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_configMenuMouseClicked
+    private void btParamMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btParamMouseExited
         // TODO add your handling code here:
-        container.removeAll();
-        container.add(new ConfigPanel(), new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 950, 680));
-        container.repaint();
-        container.revalidate();
-    }//GEN-LAST:event_configMenuMouseClicked
-
-    private void btReportMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btReportMouseClicked
-        // TODO add your handling code here:
-        container.removeAll();
-        container.add(new ReportPanel(), new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 950, 680));
-        container.repaint();
-        container.revalidate();
-    }//GEN-LAST:event_btReportMouseClicked
-
-    private void btImportMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btImportMouseClicked
-        // TODO add your handling code here:
-        container.removeAll();
-        container.add(new ImportPanel(), new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 950, 680));
-        container.repaint();
-        container.revalidate();
-    }//GEN-LAST:event_btImportMouseClicked
+        btParam.setBackground(new java.awt.Color(224, 224, 224));
+    }//GEN-LAST:event_btParamMouseExited
 
     private void btParamMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btParamMouseClicked
         // TODO add your handling code here:
@@ -638,16 +573,6 @@ public class BasePanel extends javax.swing.JPanel {
         container.repaint();
         container.revalidate();
     }//GEN-LAST:event_btParamMouseClicked
-
-    private void btImportMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btImportMouseEntered
-        // TODO add your handling code here:
-        btImport.setBackground(Color.white);
-    }//GEN-LAST:event_btImportMouseEntered
-
-    private void btImportMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btImportMouseExited
-        // TODO add your handling code here:
-        btImport.setBackground(new java.awt.Color(224, 224, 224));
-    }//GEN-LAST:event_btImportMouseExited
 
     private void btReportMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btReportMouseEntered
         // TODO add your handling code here:
@@ -659,15 +584,92 @@ public class BasePanel extends javax.swing.JPanel {
         btReport.setBackground(new java.awt.Color(224, 224, 224));
     }//GEN-LAST:event_btReportMouseExited
 
-    private void btParamMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btParamMouseEntered
+    private void btReportMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btReportMouseClicked
         // TODO add your handling code here:
-        btParam.setBackground(Color.white);
-    }//GEN-LAST:event_btParamMouseEntered
+        container.removeAll();
+        container.add(new ReportPanel(), new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 950, 680));
+        container.repaint();
+        container.revalidate();
+    }//GEN-LAST:event_btReportMouseClicked
 
-    private void btParamMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btParamMouseExited
+    private void btImportMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btImportMouseEntered
         // TODO add your handling code here:
-        btParam.setBackground(new java.awt.Color(224, 224, 224));
-    }//GEN-LAST:event_btParamMouseExited
+        btImport.setBackground(Color.white);
+    }//GEN-LAST:event_btImportMouseEntered
+
+    private void btImportMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btImportMouseExited
+        // TODO add your handling code here:
+        btImport.setBackground(new java.awt.Color(224, 224, 224));
+    }//GEN-LAST:event_btImportMouseExited
+
+    private void btImportMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btImportMouseClicked
+        // TODO add your handling code here:
+        container.removeAll();
+        container.add(new ImportPanel(), new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 950, 680));
+        container.repaint();
+        container.revalidate();
+    }//GEN-LAST:event_btImportMouseClicked
+
+    private void configMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_configMenuMouseClicked
+        // TODO add your handling code here:
+        container.removeAll();
+        container.add(new ConfigPanel(), new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 950, 680));
+        container.repaint();
+        container.revalidate();
+    }//GEN-LAST:event_configMenuMouseClicked
+
+    private void importMenuMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_importMenuMouseEntered
+        // TODO add your handling code here:
+        importMenu.setBackground(new java.awt.Color(255, 198, 70));
+    }//GEN-LAST:event_importMenuMouseEntered
+
+    private void importMenuMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_importMenuMouseExited
+        // TODO add your handling code here:
+        importMenu.setBackground(new java.awt.Color(255, 198, 38));
+    }//GEN-LAST:event_importMenuMouseExited
+
+    private void importMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_importMenuMouseClicked
+        // TODO add your handling code here:
+        container.removeAll();
+        container.add(new ImportPanel(), new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 950, 680));
+        container.repaint();
+        container.revalidate();
+    }//GEN-LAST:event_importMenuMouseClicked
+
+    private void reportMenuMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_reportMenuMouseEntered
+        // TODO add your handling code here:
+        reportMenu.setBackground(new java.awt.Color(255, 198, 70));
+    }//GEN-LAST:event_reportMenuMouseEntered
+
+    private void reportMenuMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_reportMenuMouseExited
+        // TODO add your handling code here:
+        reportMenu.setBackground(new java.awt.Color(255, 198, 38));
+    }//GEN-LAST:event_reportMenuMouseExited
+
+    private void reportMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_reportMenuMouseClicked
+        // TODO add your handling code here:
+        container.removeAll();
+        container.add(new ReportPanel(), new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 950, 680));
+        container.repaint();
+        container.revalidate();
+    }//GEN-LAST:event_reportMenuMouseClicked
+
+    private void homeMenuMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_homeMenuMouseEntered
+        homeMenu.setBackground(new java.awt.Color(255, 198, 70));
+    }//GEN-LAST:event_homeMenuMouseEntered
+
+    private void homeMenuMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_homeMenuMouseExited
+        // TODO add your handling code here:
+        homeMenu.setBackground(new java.awt.Color(255, 198, 38));
+    }//GEN-LAST:event_homeMenuMouseExited
+
+    private void homeMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_homeMenuMouseClicked
+        // TODO add your handling code here:
+        container.removeAll();
+        container.add(new HomePanel(), new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 700));
+        container.repaint();
+        container.revalidate();
+    }//GEN-LAST:event_homeMenuMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
