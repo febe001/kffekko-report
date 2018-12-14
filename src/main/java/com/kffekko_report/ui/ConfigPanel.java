@@ -8,7 +8,10 @@ package com.kffekko_report.ui;
 import com.kffekko_report.mysql.MySQLAccess;
 import com.kffekko_report.mysql.tables.TPoids;
 import com.kffekko_report.mysql.tables.TMontant;
+import com.kffekko_report.util.FileUtils;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -35,12 +38,13 @@ public class ConfigPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         InitBDBt = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
+        loginInput = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        passwordInput = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
-        jToggleButton1 = new javax.swing.JToggleButton();
+        btEnregistrer = new javax.swing.JToggleButton();
+        passwordLb = new javax.swing.JLabel();
 
         InitBDBt.setFont(new java.awt.Font("Roboto Mono", 0, 14)); // NOI18N
         InitBDBt.setText("Reinitialiser BD");
@@ -50,10 +54,10 @@ public class ConfigPanel extends javax.swing.JPanel {
             }
         });
 
-        jTextField1.setFont(new java.awt.Font("Roboto Mono", 0, 14)); // NOI18N
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        loginInput.setFont(new java.awt.Font("Roboto Mono", 0, 14)); // NOI18N
+        loginInput.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                loginInputActionPerformed(evt);
             }
         });
 
@@ -63,16 +67,23 @@ public class ConfigPanel extends javax.swing.JPanel {
         jLabel2.setFont(new java.awt.Font("Roboto Mono", 0, 14)); // NOI18N
         jLabel2.setText("Mot de passe MYSQL");
 
-        jTextField2.setFont(new java.awt.Font("Roboto Mono", 0, 14)); // NOI18N
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        passwordInput.setFont(new java.awt.Font("Roboto Mono", 0, 14)); // NOI18N
+        passwordInput.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                passwordInputActionPerformed(evt);
             }
         });
 
         jButton1.setText("Test");
 
-        jToggleButton1.setText("Enregistrer");
+        btEnregistrer.setText("Enregistrer");
+        btEnregistrer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btEnregistrerActionPerformed(evt);
+            }
+        });
+
+        passwordLb.setText("jLabel3");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -87,16 +98,19 @@ public class ConfigPanel extends javax.swing.JPanel {
                             .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(66, 66, 66)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE)
-                            .addComponent(jTextField1)))
+                            .addComponent(passwordInput, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE)
+                            .addComponent(loginInput)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(26, 26, 26)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jButton1)
                                 .addGap(18, 18, 18)
-                                .addComponent(jToggleButton1))
-                            .addComponent(InitBDBt))))
+                                .addComponent(btEnregistrer))
+                            .addComponent(InitBDBt)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(180, 180, 180)
+                        .addComponent(passwordLb, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(111, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -106,17 +120,19 @@ public class ConfigPanel extends javax.swing.JPanel {
                 .addComponent(InitBDBt)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(loginInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(passwordInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
-                    .addComponent(jToggleButton1))
-                .addContainerGap(238, Short.MAX_VALUE))
+                    .addComponent(btEnregistrer))
+                .addGap(31, 31, 31)
+                .addComponent(passwordLb, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(93, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -128,22 +144,34 @@ public class ConfigPanel extends javax.swing.JPanel {
        
     }//GEN-LAST:event_InitBDBtActionPerformed
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void passwordInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordInputActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_passwordInputActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void loginInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginInputActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_loginInputActionPerformed
+
+    private void btEnregistrerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEnregistrerActionPerformed
+        // TODO add your handling code here:
+        List lignes = new ArrayList();
+        lignes.add(this.loginInput.getText());
+        lignes.add(this.passwordInput.getText());
+        
+        FileUtils.ecrireFichier("text.txt", lignes);
+       
+        //this.passwordLb.setText(txt);
+    }//GEN-LAST:event_btEnregistrerActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton InitBDBt;
+    private javax.swing.JToggleButton btEnregistrer;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JToggleButton jToggleButton1;
+    private javax.swing.JTextField loginInput;
+    private javax.swing.JTextField passwordInput;
+    private javax.swing.JLabel passwordLb;
     // End of variables declaration//GEN-END:variables
 }

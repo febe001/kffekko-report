@@ -9,11 +9,14 @@ package com.kffekko_report.mysql;
 import com.kffekko_report.mysql.tables.TMontant;
 import com.kffekko_report.mysql.tables.TPoids;
 import com.kffekko_report.ui.ConfigPanel;
+import com.kffekko_report.util.FileUtils;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -32,8 +35,11 @@ public class MySQLAccess {
     
     public MySQLAccess()
     {
-         this.bdUser = "root";
-         this.bdPassword = "root";
+        
+        List lignes = FileUtils.lireFichier("text.txt");
+        
+         this.bdUser = lignes.get(0).toString();
+         this.bdPassword = lignes.get(1).toString();
          this.bdName = "kffekko";
          this.bdUrl = "jdbc:mysql://localhost/";
     }
