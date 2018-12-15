@@ -305,29 +305,37 @@ public class ImportPanel extends javax.swing.JPanel {
         
         String sheetName = this.lbFileSelected.getText();
         if("POIDS F01".equals(sheetName)){
-            ExcelFile excel = new ExcelFile(this.fileUrl, this.lbFileSelected.getText());
-            Object body[][] = excel.getBody();
-
-            for (Object[] body1 : body) {
+            try {
+                ExcelFile excel = new ExcelFile(this.fileUrl, this.lbFileSelected.getText());
+                Object body[][] = excel.getBody();
+                
+                for (Object[] body1 : body) {
                 Poids poids = new Poids((String[]) body1);
                 try {
-                    poids.save();
+                poids.save();
                 } catch (SQLException ex) {
-                    Logger.getLogger(ImportPanel.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(ImportPanel.class.getName()).log(Level.SEVERE, null, ex);
                 }
+                }
+            } catch (IOException ex) {
+                Logger.getLogger(ImportPanel.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         if("MONTANTS F01".equals(sheetName)){
-            ExcelFile excel = new ExcelFile(this.fileUrl, sheetName);
-            Object body[][] = excel.getBody();
-
-            for (Object[] body1 : body) {
-                Montant montant = new Montant((String[]) body1);
-                try {
-                    montant.save();
-                } catch (SQLException ex) {
-                    Logger.getLogger(ImportPanel.class.getName()).log(Level.SEVERE, null, ex);
+            try {
+                ExcelFile excel = new ExcelFile(this.fileUrl, sheetName);
+                Object body[][] = excel.getBody();
+                
+                for (Object[] body1 : body) {
+                    Montant montant = new Montant((String[]) body1);
+                    try {
+                        montant.save();
+                    } catch (SQLException ex) {
+                        Logger.getLogger(ImportPanel.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                 }
+            } catch (IOException ex) {
+                Logger.getLogger(ImportPanel.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         
