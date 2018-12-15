@@ -35,9 +35,7 @@ public class MySQLAccess {
     
     public MySQLAccess()
     {
-        
         List lignes = FileUtils.lireFichier("text.txt");
-        
          this.bdUser = lignes.get(0).toString();
          this.bdPassword = lignes.get(1).toString();
          this.bdName = "kffekko";
@@ -106,74 +104,88 @@ public class MySQLAccess {
         }
     }
     
-    public void dropDB() throws SQLException
+    public String dropDB()
     {
+        String msg = "BD suppression";
         try {
             String sql = "DROP DATABASE IF EXISTS "+ this.bdName+ ";";
             try {
                 Class.forName("com.mysql.jdbc.Driver");
             } catch (ClassNotFoundException ex) {
-                Logger.getLogger(MySQLAccess.class.getName()).log(Level.SEVERE, null, ex);
+                msg = ex.getMessage().toString();
             }
             this.connection = DriverManager
                     .getConnection(this.bdUrl, this.bdUser, this.bdPassword);
             
-            System.out.println(sql);
+            msg+= sql;
             Statement state = this.connection.createStatement();
             state.executeUpdate(sql);
-            System.out.println("Database deleted successfully...");
+            msg +=  "Database deleted successfully...";
         } catch (SQLException ex) {
-            Logger.getLogger(MySQLAccess.class.getName()).log(Level.SEVERE, null, ex);
+            msg = ex.getMessage().toString();
         }finally{
             if(this.connection != null){
-                this.connection.close();
+                try {
+                    this.connection.close();
+                } catch (SQLException ex) {
+                    msg = ex.getMessage().toString();
+                }
             }
         }
+        
+        return msg;
     }
     
-    public void createDB() throws SQLException
+    public String createDB()
     {
+        String msg = "BD creation error";
         try {
             String sql = "CREATE DATABASE IF NOT EXISTS "+ this.bdName+ ";";
              try {
                 Class.forName("com.mysql.jdbc.Driver");
             } catch (ClassNotFoundException ex) {
-                Logger.getLogger(MySQLAccess.class.getName()).log(Level.SEVERE, null, ex);
+                msg = ex.getMessage().toString();
             }
             this.connection = DriverManager
                     .getConnection(this.bdUrl, this.bdUser, this.bdPassword);
-            System.out.println(sql);
+            msg+=sql;
             Statement state = this.connection.createStatement();
-            state.executeUpdate(sql);;
-            System.out.println("Database created successfully...");
+            state.executeUpdate(sql);
             this.bdUrl += this.bdName;
+            msg+= "Database created successfully";
         } catch (SQLException ex) {
-            Logger.getLogger(MySQLAccess.class.getName()).log(Level.SEVERE, null, ex);
+            msg = ex.getMessage().toString();
         }finally{
             if(this.connection != null){
-                this.connection.close();
+                try {
+                    this.connection.close();
+                } catch (SQLException ex) {
+                    msg = ex.getMessage().toString();
+                }
             }
         }
+        return msg;
     }
     
-    public void initTables()
+    public String initTables()
     {
+        String msg;
         try {
-            new TPoids(this.getBdUrl()).create();
+            msg = new TPoids(this.getBdUrl()).create();
             new TMontant(this.getBdUrl()).create();
+            msg += "Table initialisé avec succes";
         } catch (SQLException ex) {
-            Logger.getLogger(ConfigPanel.class.getName()).log(Level.SEVERE, null, ex);
+            return ex.getMessage().toString();
         }
+        return msg;
     }
-    public void initDB()
+    public String initDB()
     {
-        try {
-            dropDB();
-            createDB();
-            initTables();
-        } catch (SQLException ex) {
-            Logger.getLogger(ConfigPanel.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        String msg = "Init BD";
+       dropDB();
+        createDB();
+        msg +="/n"+ initTables();
+        return msg;
     }
     public String getBdUser() {
         return bdUser;

@@ -18,12 +18,14 @@ public class TPoids extends MySQLAccess{
     
     private String bdUrl;
     private Connection conn = null;
+    
     public TPoids(String bdUrl){
-        
         this.bdUrl = bdUrl;
     }
-    public void create() throws SQLException
+    
+    public String create() throws SQLException
     {
+        String msg = "";
         String sql = "CREATE TABLE IF NOT EXISTS poids (\n" +
             "    `campagne` VARCHAR(124) CHARACTER SET utf8,\n" +
             "    `no_Formule` VARCHAR(124) CHARACTER SET utf8,\n" +
@@ -71,13 +73,18 @@ public class TPoids extends MySQLAccess{
             Connection conn = DriverManager.getConnection(this.bdUrl, this.bdUser, this.bdPassword);
             // create a new table
             conn.createStatement().execute(sql);
+            
         } catch (SQLException e) {
             System.out.println(e.getMessage());
+            msg += e.getMessage();
         }finally{
             if(this.conn != null){
                 conn.close();
             }
+            msg += "ok";
         }
+        
+        return msg;
     }
     
 }
