@@ -78,6 +78,8 @@ public class BuildReport {
 + "/src/main/java/com/kffekko_report/jasperreport/models/" + this.ereportModel);
             String docPath = directory.getCanonicalPath() + "/docs/" + this.modelType + ".pdf";
             HashMap parameters = new HashMap();
+            parameters.put("SUBREPORT_DIR", directory.getCanonicalPath()+
+                    "/src/main/java/com/kffekko_report/jasperreport/models/");
             parameters.put("ANNEE_DEBUT", this.yearStart);
             parameters.put("ANNEE_FIN", this.yearEnd);
             parameters.put("MOIS_DEBUT", this.getMonthNumber(this.periodMonthStart));
@@ -94,7 +96,7 @@ public class BuildReport {
             parameters.put("VILLE", this.getCity());
             
             this.connection = DriverManager
-                    .getConnection(mysqlAccess.getBdUrl() +mysqlAccess.getBdName(), mysqlAccess.getBdUser(), mysqlAccess.getBdPassword());
+                    .getConnection(mysqlAccess.getBdUrl() +mysqlAccess.getBdName()+ "?verifyServerCertificate=false&autoReconnect=true&useSSL=true", mysqlAccess.getBdUser(), mysqlAccess.getBdPassword());
             jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, this.connection);
             if(jasperPrint != null)
             {

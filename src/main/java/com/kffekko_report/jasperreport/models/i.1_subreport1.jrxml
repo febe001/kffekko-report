@@ -8,7 +8,7 @@
 		<defaultValueExpression><![CDATA["Cacao"]]></defaultValueExpression>
 	</parameter>
 	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
-		<defaultValueExpression><![CDATA["/Users/akil/Developement/java-workspace/kffekko/src/main/java/com/kffekko_report/jasperreport/models/"]]></defaultValueExpression>
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
 	<queryString>
 		<![CDATA[SELECT

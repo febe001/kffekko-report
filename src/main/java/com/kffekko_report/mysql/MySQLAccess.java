@@ -182,8 +182,8 @@ public class MySQLAccess {
     public String initDB()
     {
         String msg = "Init BD";
-       dropDB();
-        createDB();
+        msg +="/n" + dropDB();
+        msg +="/n" + createDB();
         msg +="/n"+ initTables();
         return msg;
     }

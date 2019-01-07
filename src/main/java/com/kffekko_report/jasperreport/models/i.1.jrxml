@@ -3,10 +3,10 @@
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
-	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
-		<defaultValueExpression><![CDATA["/Users/akil/Developement/java-workspace/kffekko/src/main/java/com/kffekko_report/jasperreport/models/"]]></defaultValueExpression>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
-	<parameter name="PRODUIT" class="java.lang.String">
+	<parameter name="PRODUIT" class="java.lang.String" isForPrompting="false">
 		<defaultValueExpression><![CDATA["Cacao"]]></defaultValueExpression>
 	</parameter>
 	<queryString>
