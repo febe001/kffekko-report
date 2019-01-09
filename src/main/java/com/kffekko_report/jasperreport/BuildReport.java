@@ -20,11 +20,13 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JRExporterParameter;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.export.ooxml.JRDocxExporter;
 import net.sf.jasperreports.view.JasperViewer;
 
 /**
@@ -70,13 +72,13 @@ public class BuildReport {
         
     }
     
-    public void exportModel() throws IOException, SQLException{
+    public void exportModel(String type) throws IOException, SQLException{
         try {
             File directory = new File (".");
 
             this.jasperReport = JasperCompileManager.compileReport(directory.getCanonicalPath()
 + "/src/main/java/com/kffekko_report/jasperreport/models/" + this.ereportModel);
-            String docPath = directory.getCanonicalPath() + "/docs/" + this.modelType + ".pdf";
+            String docPath = directory.getCanonicalPath() + "/docs/" + this.modelType;
             HashMap parameters = new HashMap();
             parameters.put("SUBREPORT_DIR", directory.getCanonicalPath()+
                     "/src/main/java/com/kffekko_report/jasperreport/models/");
@@ -96,12 +98,26 @@ public class BuildReport {
             parameters.put("VILLE", this.getCity());
             
             this.connection = DriverManager
-                    .getConnection(mysqlAccess.getBdUrl() +mysqlAccess.getBdName()+ "?verifyServerCertificate=false&autoReconnect=true&useSSL=true", mysqlAccess.getBdUser(), mysqlAccess.getBdPassword());
+                    .getConnection(mysqlAccess.getBdUrl() + mysqlAccess.getBdName()
+                    + "?verifyServerCertificate=false&autoReconnect=true&useSSL=true",
+                    mysqlAccess.getBdUser(), mysqlAccess.getBdPassword());
             jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, this.connection);
             if(jasperPrint != null)
             {
-                JasperExportManager.exportReportToPdfFile(jasperPrint, docPath);
-//JasperViewer.viewReport(jasperPrint, false);
+                switch(type){
+                    case "pdf":
+                        JasperExportManager.exportReportToPdfFile(jasperPrint, docPath+".pdf");
+                        break;
+                    case "word":
+                        JRDocxExporter exporter = new JRDocxExporter();
+                        exporter.setParameter(JRExporterParameter.JASPER_PRINT, jasperPrint);
+                        exporter.setParameter(JRExporterParameter.OUTPUT_FILE_NAME, docPath + ".docx");
+                        exporter.exportReport();
+                        break;
+                    default:
+                        break;
+                }
+                
             }
             
         } catch (JRException ex) {

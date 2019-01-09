@@ -41,10 +41,10 @@ public class ReportPanel extends javax.swing.JPanel {
         modelTypesSB = new javax.swing.JComboBox();
         jLabel5 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        btImportSql = new javax.swing.JPanel();
+        btImportWord = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
-        btImportExcel = new javax.swing.JPanel();
-        jLabel15 = new javax.swing.JLabel();
+        btImportPdf = new javax.swing.JPanel();
+        jLabel14 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         citiesSB = new javax.swing.JList<>();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -90,70 +90,68 @@ public class ReportPanel extends javax.swing.JPanel {
         jLabel10.setFont(new java.awt.Font("Roboto Mono", 0, 14)); // NOI18N
         jLabel10.setText("Port(s) d'embarquement");
 
-        btImportSql.setBackground(new java.awt.Color(224, 224, 224));
-        btImportSql.addMouseListener(new java.awt.event.MouseAdapter() {
+        btImportWord.setBackground(new java.awt.Color(224, 224, 224));
+        btImportWord.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btImportWordMouseClicked(evt);
+            }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                btImportSqlMouseExited(evt);
+                btImportWordMouseExited(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btImportSqlMouseEntered(evt);
+                btImportWordMouseEntered(evt);
             }
         });
 
-        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pdf.png"))); // NOI18N
+        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/word.png"))); // NOI18N
 
-        javax.swing.GroupLayout btImportSqlLayout = new javax.swing.GroupLayout(btImportSql);
-        btImportSql.setLayout(btImportSqlLayout);
-        btImportSqlLayout.setHorizontalGroup(
-            btImportSqlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(btImportSqlLayout.createSequentialGroup()
+        javax.swing.GroupLayout btImportWordLayout = new javax.swing.GroupLayout(btImportWord);
+        btImportWord.setLayout(btImportWordLayout);
+        btImportWordLayout.setHorizontalGroup(
+            btImportWordLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(btImportWordLayout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(17, Short.MAX_VALUE))
         );
-        btImportSqlLayout.setVerticalGroup(
-            btImportSqlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btImportSqlLayout.createSequentialGroup()
+        btImportWordLayout.setVerticalGroup(
+            btImportWordLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btImportWordLayout.createSequentialGroup()
                 .addContainerGap(20, Short.MAX_VALUE)
                 .addComponent(jLabel13)
                 .addGap(17, 17, 17))
         );
 
-        btImportExcel.setBackground(new java.awt.Color(224, 224, 224));
-        btImportExcel.addMouseListener(new java.awt.event.MouseAdapter() {
+        btImportPdf.setBackground(new java.awt.Color(224, 224, 224));
+        btImportPdf.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btImportExcelMouseClicked(evt);
+                btImportPdfMouseClicked(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                btImportExcelMouseExited(evt);
+                btImportPdfMouseExited(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btImportExcelMouseEntered(evt);
+                btImportPdfMouseEntered(evt);
             }
         });
 
-        jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/word.png"))); // NOI18N
-        jLabel15.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel15MouseClicked(evt);
-            }
-        });
+        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pdf.png"))); // NOI18N
 
-        javax.swing.GroupLayout btImportExcelLayout = new javax.swing.GroupLayout(btImportExcel);
-        btImportExcel.setLayout(btImportExcelLayout);
-        btImportExcelLayout.setHorizontalGroup(
-            btImportExcelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(btImportExcelLayout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(24, Short.MAX_VALUE))
+        javax.swing.GroupLayout btImportPdfLayout = new javax.swing.GroupLayout(btImportPdf);
+        btImportPdf.setLayout(btImportPdfLayout);
+        btImportPdfLayout.setHorizontalGroup(
+            btImportPdfLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(btImportPdfLayout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(17, Short.MAX_VALUE))
         );
-        btImportExcelLayout.setVerticalGroup(
-            btImportExcelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btImportExcelLayout.createSequentialGroup()
-                .addContainerGap(23, Short.MAX_VALUE)
-                .addComponent(jLabel15)
-                .addGap(14, 14, 14))
+        btImportPdfLayout.setVerticalGroup(
+            btImportPdfLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btImportPdfLayout.createSequentialGroup()
+                .addContainerGap(20, Short.MAX_VALUE)
+                .addComponent(jLabel14)
+                .addGap(17, 17, 17))
         );
 
         citiesSB.setFont(new java.awt.Font("Roboto Mono", 0, 14)); // NOI18N
@@ -249,9 +247,9 @@ public class ReportPanel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                 .addGap(144, 144, 144)
-                .addComponent(btImportSql, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btImportWord, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(37, 37, 37)
-                .addComponent(btImportExcel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btImportPdf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(18, 18, 18)
@@ -336,23 +334,23 @@ public class ReportPanel extends javax.swing.JPanel {
                             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 18, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btImportExcel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btImportSql, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btImportPdf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btImportWord, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(83, 83, 83))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btImportSqlMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btImportSqlMouseExited
+    private void btImportWordMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btImportWordMouseExited
         // TODO add your handling code here:
-        btImportSql.setBackground(new java.awt.Color(224, 224, 224));
-    }//GEN-LAST:event_btImportSqlMouseExited
+        btImportWord.setBackground(new java.awt.Color(224, 224, 224));
+    }//GEN-LAST:event_btImportWordMouseExited
 
-    private void btImportSqlMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btImportSqlMouseEntered
+    private void btImportWordMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btImportWordMouseEntered
         // TODO add your handling code here:
-        btImportSql.setBackground(new java.awt.Color(252, 255, 250));
-    }//GEN-LAST:event_btImportSqlMouseEntered
+        btImportWord.setBackground(new java.awt.Color(252, 255, 250));
+    }//GEN-LAST:event_btImportWordMouseEntered
 
-    private void btImportExcelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btImportExcelMouseClicked
+    private void btImportPdfMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btImportPdfMouseClicked
         BuildReport report = new BuildReport(
                 this.periodStartSB.getSelectedItem().toString(),
                 this.yearStart.getSelectedItem().toString(),
@@ -367,23 +365,23 @@ public class ReportPanel extends javax.swing.JPanel {
                 this.modelTypesSB.getSelectedItem().toString()
         );
         try {
-            report.exportModel();
+            report.exportModel("pdf");
         } catch (IOException ex) {
             Logger.getLogger(ReportPanel.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
             Logger.getLogger(ReportPanel.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_btImportExcelMouseClicked
+    }//GEN-LAST:event_btImportPdfMouseClicked
 
-    private void btImportExcelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btImportExcelMouseExited
+    private void btImportPdfMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btImportPdfMouseExited
         // TODO add your handling code here:
-        btImportExcel.setBackground(new java.awt.Color(224, 224, 224));
-    }//GEN-LAST:event_btImportExcelMouseExited
+        btImportPdf.setBackground(new java.awt.Color(224, 224, 224));
+    }//GEN-LAST:event_btImportPdfMouseExited
 
-    private void btImportExcelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btImportExcelMouseEntered
+    private void btImportPdfMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btImportPdfMouseEntered
         // TODO add your handling code here:
-        btImportExcel.setBackground(new java.awt.Color(252, 255, 250));
-    }//GEN-LAST:event_btImportExcelMouseEntered
+        btImportPdf.setBackground(new java.awt.Color(252, 255, 250));
+    }//GEN-LAST:event_btImportPdfMouseEntered
 
     private void modelTypesSBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modelTypesSBActionPerformed
         // TODO add your handling code here:
@@ -393,10 +391,6 @@ public class ReportPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_productSBActionPerformed
 
-    private void jLabel15MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel15MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jLabel15MouseClicked
-
     private void yearStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_yearStartActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_yearStartActionPerformed
@@ -405,16 +399,40 @@ public class ReportPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_yearEndActionPerformed
 
+    private void btImportWordMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btImportWordMouseClicked
+        // TODO add your handling code here:
+        BuildReport report = new BuildReport(
+                this.periodStartSB.getSelectedItem().toString(),
+                this.yearStart.getSelectedItem().toString(),
+                this.periodEndSB.getSelectedItem().toString(),
+                this.yearEnd.getSelectedItem().toString(),
+                this.productSB.getSelectedItem().toString(), 
+                this.typesProductSB.getSelectedValuesList(),
+                this.citiesSB.getSelectedValuesList(),
+                this.categories.getSelectedValuesList(),
+                this.typeExportateurs.getSelectedValuesList(),
+                this.speExportateurs.getSelectedValuesList(),
+                this.modelTypesSB.getSelectedItem().toString()
+        );
+        try {
+            report.exportModel("word");
+        } catch (IOException ex) {
+            Logger.getLogger(ReportPanel.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(ReportPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btImportWordMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel btImportExcel;
-    private javax.swing.JPanel btImportSql;
+    private javax.swing.JPanel btImportPdf;
+    private javax.swing.JPanel btImportWord;
     private javax.swing.JList<String> categories;
     private javax.swing.JList<String> citiesSB;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
